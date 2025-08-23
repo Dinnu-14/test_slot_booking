@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <link rel="stylesheet" href="success.html">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Login via OTP</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; background:#0b0f14; color:#e7eef7; display:flex; align-items:center; justify-content:center; min-height:100vh; }
+    .card { width: 360px; background:#121822; padding:24px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.3); }
+    h1 { font-size:20px; margin:0 0 12px; }
+    label { display:block; margin:12px 0 6px; font-size:14px; color:#b7c3d7;}
+    input { width:100%; padding:10px 12px; border-radius:8px; border:1px solid #2a3546; background:#0f141c; color:#e7eef7; outline:none; }
+    button { width:100%; margin-top:14px; padding:10px 12px; border:0; border-radius:8px; background:#2a7fff; color:white; font-weight:600; cursor:pointer; }
+    button[disabled]{ opacity:.6; cursor:not-allowed; }
+    .hint { font-size:12px; color:#93a6c7; margin-top:6px; }
+    .msg { margin-top:10px; font-size:13px; }
+    .ok { color:#45d483; }
+    .err { color:#ff6b6b; }
+    .otp-wrap { display:none; }
+    .row { display:flex; gap:8px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Login with OTP</h1>
+
+    <label>Mobile (India)</label>
+    <input id="phone" type="tel" placeholder="e.g. 9347xxxxxx" maxlength="10"/>
+
+    <button id="btnSend">Send OTP</button>
+    <div id="msg1" class="msg"></div>
+
+    <div id="otpWrap" class="otp-wrap">
+      <label>Enter OTP</label>
+      <div class="row">
+        <input id="otp" type="text" placeholder="6-digit code" maxlength="15"/>
+        <button id="btnVerify" style="width:auto;padding:10px 16px;">Verify</button>
+      </div>
+      <div class="hint">Check your WhatsApp for the OTP.</div>
+      <div id="msg2" class="msg"></div>
+    </div>
+  </div>
+
+<script>
+const API_BASE = 'https://anandnodered.kalpatech.co.in'
+
+const $ = sel => document.querySelector(sel);
+const phone = $('#phone');
+const msg1 = $('#msg1');
+const msg2 = $('#msg2');
+const btnSend = $('#btnSend');
+const btnVerify = $('#btnVerify');
+const otpWrap = $('#otpWrap');
+
+btnSend.onclick = async () => {
+  const p = (phone.value||'').replace(/\D/g,'');
+  msg1.className='msg'; msg1.textContent='';
+  msg2.className='msg'; msg2.textContent='';
+
+  if (p.length !== 10) {
+    msg1.classList.add('err'); msg1.textContent = 'Phone must be 10 digits.';
+    return;
+  }
+  btnSend.disabled = true;
+  try {
+    const res = await fetch(API_BASE + '/otpreq', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ phone: p })
+    });
+    const data = await res.json().catch(()=>({}));
+    
+    // Check for success (either success or ok field)
+    if (res.ok && (data.success || data.ok)) {
+      msg1.classList.add('ok'); msg1.textContent = 'OTP sent to WhatsApp.';
+      otpWrap.style.display = 'block';
+    } else {
+      msg1.classList.add('err'); msg1.textContent = (data && (data.error || data.message)) || 'Failed to send OTP.';
+    }
+  } catch(e) {
+    msg1.classList.add('err'); msg1.textContent = 'Network error. Try again.';
+  } finally {
+    btnSend.disabled = false;
+  }
+};
+
+btnVerify.onclick = async () => {
+  const p = (phone.value||'').replace(/\D/g,'');
+  const code = ($('#otp').value||'').trim();
+  msg2.className='msg'; msg2.textContent='';
+  if (p.length !== 10 || !code) {
+    msg2.classList.add('err'); msg2.textContent = 'Enter phone + OTP.';
+    return;
+  }
+  btnVerify.disabled = true;
+  try {
+    const res = await fetch(API_BASE + '/otpverify', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ phone: p, otp: code })
+    });
+    const data = await res.json().catch(()=>({}));
+    
+    // Check for success (either success or ok field)
+    if (res.ok && (data.success || data.ok)) {
+      msg2.classList.add('ok'); msg2.textContent = 'Verified! Redirecting...';
+      // Redirect to success page
+      setTimeout(() => window.location.href = 'success.html', 800);
+    } else {
+      msg2.classList.add('err'); msg2.textContent = (data && (data.error || 'Invalid OTP'));
+    }
+  } catch(e) {
+    msg2.classList.add('err'); msg2.textContent = 'Network error.';
+  } finally {
+    btnVerify.disabled = false;
+  }
+};
+</script>
+</body>
+</html>

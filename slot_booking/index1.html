@@ -1,0 +1,4082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sufala - Fresh Cold Pressed Oils</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #2D5016;
+            --accent-gold: #D4AF37;
+            --warm-cream: #F5F2E8;
+            --deep-brown: #3E2723;
+            --soft-green: #A8CC8C;
+            --text-dark: #2C3E50;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --gradient: linear-gradient(135deg, #2D5016 0%, #A8CC8C 100%);
+            --glow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--warm-cream);
+            overflow-x: hidden;
+        }
+
+        /* Enhanced Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200px 0; }
+            100% { background-position: calc(200px + 100%) 0; }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.6s ease;
+        }
+
+        /* OTP Modal Styles */
+        .otp-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .otp-modal.active {
+            display: flex;
+        }
+
+        .otp-modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: var(--shadow);
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .otp-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+            transition: transform 0.3s ease;
+        }
+
+        .otp-modal-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .otp-modal h2 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: color 0.3s ease;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .otp-btn {
+            width: 100%;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .otp-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .otp-btn:hover::before {
+            left: 100%;
+        }
+
+        .otp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .otp-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .otp-wrap {
+            display: none;
+        }
+
+        .otp-wrap.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .otp-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .hint {
+            font-size: 12px;
+            color: #93a6c7;
+            margin-top: 6px;
+            text-align: center;
+        }
+
+        .msg {
+            margin-top: 10px;
+            font-size: 13px;
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+
+        .ok {
+            color: #45d483;
+            background: rgba(69, 212, 131, 0.1);
+            border: 1px solid #45d483;
+        }
+
+        .err {
+            color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid #ff6b6b;
+        }
+
+        /* Admin Access Styles */
+        .admin-access {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            z-index: 1000;
+        }
+
+        .admin-access-btn {
+            background: rgba(45, 80, 22, 0.1);
+            border: 1px solid rgba(45, 80, 22, 0.2);
+            color: rgba(45, 80, 22, 0.6);
+            padding: 0.3rem 0.6rem;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .admin-access-btn:hover {
+            background: var(--primary-green);
+            color: white;
+            border-color: var(--primary-green);
+        }
+
+        /* Admin Login Modal Styles */
+        .admin-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .admin-modal.active {
+            display: flex;
+        }
+
+        .admin-modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: var(--shadow);
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        /* Navigation Updates - Clean User Experience */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(245, 242, 232, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--accent-gold);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .nav-auth {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .user-menu {
+            position: relative;
+        }
+
+        .user-menu-btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .user-menu-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--glow);
+        }
+
+        .user-menu-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            min-width: 200px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .user-menu.active .user-menu-dropdown {
+            display: block;
+        }
+
+        .user-menu-item {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .user-menu-item:hover {
+            background: var(--warm-cream);
+            transform: translateX(5px);
+        }
+
+        /* Hero Section */
+        .display-desktop{
+            display: block;
+        }
+        .display-mobile{
+            display: none;
+        }
+
+        @media screen and (max-width: 768px) {
+            .display-desktop{
+                display: none;
+            }
+            .display-mobile{
+                display: block;
+            }
+        }
+
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(245, 242, 232, 0.9) 0%, rgba(168, 204, 140, 0.1) 100%);
+            display: flex;
+            align-items: center;
+            padding: 6rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23D4AF37" opacity="0.1"/><circle cx="80" cy="80" r="1" fill="%232D5016" opacity="0.1"/><circle cx="40" cy="60" r="1" fill="%23A8CC8C" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+            z-index: -1;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-content .highlight {
+            background: linear-gradient(135deg, var(--accent-gold), #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+
+        .cta-button {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .hero-image {
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: linear-gradient(45deg, var(--accent-gold), var(--soft-green));
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: -1;
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Products Section */
+        .products {
+            padding: 6rem 2rem;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .products::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .products-container {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .product-card {
+            flex: 0 1 auto;
+            min-width: 250px;
+            max-width: 320px;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .product-card:hover::before {
+            left: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            border-color: var(--accent-gold);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+            border: 3px solid var(--accent-gold);
+        }
+
+        .product-card:hover .product-image {
+            transform: rotate(360deg);
+            box-shadow: var(--glow);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .product-card:hover h3 {
+            color: var(--accent-gold);
+        }
+
+        .product-card .price {
+            font-size: 1.25rem;
+            color: var(--accent-gold);
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .product-card .description {
+            color: var(--text-dark);
+            opacity: 0.8;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .select-btn {
+            background: transparent;
+            color: var(--primary-green);
+            border: 2px solid var(--primary-green);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .select-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-green);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .select-btn:hover::before {
+            left: 0;
+        }
+
+        .select-btn:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .product-card.selected {
+            border-color: var(--accent-gold);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(168, 204, 140, 0.1));
+        }
+
+        .product-card.selected .select-btn {
+            background: var(--accent-gold);
+            color: white;
+            border-color: var(--accent-gold);
+        }
+
+        /* About Section Cards */
+        .about-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            max-width: 320px;
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .about-card:hover::before {
+            left: 100%;
+        }
+
+        .about-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            border-color: var(--accent-gold);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+        }
+
+        .about-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        .about-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .about-card:hover h3 {
+            color: var(--accent-gold);
+        }
+
+        .about-card .description {
+            color: var(--text-dark);
+            opacity: 0.8;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* Calendar Section */
+        .calendar-section {
+            padding: 6rem 2rem;
+            background: var(--warm-cream);
+            display: none;
+        }
+
+        .calendar-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            overflow: visible;
+            position: relative;
+        }
+
+        .calendar-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .calendar {
+            background: transparent;
+            width: 100%;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--gradient);
+            border-radius: 15px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calendar-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.1) 10px,
+                rgba(255,255,255,0.1) 20px
+            );
+            animation: shimmer 3s linear infinite;
+        }
+
+        .month-picker {
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .month-picker:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        .month-change {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .month-change:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .year-picker {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .year-dropdown {
+            position: relative;
+        }
+
+        .year-select {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s ease;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="white" d="M2 0L0 2h4zm0 5L0 3h4z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 0.7rem center;
+            background-size: 0.65rem auto;
+            padding-right: 2.5rem;
+        }
+
+        .year-select:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+
+        .year-select:focus {
+            border-color: var(--accent-gold);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .year-select option {
+            background: var(--primary-green);
+            color: white;
+            padding: 0.5rem;
+        }
+
+        .calendar-week-day {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .calendar-week-day div {
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+            color: var(--accent-gold);
+            background: var(--warm-cream);
+            border-radius: 10px;
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+        }
+
+        .calendar-days div {
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calendar-days div::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(168, 204, 140, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .calendar-days div:hover::before {
+            left: 100%;
+        }
+
+        .calendar-days div:hover {
+            background: var(--soft-green);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: var(--shadow);
+        }
+
+        .calendar-days div.selected {
+            background: var(--gradient);
+            color: white;
+            border-color: var(--accent-gold);
+            box-shadow: var(--glow);
+        }
+
+        .calendar-days div.curr-date {
+            border-color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        /* Enhanced Booking Process Styles */
+        .booking-section {
+            display: none;
+            padding: 6rem 2rem;
+            background: var(--warm-cream);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .booking-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="booking-pattern" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="2" fill="%23D4AF37" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23booking-pattern)"/></svg>') repeat;
+            z-index: 0;
+        }
+
+        .booking-section.active {
+            display: block;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .booking-steps {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            margin: 0 1rem;
+            position: relative;
+        }
+
+        .step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -2rem;
+            width: 2rem;
+            height: 2px;
+            background: #ddd;
+            transform: translateY(-50%);
+        }
+
+        .step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-number::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .step.active .step-number::before {
+            left: 100%;
+        }
+
+        .step.active .step-number {
+            background: var(--accent-gold);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: var(--glow);
+        }
+
+        .step.completed .step-number {
+            background: var(--primary-green);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .step.completed::after {
+            background: var(--primary-green);
+        }
+
+        /* Enhanced Quantity Section */
+        .quantity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quantity-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 3px solid transparent;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .quantity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .quantity-card:hover::before {
+            left: 100%;
+        }
+
+        .quantity-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: var(--accent-gold);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .quantity-card .quantity-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-green);
+            transition: all 0.3s ease;
+        }
+
+        .quantity-card:hover .quantity-icon {
+            color: var(--accent-gold);
+            transform: scale(1.1);
+        }
+
+        .quantity-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .quantity-card:hover h3 {
+            color: var(--accent-gold);
+        }
+
+        .quantity-card .price {
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .quantity-card .description {
+            color: #666;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .quantity-card.selected {
+            background: var(--gradient);
+            color: white;
+            border-color: var(--accent-gold);
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: var(--glow);
+        }
+
+        .quantity-card.selected .quantity-icon,
+        .quantity-card.selected h3,
+        .quantity-card.selected .price {
+            color: white;
+        }
+
+        /* Enhanced Slot Selection */
+        .slots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .slot-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .slot-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(168, 204, 140, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .slot-card:hover::before {
+            left: 100%;
+        }
+
+        .slot-card:hover {
+            background: var(--soft-green);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: var(--shadow);
+        }
+
+        .slot-card.selected {
+            background: var(--gradient);
+            color: white;
+            border-color: var(--accent-gold);
+            transform: scale(1.05);
+            box-shadow: var(--glow);
+        }
+
+        .slot-card.booked {
+            background: #f5f5f5;
+            color: #999;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .slot-card.booked:hover {
+            transform: none;
+            background: #f5f5f5;
+            color: #999;
+        }
+
+        .slot-card.booked::before {
+            display: none;
+        }
+
+        /* User Panel Styles */
+        .user-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--warm-cream);
+            z-index: 9999;
+            overflow-y: auto;
+        }
+
+        .user-panel.active {
+            display: block;
+            animation: slideInLeft 0.5s ease;
+        }
+
+        .user-header {
+            background: var(--primary-green);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .user-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: shimmer 3s linear infinite;
+        }
+
+        .user-header h1 {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .user-btn {
+            background: var(--accent-gold);
+            color: var(--deep-brown);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .user-btn:hover {
+            background: #FFD700;
+            transform: translateY(-2px);
+            box-shadow: var(--glow);
+        }
+
+        .user-btn.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .user-btn.secondary:hover {
+            background: white;
+            color: var(--primary-green);
+        }
+
+        .user-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .user-bookings {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .user-bookings::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        .user-bookings h2 {
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .booking-card {
+            background: var(--warm-cream);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-gold);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .booking-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .booking-card:hover::before {
+            left: 100%;
+        }
+
+        .booking-card:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow);
+        }
+
+        .booking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .booking-id {
+            font-weight: bold;
+            color: var(--primary-green);
+            font-size: 1.1rem;
+        }
+
+        .booking-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-label {
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            opacity: 0.7;
+            margin-bottom: 0.2rem;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* Admin Panel Styles */
+        .admin-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f5f5f5;
+            z-index: 9999;
+            overflow-y: auto;
+        }
+
+        .admin-panel.active {
+            display: block;
+            animation: slideInLeft 0.5s ease;
+        }
+
+        .admin-nav {
+            background: var(--primary-green);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .admin-nav::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: shimmer 3s linear infinite;
+        }
+
+        .admin-nav h1 {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .admin-btn {
+            background: var(--accent-gold);
+            color: var(--deep-brown);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .admin-btn:hover {
+            background: #FFD700;
+            transform: translateY(-2px);
+            box-shadow: var(--glow);
+        }
+
+        .admin-btn.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .admin-btn.secondary:hover {
+            background: white;
+            color: var(--primary-green);
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .stat-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-dark);
+            opacity: 0.8;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .orders-section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .orders-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        .orders-header {
+            background: var(--primary-green);
+            color: white;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .orders-table-container {
+            overflow-x: auto;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        .orders-table th,
+        .orders-table td {
+            padding: 1.2rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .orders-table th {
+            background: var(--warm-cream);
+            font-weight: 600;
+            color: var(--text-dark);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .orders-table tr {
+            transition: all 0.3s ease;
+        }
+
+        .orders-table tr:hover {
+            background: rgba(212, 175, 55, 0.05);
+            transform: scale(1.01);
+        }
+
+        .status-badge {
+            padding: 0.4rem 1rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            animation: pulse 2s infinite;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .status-confirmed {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status-completed {
+            background: #cce5ff;
+            color: #004085;
+            border: 1px solid #b3d9ff;
+        }
+
+        .status-cancelled {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .action-btn {
+            padding: 0.4rem 0.8rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin: 0 0.25rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .btn-confirm {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-confirm:hover {
+            background: #218838;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+        }
+
+        .btn-complete {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-complete:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn-cancel {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .btn-cancel:hover {
+            background: #e0a800;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(255, 193, 7, 0.3);
+        }
+
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #c82333;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+        }
+
+        /* User Management Section */
+        .user-management {
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .user-management::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        .user-management-header {
+            background: var(--deep-brown);
+            color: white;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .user-card {
+            background: var(--warm-cream);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem;
+            border-left: 4px solid var(--accent-gold);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .user-card:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow);
+        }
+
+        .user-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem;
+        }
+
+        .user-stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            border: 1px solid #e0e0e0;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--deep-brown);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="footer-pattern" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="15" cy="15" r="1" fill="%23D4AF37" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23footer-pattern)"/></svg>') repeat;
+            z-index: 0;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--accent-gold);
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-gold);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--deep-brown);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .social-links a:hover::before {
+            left: 100%;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: var(--glow);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Notification styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            z-index: 10001;
+            animation: slideInRight 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            max-width: 350px;
+            backdrop-filter: blur(10px);
+        }
+
+        .notification.success {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            color: #155724;
+            border-left: 4px solid #28a745;
+        }
+
+        .notification.error {
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            color: #721c24;
+            border-left: 4px solid #dc3545;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .products-container {
+                gap: 1.5rem;
+            }
+
+            .product-card {
+                min-width: 200px;
+                max-width: 250px;
+            }
+
+            .nav-container {
+                padding: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--warm-cream);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: var(--shadow);
+                border-radius: 0 0 20px 20px;
+            }
+
+            .nav-links.active {
+                display: flex;
+                animation: fadeInUp 0.5s ease;
+            }
+
+            .otp-modal-content,
+            .admin-modal-content {
+                padding: 2rem;
+                margin: 1rem;
+            }
+
+            .dashboard-container {
+                padding: 1rem;
+            }
+
+            .admin-nav {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .orders-header,
+            .user-management-header {
+                padding: 1.5rem;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .booking-steps {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .step::after {
+                display: none;
+            }
+
+            .quantity-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .slots-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            /* Enhanced Mobile Calendar */
+            .calendar-container {
+                padding: 1.5rem;
+                margin: 0 1rem;
+                border-radius: 15px;
+                max-width: calc(100vw - 2rem);
+                overflow-x: hidden;
+            }
+
+            .calendar {
+                width: 100%;
+                min-width: unset;
+            }
+
+            .calendar-header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .month-picker {
+                font-size: 1.2rem;
+                justify-content: center;
+            }
+
+            .year-picker {
+                justify-content: center;
+            }
+
+            .calendar-week-day {
+                gap: 2px;
+            }
+
+            .calendar-week-day div {
+                padding: 0.5rem 0.2rem;
+                font-size: 0.8rem;
+            }
+
+            .calendar-days {
+                gap: 2px;
+            }
+
+            .calendar-days div {
+                padding: 0.8rem 0.2rem;
+                font-size: 0.9rem;
+                min-height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .year-select {
+                font-size: 1rem;
+                padding: 0.4rem 0.8rem;
+                padding-right: 2rem;
+            }
+
+            .hero-stats {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-green);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* Progress Bar for Steps */
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 2px;
+            transition: width 0.5s ease;
+            width: 33.33%;
+        }
+
+        /* Login Required Notification */
+        .login-required {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--accent-gold);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 2rem 0;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .login-required h3 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .login-required p {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .login-required .cta-button {
+            margin: 0 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation - Clean User Experience -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Sufala</a>
+            
+            <div class="menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            
+            <!-- User State - Only shows when logged in -->
+            <div id="user-nav" class="nav-auth" style="display: none;">
+                <div class="user-menu">
+                    <button class="user-menu-btn" onclick="toggleUserMenu()">
+                        <i class="fas fa-user"></i>
+                        <span id="user-name">User</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-menu-dropdown">
+                        <div class="user-menu-item" onclick="showUserPanel()">
+                            <i class="fas fa-calendar"></i> My Bookings
+                        </div>
+                        <div class="user-menu-item" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Discrete Admin Access -->
+    <div class="admin-access">
+        <button class="admin-access-btn" onclick="showAdminModal()" title="Admin Access">
+            <i class="fas fa-cog" style="font-size: 0.7rem;"></i>
+        </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content fade-in-up">
+                <h1>Pure, Fresh <span class="highlight">Cold Pressed</span> Oils</h1>
+                <p>Experience the authentic taste and nutrition of traditionally extracted oils. Watch your oil being freshly pressed right before your eyes!</p>
+                
+                <div class="display-mobile">
+                    <div class="hero-image fade-in-up">
+                        <div><img src="Artboard 1 - Edited.png" alt="Fresh Cold Pressed Oil" style="animation: float 3s ease-in-out infinite;"></div>
+                    </div>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Pure & Natural</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">24hrs</span>
+                        <span class="stat-label">Fresh Pressing</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">15M+</span>
+                        <span class="stat-label">Happy Customers</span>
+                    </div>
+                </div>
+
+                <a href="#products" class="cta-button">
+                    <i class="fas fa-leaf"></i> Book Fresh Oil Now
+                </a>
+            </div>
+            
+            <div class="display-desktop">
+                <div class="hero-image">
+                    <div><img src="Artboard 1 - Edited.png" alt="Fresh Cold Pressed Oil" style="animation: float 3s ease-in-out infinite;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Choose Your Fresh Oil</h2>
+                <p>Select from our premium collection of oils, each cold-pressed to perfection using traditional methods</p>
+            </div>
+
+            <div class="products-container">
+                <div class="product-card" onclick="selectProduct('Sesame Oil', 120)">
+                    <div class="product-image">
+                        <img src="Sesame web.png" alt="Sesame Oil">
+                    </div>
+                    <h3>Sesame Oil</h3>
+                    <div class="price">₹120/Liter</div>
+                    <div class="description">Rich in antioxidants and vitamins, perfect for cooking and therapeutic use</div>
+                    <button class="select-btn">Book Fresh Oil</button>
+                </div>
+
+                <div class="product-card" onclick="selectProduct('Groundnut Oil', 95)">
+                    <div class="product-image">
+                        <img src="Groundnur.png" alt="Groundnut Oil">
+                    </div>
+                    <h3>Groundnut Oil</h3>
+                    <div class="price">₹95/Liter</div>
+                    <div class="description">Light, healthy cooking oil with a mild flavor and high smoke point</div>
+                    <button class="select-btn">Book Fresh Oil</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking-section" id="booking-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 id="booking-title">Select Your Pressing Date</h2>
+                <p id="booking-description">Choose when you'd like your oil to be freshly pressed</p>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+
+            <!-- Booking Steps -->
+            <div class="booking-steps">
+                <div class="step active" id="step-1">
+                    <div class="step-number">1</div>
+                    <span>Select Date</span>
+                </div>
+                <div class="step" id="step-2">
+                    <div class="step-number">2</div>
+                    <span>Choose Quantity</span>
+                </div>
+                <div class="step" id="step-3">
+                    <div class="step-number">3</div>
+                    <span>Pick Time Slot</span>
+                </div>
+            </div>
+
+            <!-- Calendar Section -->
+            <div id="calendar-step" class="booking-step">
+                <div class="calendar-container">
+                    <div class="calendar">
+                        <div class="calendar-header">
+                            <div class="month-picker">
+                                <span class="month-change" id="prev-month">
+                                    <i class="fas fa-chevron-left"></i>
+                                </span>
+                                <span id="month-display">January</span>
+                                <span class="month-change" id="next-month">
+                                    <i class="fas fa-chevron-right"></i>
+                                </span>
+                            </div>
+                            <div class="year-picker">
+                                <select class="year-select" id="year-select"></select>
+                            </div>
+                        </div>
+                        <div class="calendar-week-day">
+                            <div>Sun</div>
+                            <div>Mon</div>
+                            <div>Tue</div>
+                            <div>Wed</div>
+                            <div>Thu</div>
+                            <div>Fri</div>
+                            <div>Sat</div>
+                        </div>
+                        <div class="calendar-days" id="calendar-days"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quantity Section -->
+            <div id="quantity-step" class="booking-step" style="display: none;">
+                <div class="quantity-grid">
+                    <div class="quantity-card" onclick="selectQuantity('1 Liter', 1)">
+                        <div class="quantity-icon">
+                            <i class="fas fa-wine-bottle"></i>
+                        </div>
+                        <h3>1 Liter</h3>
+                        <div class="price" id="price-1">₹120</div>
+                        <div class="description">Perfect for trying our oil</div>
+                    </div>
+
+                    <div class="quantity-card" onclick="selectQuantity('3 Liters', 3)">
+                        <div class="quantity-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3>3 Liters</h3>
+                        <div class="price" id="price-3">₹360</div>
+                        <div class="description">Ideal for families</div>
+                    </div>
+
+                    <div class="quantity-card" onclick="selectQuantity('5 Liters', 5)">
+                        <div class="quantity-icon">
+                            <i class="fas fa-fill-drip"></i>
+                        </div>
+                        <h3>5 Liters</h3>
+                        <div class="price" id="price-5">₹600</div>
+                        <div class="description">Best value for bulk use</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slots Section -->
+            <div id="slots-step" class="booking-step" style="display: none;">
+                <div class="slots-grid" id="slots-grid">
+                    <!-- Slots will be populated by JavaScript -->
+                </div>
+
+                <!-- Login Required Notice -->
+                <div id="login-required-notice" class="login-required" style="display: none;">
+                    <h3><i class="fas fa-lock"></i> Login Required</h3>
+                    <p>Please login with your phone number to complete your booking and secure your time slot.</p>
+                    <button class="cta-button" onclick="showOtpModal()">
+                        <i class="fas fa-phone"></i> Login with Phone
+                    </button>
+                    <button class="cta-button" onclick="resetBooking()" style="background: #6c757d;">
+                        <i class="fas fa-arrow-left"></i> Go Back
+                    </button>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <button class="cta-button" id="confirm-booking" onclick="confirmBooking()" style="display: none;">
+                        <i class="fas fa-check"></i> Confirm Booking
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="products" id="about" style="background: var(--warm-cream);">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Why Choose Sufala?</h2>
+                <p>Experience the difference of traditionally made, fresh oils</p>
+            </div>
+
+            <div class="products-container">
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Watch It Being Made</h3>
+                    <div class="description">See your oil being freshly pressed right before your eyes using traditional methods</div>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>100% Natural</h3>
+                    <div class="description">No chemicals, no preservatives - just pure, natural oil extracted the traditional way</div>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Fresh Daily</h3>
+                    <div class="description">Oil pressed fresh on your selected date, ensuring maximum nutrition and taste</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Sufala Naturals</h3>
+                <p>Experience the purity of traditionally extracted cold-pressed oils. Fresh, natural, and healthy.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/sufala_naturals/?hl=en"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#home">Home</a>
+                <a href="#products">Products</a>
+                <a href="#about">About Us</a>
+                <a href="#contact">Contact</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Rajahmundry, Andhra Pradesh</p>
+                <p><i class="fas fa-phone"></i> +91 91535 97999</p>
+                <p><i class="fas fa-envelope"></i> info@sufala.com</p>
+                <p><i class="fas fa-clock"></i> Mon-Sat: 8AM-8PM</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Our Promise</h3>
+                <p>✓ 100% Pure & Natural</p>
+                <p>✓ Traditional Methods</p>
+                <p>✓ Fresh Daily Pressing</p>
+                <p>✓ No Chemicals Added</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sufala Naturals. All rights reserved. Made with ❤️ for healthy living.</p>
+        </div>
+    </footer>
+
+    <!-- OTP Modal -->
+    <div id="otp-modal" class="otp-modal">
+        <div class="otp-modal-content">
+            <button class="otp-modal-close" onclick="closeOtpModal()">&times;</button>
+            
+            <h2>Login to Complete Booking</h2>
+            
+            <!-- Name Input for First Time Users -->
+            <div id="name-step" class="form-group" style="display: none;">
+                <label for="user-name-input">Enter Your Name</label>
+                <input type="text" id="user-name-input" placeholder="Your full name" required>
+                <div class="hint">This is your first time, please enter your name</div>
+                <button class="otp-btn" onclick="proceedWithName()">
+                    <i class="fas fa-arrow-right"></i> Continue
+                </button>
+                <div id="name-msg" class="msg"></div>
+            </div>
+
+            <!-- Phone Input -->
+            <div id="phone-step">
+                <div class="form-group">
+                    <label for="phone-input">Mobile Number (India)</label>
+                    <input type="tel" id="phone-input" placeholder="e.g. 9347xxxxxx" maxlength="10" required>
+                </div>
+
+                <button class="otp-btn" id="btnSend" onclick="sendOTP()">
+                    <i class="fas fa-paper-plane"></i> Send OTP
+                </button>
+                <div id="phone-msg" class="msg"></div>
+            </div>
+
+            <!-- OTP Input -->
+            <div id="otp-step" class="otp-wrap">
+                <div class="form-group">
+                    <label for="otp-input">Enter OTP</label>
+                    <div class="otp-row">
+                        <input type="text" id="otp-input" placeholder="6-digit code" maxlength="15" required>
+                        <button class="otp-btn" id="btnVerify" onclick="verifyOTP()" style="width: auto; padding: 0.8rem 1.2rem;">
+                            <i class="fas fa-check"></i> Verify
+                        </button>
+                    </div>
+                </div>
+                <div class="hint">Check your WhatsApp for the OTP.</div>
+                <div id="otp-msg" class="msg"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="admin-modal" class="admin-modal">
+        <div class="admin-modal-content">
+            <button class="otp-modal-close" onclick="closeAdminModal()">&times;</button>
+            
+            <h2>Admin Access</h2>
+            
+            <form id="admin-form" onsubmit="handleAdminLogin(event)">
+                <div class="form-group">
+                    <label for="admin-email">Email</label>
+                    <input type="email" id="admin-email" value="admin@sufala.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="admin-password">Password</label>
+                    <input type="password" id="admin-password" value="admin123" required>
+                </div>
+                <button type="submit" class="otp-btn">
+                    <i class="fas fa-sign-in-alt"></i> Access Admin Panel
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- User Panel -->
+    <div id="user-panel" class="user-panel">
+        <div class="user-header">
+            <h1><i class="fas fa-user"></i> My Dashboard</h1>
+            <div class="user-actions">
+                <button class="user-btn" onclick="hideUserPanel()">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+                <button class="user-btn secondary" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+        
+        <div class="user-content">
+            <div class="user-bookings">
+                <h2><i class="fas fa-calendar-alt"></i> My Bookings</h2>
+                <div id="user-bookings-list">
+                    <!-- User bookings will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="admin-panel" class="admin-panel">
+        <nav class="admin-nav">
+            <h1><i class="fas fa-leaf"></i> Sufala Admin Dashboard</h1>
+            <div class="nav-actions">
+                <button class="admin-btn" onclick="hideAdminPanel()">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+                <button class="admin-btn secondary" onclick="refreshDashboard()">
+                    <i class="fas fa-refresh"></i> Refresh
+                </button>
+                <button class="admin-btn secondary" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </nav>
+
+        <div class="dashboard-container">
+            <!-- Dashboard Stats -->
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <span class="stat-number" id="admin-total-orders">0</span>
+                    <div class="stat-label">Total Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <span class="stat-number" id="admin-pending-orders">0</span>
+                    <div class="stat-label">Pending Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <span class="stat-number" id="admin-confirmed-orders">0</span>
+                    <div class="stat-label">Confirmed Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <span class="stat-number" id="admin-completed-orders">0</span>
+                    <div class="stat-label">Completed Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <span class="stat-number" id="admin-total-revenue">₹0</span>
+                    <div class="stat-label">Total Revenue</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <span class="stat-number" id="admin-total-users">0</span>
+                    <div class="stat-label">Total Users</div>
+                </div>
+            </div>
+
+            <!-- User Management Section -->
+            <div class="user-management">
+                <div class="user-management-header">
+                    <h2><i class="fas fa-users"></i> User Management</h2>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="admin-btn" onclick="loadUserManagement()">
+                            <i class="fas fa-refresh"></i> Refresh Users
+                        </button>
+                        <button class="admin-btn secondary" onclick="exportUserData()">
+                            <i class="fas fa-download"></i> Export Data
+                        </button>
+                    </div>
+                </div>
+                <div id="user-management-content">
+                    <!-- User management content will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Orders Section -->
+            <div class="orders-section">
+                <div class="orders-header">
+                    <h2><i class="fas fa-list"></i> Order Management</h2>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="admin-btn" onclick="filterAdminOrders('all')">
+                            <i class="fas fa-list"></i> All Orders
+                        </button>
+                        <button class="admin-btn secondary" onclick="filterAdminOrders('today')">
+                            <i class="fas fa-calendar-day"></i> Today's Orders
+                        </button>
+                    </div>
+                </div>
+                <div class="orders-table-container">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Product Details</th>
+                                <th>Schedule</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-orders-list">
+                            <!-- Orders will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API Configuration
+        const API_BASE = 'https://anandnodered.kalpatech.co.in';
+
+        // Global variables
+        let currentUser = null;
+        let selectedProduct = '';
+        let selectedDate = '';
+        let selectedQuantity = '';
+        let selectedSlot = '';
+        let basePrice = 0;
+        let quantityMultiplier = 1;
+        let currentStep = 1;
+        let pendingUserData = null;
+
+        // Available time slots
+        const timeSlots = [
+            '8:00 - 8:30 AM', '8:30 - 9:00 AM', '9:00 - 9:30 AM', '9:30 - 10:00 AM',
+            '10:00 - 10:30 AM', '10:30 - 11:00 AM', '11:00 - 11:30 AM', '11:30 - 12:00 PM',
+            '12:00 - 12:30 PM', '12:30 - 1:00 PM', '3:00 - 3:30 PM', '3:30 - 4:00 PM',
+            '4:00 - 4:30 PM', '4:30 - 5:00 PM', '5:00 - 5:30 PM', '5:30 - 6:00 PM',
+            '6:00 - 6:30 PM', '6:30 - 7:00 PM', '7:00 - 7:30 PM', '7:30 - 8:00 PM'
+        ];
+
+        // Demo admin credentials
+        const adminCredentials = {
+            email: 'admin@sufala.com',
+            password: 'admin123'
+        };
+
+        // Data storage
+        let allUsers = JSON.parse(localStorage.getItem('sufala_users')) || [];
+        let allOrders = JSON.parse(localStorage.getItem('sufala_orders')) || [];
+
+        // Calendar variables
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        const currDate = new Date();
+        const currMonth = { value: currDate.getMonth() };
+        const currYear = { value: currDate.getFullYear() };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCalendar();
+            populateYearDropdown();
+            checkLoginStatus();
+            loadUserBookings();
+            loadAdminDashboard();
+            addFadeInAnimations();
+        });
+
+        function addFadeInAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-up');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.section-container, .product-card, .about-card').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        }
+
+        // OTP Authentication Functions
+        function showOtpModal() {
+            document.getElementById('otp-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            resetOtpModal();
+        }
+
+        function closeOtpModal() {
+            document.getElementById('otp-modal').classList.remove('active');
+            document.body.style.overflow = '';
+            resetOtpModal();
+        }
+
+        function resetOtpModal() {
+            document.getElementById('phone-step').style.display = 'block';
+            document.getElementById('name-step').style.display = 'none';
+            document.getElementById('otp-step').classList.remove('active');
+            document.getElementById('phone-input').value = '';
+            document.getElementById('otp-input').value = '';
+            document.getElementById('user-name-input').value = '';
+            document.getElementById('phone-msg').textContent = '';
+            document.getElementById('otp-msg').textContent = '';
+            document.getElementById('name-msg').textContent = '';
+            pendingUserData = null;
+        }
+
+        async function sendOTP() {
+            const phoneInput = document.getElementById('phone-input');
+            const phoneMsg = document.getElementById('phone-msg');
+            const btnSend = document.getElementById('btnSend');
+            
+            const phone = (phoneInput.value || '').replace(/\D/g, '');
+            
+            phoneMsg.className = 'msg';
+            phoneMsg.textContent = '';
+
+            if (phone.length !== 10) {
+                phoneMsg.classList.add('err');
+                phoneMsg.textContent = 'Phone must be 10 digits.';
+                return;
+            }
+
+            btnSend.disabled = true;
+            btnSend.innerHTML = '<span class="loading"></span> Sending...';
+
+            try {
+                const response = await fetch(API_BASE + '/otpreq', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ phone: phone })
+                });
+
+                const data = await response.json().catch(() => ({}));
+
+                if (response.ok && (data.success || data.ok)) {
+                    phoneMsg.classList.add('ok');
+                    phoneMsg.textContent = 'OTP sent to WhatsApp.';
+                    
+                    // Check if this is a new user
+                    const existingUser = allUsers.find(u => u.phone === phone);
+                    if (!existingUser) {
+                        // New user - show name input
+                        document.getElementById('phone-step').style.display = 'none';
+                        document.getElementById('name-step').style.display = 'block';
+                        pendingUserData = { phone: phone };
+                    } else {
+                        // Existing user - show OTP input
+                        document.getElementById('otp-step').classList.add('active');
+                        pendingUserData = existingUser;
+                    }
+                } else {
+                    phoneMsg.classList.add('err');
+                    phoneMsg.textContent = (data && (data.error || data.message)) || 'Failed to send OTP.';
+                }
+            } catch(e) {
+                phoneMsg.classList.add('err');
+                phoneMsg.textContent = 'Network error. Try again.';
+            } finally {
+                btnSend.disabled = false;
+                btnSend.innerHTML = '<i class="fas fa-paper-plane"></i> Send OTP';
+            }
+        }
+
+        function proceedWithName() {
+            const nameInput = document.getElementById('user-name-input');
+            const nameMsg = document.getElementById('name-msg');
+            
+            const name = nameInput.value.trim();
+            
+            nameMsg.className = 'msg';
+            nameMsg.textContent = '';
+
+            if (!name) {
+                nameMsg.classList.add('err');
+                nameMsg.textContent = 'Please enter your name.';
+                return;
+            }
+
+            if (pendingUserData) {
+                pendingUserData.name = name;
+                pendingUserData.isNewUser = true;
+                
+                // Show OTP input
+                document.getElementById('name-step').style.display = 'none';
+                document.getElementById('otp-step').classList.add('active');
+                
+                nameMsg.classList.add('ok');
+                nameMsg.textContent = 'Name saved. Please verify OTP.';
+            }
+        }
+
+        async function verifyOTP() {
+            const otpInput = document.getElementById('otp-input');
+            const otpMsg = document.getElementById('otp-msg');
+            const btnVerify = document.getElementById('btnVerify');
+            
+            const code = (otpInput.value || '').trim();
+            
+            otpMsg.className = 'msg';
+            otpMsg.textContent = '';
+
+            if (!code || !pendingUserData) {
+                otpMsg.classList.add('err');
+                otpMsg.textContent = 'Enter valid OTP.';
+                return;
+            }
+
+            btnVerify.disabled = true;
+            btnVerify.innerHTML = '<span class="loading"></span> Verifying...';
+
+            try {
+                const response = await fetch(API_BASE + '/otpverify', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ 
+                        phone: pendingUserData.phone, 
+                        otp: code 
+                    })
+                });
+
+                const data = await response.json().catch(() => ({}));
+
+                if (response.ok && (data.success || data.ok)) {
+                    otpMsg.classList.add('ok');
+                    otpMsg.textContent = 'Verified! Logging in...';
+
+                    // Handle user creation/login
+                    if (pendingUserData.isNewUser) {
+                        // Create new user
+                        const newUser = {
+                            id: Date.now(),
+                            name: pendingUserData.name,
+                            phone: pendingUserData.phone,
+                            role: 'user',
+                            createdAt: new Date().toISOString(),
+                            bookingCount: 0
+                        };
+
+                        allUsers.push(newUser);
+                        localStorage.setItem('sufala_users', JSON.stringify(allUsers));
+                        currentUser = newUser;
+                        
+                        showNotification(`Welcome, ${newUser.name}! Account created successfully.`, 'success');
+                    } else {
+                        // Login existing user
+                        currentUser = pendingUserData;
+                        showNotification(`Welcome back, ${currentUser.name}!`, 'success');
+                    }
+
+                    localStorage.setItem('sufala_current_user', JSON.stringify(currentUser));
+                    updateNavigation();
+                    closeOtpModal();
+
+                    // Continue with booking process if they were in the middle of it
+                    if (selectedSlot) {
+                        document.getElementById('login-required-notice').style.display = 'none';
+                        document.getElementById('confirm-booking').style.display = 'inline-block';
+                    }
+
+                } else {
+                    otpMsg.classList.add('err');
+                    otpMsg.textContent = (data && data.error) || 'Invalid OTP';
+                }
+            } catch(e) {
+                otpMsg.classList.add('err');
+                otpMsg.textContent = 'Network error.';
+            } finally {
+                btnVerify.disabled = false;
+                btnVerify.innerHTML = '<i class="fas fa-check"></i> Verify';
+            }
+        }
+
+        // Admin Authentication Functions
+        function showAdminModal() {
+            document.getElementById('admin-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAdminModal() {
+            document.getElementById('admin-modal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('admin-email').value;
+            const password = document.getElementById('admin-password').value;
+            
+            if (email === adminCredentials.email && password === adminCredentials.password) {
+                currentUser = {
+                    id: 'admin',
+                    name: 'Admin',
+                    email: email,
+                    role: 'admin'
+                };
+                
+                localStorage.setItem('sufala_current_user', JSON.stringify(currentUser));
+                updateNavigation();
+                closeAdminModal();
+                showAdminPanel();
+                showNotification('Welcome, Admin!', 'success');
+            } else {
+                showNotification('Invalid admin credentials', 'error');
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('sufala_current_user');
+            updateNavigation();
+            hideUserPanel();
+            hideAdminPanel();
+            showNotification('Logged out successfully', 'success');
+        }
+
+        function checkLoginStatus() {
+            const savedUser = localStorage.getItem('sufala_current_user');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                updateNavigation();
+            }
+        }
+
+        function updateNavigation() {
+            const userNav = document.getElementById('user-nav');
+            
+            if (!currentUser || currentUser.role === 'admin') {
+                userNav.style.display = 'none';
+            } else {
+                userNav.style.display = 'flex';
+                document.getElementById('user-name').textContent = currentUser.name;
+            }
+        }
+
+        function toggleUserMenu() {
+            const userMenu = event.currentTarget.parentElement;
+            userMenu.classList.toggle('active');
+        }
+
+        // Product Selection - No login required
+        function selectProduct(productName, price) {
+            selectedProduct = productName;
+            basePrice = price;
+            
+            // Update UI
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            
+            // Show booking section
+            showBookingSection();
+            updateQuantityPrices();
+            
+            // Scroll to booking section
+            document.getElementById('booking-section').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        function showBookingSection() {
+            document.getElementById('booking-section').classList.add('active');
+            currentStep = 1;
+            updateBookingSteps();
+        }
+
+        function updateBookingSteps() {
+            // Update step indicators
+            for (let i = 1; i <= 3; i++) {
+                const step = document.getElementById(`step-${i}`);
+                step.classList.remove('active', 'completed');
+                
+                if (i < currentStep) {
+                    step.classList.add('completed');
+                } else if (i === currentStep) {
+                    step.classList.add('active');
+                }
+            }
+
+            // Update progress bar
+            const progressFill = document.getElementById('progress-fill');
+            const progressWidth = (currentStep / 3) * 100;
+            progressFill.style.width = `${progressWidth}%`;
+            
+            // Show/hide step content
+            document.getElementById('calendar-step').style.display = currentStep === 1 ? 'block' : 'none';
+            document.getElementById('quantity-step').style.display = currentStep === 2 ? 'block' : 'none';
+            document.getElementById('slots-step').style.display = currentStep === 3 ? 'block' : 'none';
+            
+            // Update titles
+            const titles = {
+                1: 'Select Your Pressing Date',
+                2: 'Choose Your Quantity',
+                3: 'Pick Your Time Slot'
+            };
+            
+            const descriptions = {
+                1: 'Choose when you\'d like your oil to be freshly pressed',
+                2: 'Select the amount of oil you need',
+                3: 'Choose a convenient time for your oil pressing'
+            };
+            
+            document.getElementById('booking-title').textContent = titles[currentStep];
+            document.getElementById('booking-description').textContent = descriptions[currentStep];
+        }
+
+        // Calendar Functions
+        function initializeCalendar() {
+            generateCalendar(currMonth.value, currYear.value);
+            
+            document.querySelector("#prev-month").onclick = () => {
+                currMonth.value--;
+                if (currMonth.value < 0) {
+                    currMonth.value = 11;
+                    currYear.value--;
+                    updateYearSelect();
+                }
+                generateCalendar(currMonth.value, currYear.value);
+            };
+            
+            document.querySelector("#next-month").onclick = () => {
+                currMonth.value++;
+                if (currMonth.value > 11) {
+                    currMonth.value = 0;
+                    currYear.value++;
+                    updateYearSelect();
+                }
+                generateCalendar(currMonth.value, currYear.value);
+            };
+        }
+
+        function populateYearDropdown() {
+            const currentYear = new Date().getFullYear();
+            const yearSelect = document.getElementById('year-select');
+            
+            yearSelect.innerHTML = '';
+            
+            for (let year = currentYear; year <= currentYear + 2; year++) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                if (year === currentYear) {
+                    option.selected = true;
+                }
+                yearSelect.appendChild(option);
+            }
+            
+            yearSelect.addEventListener('change', function() {
+                currYear.value = parseInt(this.value);
+                generateCalendar(currMonth.value, currYear.value);
+            });
+        }
+
+        function updateYearSelect() {
+            const yearSelect = document.getElementById('year-select');
+            yearSelect.value = currYear.value;
+        }
+
+        function generateCalendar(month, year) {
+            const daysOfMonth = [31, getFebDays(year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            const calendarDays = document.getElementById('calendar-days');
+            calendarDays.innerHTML = "";
+            
+            const firstDay = new Date(year, month, 1);
+            document.getElementById('month-display').textContent = monthNames[month];
+            
+            for (let i = 0; i <= daysOfMonth[month] + firstDay.getDay() - 1; i++) {
+                const day = document.createElement("div");
+                
+                if (i >= firstDay.getDay()) {
+                    const dateNumber = i - firstDay.getDay() + 1;
+                    day.innerHTML = dateNumber;
+                    
+                    const currentDate = new Date(year, month, dateNumber);
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+                    
+                    if (currentDate < today) {
+                        day.style.opacity = '0.3';
+                        day.style.cursor = 'not-allowed';
+                    } else {
+                        if (dateNumber === currDate.getDate() && 
+                            month === currDate.getMonth() && 
+                            year === currDate.getFullYear()) {
+                            day.classList.add('curr-date');
+                        }
+                        
+                        day.onclick = () => {
+                            selectDate(`${dateNumber}-${monthNames[month]}-${year}`, day);
+                        };
+                    }
+                }
+                
+                calendarDays.appendChild(day);
+            }
+        }
+
+        function selectDate(date, dayElement) {
+            selectedDate = date;
+            
+            // Update UI
+            document.querySelectorAll('.calendar-days div').forEach(d => {
+                d.classList.remove('selected');
+            });
+            
+            dayElement.classList.add('selected');
+            
+            // Move to next step
+            setTimeout(() => {
+                currentStep = 2;
+                updateBookingSteps();
+            }, 500);
+        }
+
+        function selectQuantity(quantity, multiplier) {
+            selectedQuantity = quantity;
+            quantityMultiplier = multiplier;
+            
+            // Update UI
+            document.querySelectorAll('.quantity-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            event.currentTarget.classList.add('selected');
+            
+            // Move to next step
+            setTimeout(() => {
+                currentStep = 3;
+                updateBookingSteps();
+                loadTimeSlots();
+            }, 500);
+        }
+
+        function loadTimeSlots() {
+            const slotsGrid = document.getElementById('slots-grid');
+            slotsGrid.innerHTML = '';
+            
+            // Get booked slots for selected date
+            const bookedSlots = getBookedSlots(selectedDate);
+            
+            timeSlots.forEach(slot => {
+                const slotCard = document.createElement('div');
+                slotCard.className = 'slot-card';
+                slotCard.textContent = slot;
+                
+                if (bookedSlots.includes(slot)) {
+                    slotCard.classList.add('booked');
+                    slotCard.innerHTML += '<br><small style="font-size: 0.8rem; opacity: 0.7;">Booked</small>';
+                } else {
+                    slotCard.onclick = () => selectSlot(slot, slotCard);
+                }
+                
+                slotsGrid.appendChild(slotCard);
+            });
+        }
+
+        function getBookedSlots(date) {
+            return allOrders
+                .filter(order => order.date === date && order.status !== 'cancelled')
+                .map(order => order.timeSlot);
+        }
+
+        function selectSlot(slot, slotElement) {
+            selectedSlot = slot;
+            
+            // Update UI
+            document.querySelectorAll('.slot-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            slotElement.classList.add('selected');
+            
+            // Check if user is logged in
+            if (!currentUser || currentUser.role === 'admin') {
+                // Show login required notice
+                document.getElementById('login-required-notice').style.display = 'block';
+                document.getElementById('confirm-booking').style.display = 'none';
+            } else {
+                // User is logged in, show confirm button
+                document.getElementById('login-required-notice').style.display = 'none';
+                document.getElementById('confirm-booking').style.display = 'inline-block';
+                setTimeout(() => {
+                    document.getElementById('confirm-booking').style.animation = 'fadeInUp 0.5s ease';
+                }, 100);
+            }
+        }
+
+        function confirmBooking() {
+            if (!currentUser || currentUser.role === 'admin') {
+                showNotification('Please login as user to book', 'error');
+                showOtpModal();
+                return;
+            }
+
+            const totalPrice = basePrice * quantityMultiplier;
+            
+            const newOrder = {
+                id: 'ORD' + String(allOrders.length + 1).padStart(3, '0'),
+                userId: currentUser.id,
+                customerName: currentUser.name,
+                customerPhone: currentUser.phone,
+                product: selectedProduct,
+                quantity: selectedQuantity,
+                date: selectedDate,
+                timeSlot: selectedSlot,
+                amount: totalPrice,
+                status: 'pending',
+                createdAt: new Date().toISOString()
+            };
+            
+            allOrders.push(newOrder);
+            localStorage.setItem('sufala_orders', JSON.stringify(allOrders));
+
+            // Update user booking count
+            const userIndex = allUsers.findIndex(u => u.id === currentUser.id);
+            if (userIndex !== -1) {
+                allUsers[userIndex].bookingCount = (allUsers[userIndex].bookingCount || 0) + 1;
+                localStorage.setItem('sufala_users', JSON.stringify(allUsers));
+                currentUser.bookingCount = allUsers[userIndex].bookingCount;
+            }
+            
+            showNotification(`Booking confirmed! Order ID: ${newOrder.id}`, 'success');
+            
+            // Reset booking process
+            resetBooking();
+            
+            // Reload data
+            loadUserBookings();
+            loadAdminDashboard();
+        }
+
+        function resetBooking() {
+            selectedProduct = '';
+            selectedDate = '';
+            selectedQuantity = '';
+            selectedSlot = '';
+            basePrice = 0;
+            quantityMultiplier = 1;
+            currentStep = 1;
+            
+            document.getElementById('booking-section').classList.remove('active');
+            document.getElementById('confirm-booking').style.display = 'none';
+            document.getElementById('login-required-notice').style.display = 'none';
+            
+            // Clear selections
+            document.querySelectorAll('.selected').forEach(el => el.classList.remove('selected'));
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+        }
+
+        function updateQuantityPrices() {
+            document.getElementById('price-1').textContent = `₹${basePrice}`;
+            document.getElementById('price-3').textContent = `₹${basePrice * 3}`;
+            document.getElementById('price-5').textContent = `₹${basePrice * 5}`;
+        }
+
+        function getFebDays(year) {
+            return ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) ? 29 : 28;
+        }
+
+        // User Panel Functions
+        function showUserPanel() {
+            document.getElementById('user-panel').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            loadUserBookings();
+        }
+
+        function hideUserPanel() {
+            document.getElementById('user-panel').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function loadUserBookings() {
+            if (!currentUser || currentUser.role === 'admin') return;
+            
+            const userBookings = allOrders.filter(order => order.userId === currentUser.id);
+            const bookingsList = document.getElementById('user-bookings-list');
+            
+            bookingsList.innerHTML = '';
+            
+            if (userBookings.length === 0) {
+                bookingsList.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: #666;">
+                        <i class="fas fa-calendar" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3;"></i>
+                        <h3>No bookings yet</h3>
+                        <p>Start by booking your first fresh oil pressing!</p>
+                        <button class="cta-button" onclick="hideUserPanel(); scrollToProducts();" style="margin-top: 1rem;">
+                            <i class="fas fa-plus"></i> Make a Booking
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            userBookings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(booking => {
+                const bookingCard = document.createElement('div');
+                bookingCard.className = 'booking-card';
+                bookingCard.innerHTML = `
+                    <div class="booking-header">
+                        <div class="booking-id">${booking.id}</div>
+                        <span class="status-badge status-${booking.status}">
+                            ${booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
+                        </span>
+                    </div>
+                    <div class="booking-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Product</div>
+                            <div class="detail-value">${booking.product}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Quantity</div>
+                            <div class="detail-value">${booking.quantity}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Date</div>
+                            <div class="detail-value">${booking.date}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Time Slot</div>
+                            <div class="detail-value">${booking.timeSlot}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Amount</div>
+                            <div class="detail-value" style="color: var(--accent-gold); font-weight: bold;">₹${booking.amount}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Booked On</div>
+                            <div class="detail-value">${new Date(booking.createdAt).toLocaleDateString()}</div>
+                        </div>
+                    </div>
+                `;
+                bookingsList.appendChild(bookingCard);
+            });
+        }
+
+        // Admin Panel Functions
+        function showAdminPanel() {
+            document.getElementById('admin-panel').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            loadAdminDashboard();
+        }
+
+        function hideAdminPanel() {
+            document.getElementById('admin-panel').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function loadAdminDashboard() {
+            updateAdminStats();
+            loadAdminOrders();
+            loadUserManagement();
+        }
+
+        function updateAdminStats() {
+            const totalOrders = allOrders.length;
+            const pendingOrders = allOrders.filter(o => o.status === 'pending').length;
+            const confirmedOrders = allOrders.filter(o => o.status === 'confirmed').length;
+            const completedOrders = allOrders.filter(o => o.status === 'completed').length;
+            const totalRevenue = allOrders.filter(o => o.status !== 'cancelled').reduce((sum, o) => sum + o.amount, 0);
+            const totalUsers = allUsers.length;
+
+            document.getElementById('admin-total-orders').textContent = totalOrders;
+            document.getElementById('admin-pending-orders').textContent = pendingOrders;
+            document.getElementById('admin-confirmed-orders').textContent = confirmedOrders;
+            document.getElementById('admin-completed-orders').textContent = completedOrders;
+            document.getElementById('admin-total-revenue').textContent = `₹${totalRevenue.toLocaleString()}`;
+            document.getElementById('admin-total-users').textContent = totalUsers;
+        }
+
+        function loadUserManagement() {
+            const userManagementContent = document.getElementById('user-management-content');
+            
+            if (allUsers.length === 0) {
+                userManagementContent.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: #666;">
+                        <i class="fas fa-users" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3;"></i>
+                        <h3>No users yet</h3>
+                        <p>Users will appear here after they register via OTP</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const userStatsGrid = document.createElement('div');
+            userStatsGrid.className = 'user-stats-grid';
+
+            allUsers.forEach(user => {
+                const userOrders = allOrders.filter(o => o.userId === user.id);
+                const userRevenue = userOrders.reduce((sum, o) => sum + (o.status !== 'cancelled' ? o.amount : 0), 0);
+                const lastBooking = userOrders.length > 0 ? 
+                    new Date(Math.max(...userOrders.map(o => new Date(o.createdAt)))).toLocaleDateString() : 'Never';
+
+                const userCard = document.createElement('div');
+                userCard.className = 'user-stat-card';
+                userCard.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <div>
+                            <h4 style="margin: 0; color: var(--primary-green);">${user.name}</h4>
+                            <p style="margin: 0; color: #666; font-size: 0.9rem;">${user.phone}</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="background: var(--accent-gold); color: white; padding: 0.2rem 0.5rem; border-radius: 10px; font-size: 0.8rem;">
+                                ${user.role.toUpperCase()}
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center;">
+                        <div>
+                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary-green);">${userOrders.length}</div>
+                            <div style="font-size: 0.8rem; color: #666;">Total Bookings</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent-gold);">₹${userRevenue}</div>
+                            <div style="font-size: 0.8rem; color: #666;">Total Revenue</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.9rem; font-weight: bold; color: var(--text-dark);">${lastBooking}</div>
+                            <div style="font-size: 0.8rem; color: #666;">Last Booking</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; font-size: 0.8rem; color: #666;">
+                        Joined: ${new Date(user.createdAt).toLocaleDateString()}
+                    </div>
+                `;
+                userStatsGrid.appendChild(userCard);
+            });
+
+            userManagementContent.innerHTML = '';
+            userManagementContent.appendChild(userStatsGrid);
+        }
+
+        function exportUserData() {
+            const userData = allUsers.map(user => {
+                const userOrders = allOrders.filter(o => o.userId === user.id);
+                const userRevenue = userOrders.reduce((sum, o) => sum + (o.status !== 'cancelled' ? o.amount : 0), 0);
+                
+                return {
+                    name: user.name,
+                    phone: user.phone,
+                    totalBookings: userOrders.length,
+                    totalRevenue: userRevenue,
+                    joinedDate: new Date(user.createdAt).toLocaleDateString(),
+                    lastBooking: userOrders.length > 0 ? 
+                        new Date(Math.max(...userOrders.map(o => new Date(o.createdAt)))).toLocaleDateString() : 'Never'
+                };
+            });
+
+            const csvContent = "data:text/csv;charset=utf-8," + 
+                "Name,Phone,Total Bookings,Total Revenue,Joined Date,Last Booking\n" +
+                userData.map(u => `${u.name},${u.phone},${u.totalBookings},${u.totalRevenue},${u.joinedDate},${u.lastBooking}`).join("\n");
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `sufala_users_${new Date().toISOString().split('T')[0]}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            showNotification('User data exported successfully!', 'success');
+        }
+
+        function loadAdminOrders(filteredOrders = null) {
+            const ordersList = document.getElementById('admin-orders-list');
+            const ordersToShow = filteredOrders || allOrders;
+            
+            ordersList.innerHTML = '';
+
+            if (ordersToShow.length === 0) {
+                ordersList.innerHTML = `
+                    <tr>
+                        <td colspan="7" style="text-align: center; padding: 3rem; color: #666;">
+                            <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3;"></i>
+                            <h3>No orders found</h3>
+                            <p>No orders match the current filter</p>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            ordersToShow.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(order => {
+                const user = allUsers.find(u => u.id === order.userId);
+                const userInfo = user ? {
+                    name: user.name,
+                    phone: user.phone,
+                    bookingCount: allOrders.filter(o => o.userId === user.id).length
+                } : {
+                    name: order.customerName || 'Unknown',
+                    phone: order.customerPhone || 'N/A',
+                    bookingCount: 1
+                };
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><strong>${order.id}</strong></td>
+                    <td>
+                        <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+                            <div style="font-weight: 600; color: var(--text-dark);">${userInfo.name}</div>
+                            <div style="font-size: 0.85rem; color: #666;">${userInfo.phone}</div>
+                            <div style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 500;">
+                                ${userInfo.bookingCount} total booking${userInfo.bookingCount > 1 ? 's' : ''}
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+                            <div style="font-weight: 600; color: var(--primary-green);">${order.product}</div>
+                            <div style="color: #666; font-size: 0.85rem;">${order.quantity}</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="margin-bottom: 0.3rem;"><strong>${order.date}</strong></div>
+                        <div style="color: #666; font-size: 0.85rem;">${order.timeSlot}</div>
+                    </td>
+                    <td><div style="font-weight: bold; color: var(--accent-gold); font-size: 1.1rem;">₹${order.amount}</div></td>
+                    <td>
+                        <span class="status-badge status-${order.status}">
+                            ${order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+                        </span>
+                    </td>
+                    <td>${getOrderActions(order)}</td>
+                `;
+                ordersList.appendChild(row);
+            });
+        }
+
+        function getOrderActions(order) {
+            let actions = '';
+            
+            if (order.status === 'pending') {
+                actions += `<button class="action-btn btn-confirm" onclick="updateOrderStatus('${order.id}', 'confirmed')">
+                    <i class="fas fa-check"></i> Confirm
+                </button>`;
+                actions += `<button class="action-btn btn-cancel" onclick="updateOrderStatus('${order.id}', 'cancelled')">
+                    <i class="fas fa-times"></i> Cancel
+                </button>`;
+            }
+            
+            if (order.status === 'confirmed') {
+                actions += `<button class="action-btn btn-complete" onclick="updateOrderStatus('${order.id}', 'completed')">
+                    <i class="fas fa-check-double"></i> Complete
+                </button>`;
+            }
+            
+            if (order.status !== 'completed') {
+                actions += `<button class="action-btn btn-delete" onclick="deleteOrder('${order.id}')">
+                    <i class="fas fa-trash"></i> Delete
+                </button>`;
+            }
+            
+            return actions || '<span style="color: #666;">No actions</span>';
+        }
+
+        function updateOrderStatus(orderId, newStatus) {
+            const orderIndex = allOrders.findIndex(o => o.id === orderId);
+            if (orderIndex !== -1) {
+                allOrders[orderIndex].status = newStatus;
+                allOrders[orderIndex].updatedAt = new Date().toISOString();
+                localStorage.setItem('sufala_orders', JSON.stringify(allOrders));
+                
+                loadAdminDashboard();
+                loadUserBookings();
+                
+                showNotification(`Order ${orderId} ${newStatus} successfully!`, 'success');
+            }
+        }
+
+        function deleteOrder(orderId) {
+            if (confirm(`Are you sure you want to delete order ${orderId}?`)) {
+                allOrders = allOrders.filter(o => o.id !== orderId);
+                localStorage.setItem('sufala_orders', JSON.stringify(allOrders));
+                
+                loadAdminDashboard();
+                loadUserBookings();
+                
+                showNotification(`Order ${orderId} deleted successfully!`, 'success');
+            }
+        }
+
+        function filterAdminOrders(filterType) {
+            let filteredOrders = allOrders;
+
+            switch(filterType) {
+                case 'today':
+                    const today = new Date().toLocaleDateString('en-GB', {
+                        day: '2-digit',
+                        month: 'long', 
+                        year: 'numeric'
+                    });
+                    filteredOrders = allOrders.filter(o => o.date === today);
+                    break;
+                case 'all':
+                default:
+                    filteredOrders = allOrders;
+            }
+
+            loadAdminOrders(filteredOrders);
+        }
+
+        function refreshDashboard() {
+            loadAdminDashboard();
+            showNotification('Dashboard refreshed!', 'success');
+        }
+
+        // Utility Functions
+        function scrollToProducts() {
+            document.getElementById('products').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                ${message}
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Close modals when clicking outside
+        document.getElementById('otp-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeOtpModal();
+            }
+        });
+
+        document.getElementById('admin-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAdminModal();
+            }
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.user-menu')) {
+                document.querySelectorAll('.user-menu').forEach(menu => {
+                    menu.classList.remove('active');
+                });
+            }
+            
+            if (!e.target.closest('.nav-container')) {
+                document.querySelector('.nav-links').classList.remove('active');
+                document.querySelector('.menu-toggle').classList.remove('active');
+            }
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeOtpModal();
+                closeAdminModal();
+                hideUserPanel();
+                hideAdminPanel();
+                
+                document.querySelector('.nav-links').classList.remove('active');
+                document.querySelector('.menu-toggle').classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    document.querySelector('.nav-links').classList.remove('active');
+                    document.querySelector('.menu-toggle').classList.remove('active');
+                }
+            });
+        });
+
+        // Auto-save data periodically
+        setInterval(() => {
+            if (allOrders.length > 0) {
+                localStorage.setItem('sufala_orders', JSON.stringify(allOrders));
+            }
+            if (allUsers.length > 0) {
+                localStorage.setItem('sufala_users', JSON.stringify(allUsers));
+            }
+        }, 30000);
+
+        // Add some sample data for demo if none exists
+        if (allOrders.length === 0 && allUsers.length === 0) {
+            const sampleUsers = [
+                {
+                    id: 1001,
+                    name: 'Ravi Kumar',
+                    phone: '9876543210',
+                    role: 'user',
+                    createdAt: '2025-01-20T10:30:00.000Z',
+                    bookingCount: 3
+                },
+                {
+                    id: 1002,
+                    name: 'Priya Singh',
+                    phone: '9876543211',
+                    role: 'user',
+                    createdAt: '2025-01-22T14:15:00.000Z',
+                    bookingCount: 1
+                }
+            ];
+
+            const sampleOrders = [
+                {
+                    id: 'ORD001',
+                    userId: 1001,
+                    customerName: 'Ravi Kumar',
+                    customerPhone: '9876543210',
+                    product: 'Sesame Oil',
+                    quantity: '3 Liters',
+                    date: '28-January-2025',
+                    timeSlot: '10:00 - 10:30 AM',
+                    amount: 360,
+                    status: 'confirmed',
+                    createdAt: '2025-01-26T10:30:00.000Z'
+                },
+                {
+                    id: 'ORD002',
+                    userId: 1002,
+                    customerName: 'Priya Singh',
+                    customerPhone: '9876543211',
+                    product: 'Groundnut Oil',
+                    quantity: '1 Liter',
+                    date: '29-January-2025',
+                    timeSlot: '2:00 - 2:30 PM',
+                    amount: 95,
+                    status: 'pending',
+                    createdAt: '2025-01-26T11:15:00.000Z'
+                },
+                {
+                    id: 'ORD003',
+                    userId: 1001,
+                    customerName: 'Ravi Kumar',
+                    customerPhone: '9876543210',
+                    product: 'Sesame Oil',
+                    quantity: '5 Liters',
+                    date: '30-January-2025',
+                    timeSlot: '4:00 - 4:30 PM',
+                    amount: 600,
+                    status: 'completed',
+                    createdAt: '2025-01-25T14:20:00.000Z'
+                }
+            ];
+            
+            allUsers = sampleUsers;
+            allOrders = sampleOrders;
+            localStorage.setItem('sufala_users', JSON.stringify(allUsers));
+            localStorage.setItem('sufala_orders', JSON.stringify(allOrders));
+        }
+
+        // Console helpers for development
+        window.sufalaSystem = {
+            getCurrentUser: () => currentUser,
+            getAllOrders: () => allOrders,
+            getAllUsers: () => allUsers,
+            loginAsAdmin: () => {
+                currentUser = {
+                    id: 'admin',
+                    name: 'Admin',
+                    email: 'admin@sufala.com',
+                    role: 'admin'
+                };
+                localStorage.setItem('sufala_current_user', JSON.stringify(currentUser));
+                updateNavigation();
+                showAdminPanel();
+                showNotification('Logged in as admin', 'success');
+            },
+            clearAllData: () => {
+                if (confirm('Are you sure you want to clear all data? This cannot be undone.')) {
+                    localStorage.removeItem('sufala_orders');
+                    localStorage.removeItem('sufala_users');
+                    localStorage.removeItem('sufala_current_user');
+                    location.reload();
+                }
+            },
+            resetToDemo: () => {
+                localStorage.removeItem('sufala_orders');
+                localStorage.removeItem('sufala_users');
+                localStorage.removeItem('sufala_current_user');
+                location.reload();
+            }
+        };
+
+        console.log('🌿 Sufala Separated User & Admin System Loaded');
+        console.log('👤 User Experience: Browse freely → Login only at time slot selection');
+        console.log('👨‍💼 Admin Access: Discrete button in bottom-left corner');
+        console.log('📱 User Login: OTP-based via phone number (only when booking)');
+        console.log('🔑 Admin Login: admin@sufala.com / admin123');
+        console.log('🛠️ Developer Commands:');
+        console.log('   sufalaSystem.getCurrentUser() - Get current user');
+        console.log('   sufalaSystem.loginAsAdmin() - Quick admin login');
+        console.log('   sufalaSystem.clearAllData() - Clear all stored data');
+        console.log('   sufalaSystem.resetToDemo() - Reset to demo state');
+        console.log('✨ Key Features:');
+        console.log('   - Clean user experience without admin clutter');
+        console.log('   - Login required only when selecting time slots');
+        console.log('   - Separate admin and user interfaces');
+        console.log('   - Enhanced user management for admin');
+        console.log('   - Seamless booking flow with minimal friction');
+    </script>
+</body>
+</html>
