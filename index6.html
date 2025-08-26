@@ -1,0 +1,4962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sufala - Fresh Cold Pressed Oils</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Classic Natural Oil Color Palette */
+            --pure-white: #FFFFFF;
+            --cream-white: #FEFEFE;
+            --warm-cream: #FDF9F5;
+            --golden-cream: #FBF5E9;
+            --honey-cream: #F9F1E3;
+            --butter-cream: #F7EDDD;
+            --oat-cream: #F5E9D7;
+            --wheat-cream: #F3E5D1;
+            --warm-beige: #F1E1CB;
+            
+            /* Natural Earth Tones */
+            --soft-sand: #E8DCC0;
+            --warm-sand: #DDD1B5;
+            --golden-sand: #D2C6AA;
+            --earth-beige: #C7BB9F;
+            --natural-brown: #BCB094;
+            --rich-brown: #B1A589;
+            --deep-earth: #A69A7E;
+            --forest-brown: #9B8F73;
+            --dark-earth: #908468;
+            --charcoal-brown: #85795D;
+            
+            /* Warm Natural Greens */
+            --fresh-mint: #E8F5E8;
+            --sage-green: #D5E8D5;
+            --olive-light: #C3DBC3;
+            --natural-green: #B1CEB1;
+            --herb-green: #9FC19F;
+            --forest-green: #8DB48D;
+            --deep-sage: #7BA77B;
+            --olive-green: #699A69;
+            --pine-green: #578D57;
+            --forest-dark: #458045;
+            
+            /* Warm Golden Accents */
+            --golden-yellow: #F4D03F;
+            --honey-gold: #F7DC6F;
+            --warm-gold: #FAE5B4;
+            --sunrise-gold: #FDEAA7;
+            --butter-gold: #FFF2CC;
+            --cream-gold: #FFF8E1;
+            
+            /* Classic Orange Warmth */
+            --warm-orange: #F39C12;
+            --sunset-orange: #E67E22;
+            --clay-orange: #D68910;
+            --terracotta: #CA6F1E;
+            --rust-orange: #B9770E;
+            --burnt-orange: #A04000;
+            
+            /* Sophisticated Neutrals */
+            --text-dark: #2C3E23;
+            --text-medium: #3E5233;
+            --text-light: #506643;
+            --text-muted: #627A53;
+            --text-soft: #748E63;
+            --text-subtle: #86A273;
+            
+            /* Classic Gradients */
+            --warm-gradient: linear-gradient(135deg, #FBF5E9 0%, #F7EDDD 100%);
+            --natural-gradient: linear-gradient(135deg, #F9F1E3 0%, #E8DCC0 100%);
+            --earth-gradient: linear-gradient(135deg, #DDD1B5 0%, #BCB094 100%);
+            --green-gradient: linear-gradient(135deg, #B1CEB1 0%, #7BA77B 100%);
+            --gold-gradient: linear-gradient(135deg, #F4D03F 0%, #E67E22 100%);
+            --sunset-gradient: linear-gradient(135deg, #FAE5B4 0%, #F39C12 100%);
+            
+            /* Natural Shadows */
+            --soft-shadow: 0 2px 8px rgba(44, 62, 35, 0.08);
+            --natural-shadow: 0 4px 12px rgba(44, 62, 35, 0.12);
+            --warm-shadow: 0 6px 20px rgba(215, 137, 16, 0.15);
+            --deep-shadow: 0 8px 25px rgba(44, 62, 35, 0.18);
+            --golden-glow: 0 0 20px rgba(244, 208, 63, 0.3);
+            --green-glow: 0 0 15px rgba(123, 167, 123, 0.4);
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--warm-gradient);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(249, 241, 227, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(251, 245, 233, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(247, 237, 221, 0.35) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Enhanced Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes naturalGlow {
+            0%, 100% { 
+                transform: scale(1); 
+                box-shadow: var(--soft-shadow);
+            }
+            50% { 
+                transform: scale(1.02); 
+                box-shadow: var(--natural-shadow);
+            }
+        }
+
+        @keyframes warmFloat {
+            0%, 100% { transform: translateY(0px); }
+            33% { transform: translateY(-8px); }
+            66% { transform: translateY(-4px); }
+        }
+
+        @keyframes goldenShimmer {
+            0% { background-position: -200px 0; }
+            100% { background-position: calc(200px + 100%) 0; }
+        }
+
+        @keyframes naturalBreath {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.6s ease;
+        }
+
+        /* OTP Modal Styles */
+        .otp-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 62, 35, 0.85);
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .otp-modal.active {
+            display: flex;
+        }
+
+        .otp-modal-content {
+            background: var(--warm-gradient);
+            border: 2px solid var(--honey-gold);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: var(--deep-shadow);
+            position: relative;
+            animation: naturalGlow 3s infinite;
+        }
+
+        .otp-modal-content::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--gold-gradient);
+            border-radius: 20px;
+            z-index: -1;
+            animation: goldenShimmer 2s linear infinite;
+        }
+
+        .otp-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--warm-orange);
+            transition: all 0.3s ease;
+        }
+
+        .otp-modal-close:hover {
+            transform: rotate(90deg) scale(1.2);
+            color: var(--sunset-orange);
+        }
+
+        .otp-modal h2 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            text-align: center;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-medium);
+            transition: color 0.3s ease;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--natural-brown);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: rgba(251, 245, 233, 0.5);
+            color: var(--text-dark);
+            backdrop-filter: blur(5px);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--warm-orange);
+            box-shadow: var(--golden-glow);
+            transform: translateY(-2px);
+        }
+
+        .form-group input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .otp-btn {
+            width: 100%;
+            background: var(--gold-gradient);
+            color: white;
+            border: none;
+            padding: 1.2rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .otp-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .otp-btn:hover::before {
+            left: 100%;
+        }
+
+        .otp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--warm-shadow);
+        }
+
+        .otp-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .otp-wrap {
+            display: none;
+        }
+
+        .otp-wrap.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .otp-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .hint {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 6px;
+            text-align: center;
+        }
+
+        .msg {
+            margin-top: 10px;
+            font-size: 13px;
+            text-align: center;
+            padding: 0.8rem;
+            border-radius: 8px;
+        }
+
+        .ok {
+            color: var(--pine-green);
+            background: rgba(123, 167, 123, 0.2);
+            border: 1px solid var(--pine-green);
+        }
+
+        .err {
+            color: var(--sunset-orange);
+            background: rgba(230, 126, 34, 0.2);
+            border: 1px solid var(--sunset-orange);
+        }
+
+        /* Admin Access Styles */
+        .admin-access {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .admin-access-btn {
+            background: rgba(123, 167, 123, 0.2);
+            border: 1px solid rgba(244, 208, 63, 0.3);
+            color: var(--forest-green);
+            padding: 0.6rem 1rem;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            backdrop-filter: blur(5px);
+        }
+
+        .admin-access-btn:hover {
+            background: var(--gold-gradient);
+            color: white;
+            border-color: var(--warm-orange);
+            box-shadow: var(--golden-glow);
+            transform: scale(1.1);
+        }
+
+        /* Admin Login Modal Styles */
+        .admin-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 62, 35, 0.85);
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .admin-modal.active {
+            display: flex;
+        }
+
+        .admin-modal-content {
+            background: var(--warm-gradient);
+            border: 2px solid var(--forest-green);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: var(--deep-shadow);
+            position: relative;
+            animation: naturalGlow 3s infinite;
+        }
+
+        /* Navigation - Classic Natural Design */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(44, 62, 35, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(244, 208, 63, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--cream-white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Georgia', serif;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            text-shadow: var(--golden-glow);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--cream-white);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gold-gradient);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--honey-gold);
+            transform: translateY(-2px);
+        }
+
+        .nav-auth {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .user-menu {
+            position: relative;
+        }
+
+        .user-menu-btn {
+            background: var(--gold-gradient);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .user-menu-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--warm-shadow);
+        }
+
+        .user-menu-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--warm-gradient);
+            border: 2px solid var(--natural-brown);
+            border-radius: 12px;
+            box-shadow: var(--deep-shadow);
+            min-width: 220px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+            animation: fadeInUp 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .user-menu.active .user-menu-dropdown {
+            display: block;
+        }
+
+        .user-menu-item {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+        }
+
+        .user-menu-item:hover {
+            background: rgba(244, 208, 63, 0.1);
+            transform: translateX(8px);
+            border-left-color: var(--warm-orange);
+            color: var(--sunset-orange);
+        }
+
+        /* Hero Section - Natural Enhancement */
+        .display-desktop{
+            display: block;
+        }
+        .display-mobile{
+            display: none;
+        }
+
+        @media screen and (max-width: 768px) {
+            .display-desktop{
+                display: none;
+            }
+            .display-mobile{
+                display: block;
+            }
+        }
+
+        .hero {
+            min-height: 100vh;
+            background: var(--natural-gradient);
+            display: flex;
+            align-items: center;
+            padding: 6rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(244, 208, 63, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(123, 167, 123, 0.15) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            font-family: 'Georgia', serif;
+        }
+
+        .hero-content .highlight {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: naturalBreath 3s infinite;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--text-medium);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(251, 245, 233, 0.4);
+            border-radius: 12px;
+            border: 1px solid rgba(244, 208, 63, 0.3);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--golden-glow);
+            border-color: var(--warm-orange);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--warm-orange);
+            display: block;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button {
+            background: var(--gold-gradient);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.8rem;
+            font-size: 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: var(--warm-shadow);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: var(--deep-shadow);
+        }
+
+        .hero-image {
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            right: -30px;
+            bottom: -30px;
+            background: var(--sunset-gradient);
+            border-radius: 50%;
+            opacity: 0.2;
+            z-index: -1;
+            animation: naturalGlow 4s infinite;
+        }
+
+        .hero-image img {
+            animation: warmFloat 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(244, 208, 63, 0.3));
+        }
+
+        /* Products Section - 2 Per Row Layout */
+        .products {
+            padding: 6rem 2rem;
+            background: rgba(123, 167, 123, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .products::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 80% 20%, rgba(230, 126, 34, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(177, 206, 177, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Georgia', serif;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gold-gradient);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-medium);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Products Container - 2 Per Row */
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .product-card {
+            background: var(--warm-gradient);
+            border: 2px solid var(--natural-brown);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: var(--natural-shadow);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            /* FIXED HEIGHT FOR CONSISTENT SIZING */
+            min-height: 450px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(244, 208, 63, 0.1), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .product-card:hover::before {
+            left: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            border-color: var(--warm-orange);
+            box-shadow: var(--deep-shadow);
+            background: linear-gradient(135deg, rgba(244, 208, 63, 0.1), rgba(123, 167, 123, 0.1));
+        }
+
+        .product-image {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+            border: 3px solid var(--warm-orange);
+            box-shadow: var(--golden-glow);
+        }
+
+        .product-card:hover .product-image {
+            transform: rotate(360deg) scale(1.1);
+            box-shadow: var(--warm-shadow);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.2);
+        }
+
+        .product-card h3 {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+            font-family: 'Georgia', serif;
+        }
+
+        .product-card:hover h3 {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .product-card .price {
+            font-size: 1.4rem;
+            color: var(--warm-orange);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(244, 208, 63, 0.5);
+        }
+
+        .product-card .description {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .select-btn {
+            background: transparent;
+            color: var(--warm-orange);
+            border: 2px solid var(--warm-orange);
+            padding: 0.8rem 2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .select-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gold-gradient);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .select-btn:hover::before {
+            left: 0;
+        }
+
+        .select-btn:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--golden-glow);
+        }
+
+        .product-card.selected {
+            border-color: var(--sunset-orange);
+            background: linear-gradient(135deg, rgba(230, 126, 34, 0.15), rgba(123, 167, 123, 0.1));
+            animation: naturalGlow 2s infinite;
+        }
+
+        .product-card.selected .select-btn {
+            background: var(--gold-gradient);
+            color: white;
+            border-color: var(--sunset-orange);
+        }
+
+        /* About Container - Single Row - Natural Classic */
+        .about-container {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        /* About Section Cards - Natural Classic Theme */
+        .about-card {
+            background: var(--pure-white);
+            border: 1px solid var(--soft-sand);
+            border-radius: 15px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: var(--soft-shadow);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            max-width: 350px;
+            backdrop-filter: blur(5px);
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(247, 237, 221, 0.4), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .about-card:hover::before {
+            left: 100%;
+        }
+
+        .about-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--golden-sand);
+            box-shadow: var(--natural-shadow);
+        }
+
+        .about-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--green-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+            animation: naturalGlow 3s infinite;
+            box-shadow: var(--soft-shadow);
+        }
+
+        .about-card h3 {
+            font-size: 1.6rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+            font-family: 'Georgia', serif;
+        }
+
+        .about-card:hover h3 {
+            background: var(--green-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-card .description {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* Calendar Section - Natural Enhancement */
+        .calendar-section {
+            padding: 6rem 2rem;
+            background: rgba(123, 167, 123, 0.08);
+            display: none;
+        }
+
+        .calendar-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--warm-gradient);
+            border: 2px solid var(--natural-brown);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--natural-shadow);
+            overflow: visible;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .calendar-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gold-gradient);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .calendar {
+            background: transparent;
+            width: 100%;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: var(--gold-gradient);
+            border-radius: 15px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calendar-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.1) 10px,
+                rgba(255,255,255,0.1) 20px
+            );
+            animation: goldenShimmer 3s linear infinite;
+        }
+
+        .month-picker {
+            font-size: 1.6rem;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Georgia', serif;
+        }
+
+        .month-picker:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .month-change {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.3rem;
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .month-change:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .year-picker {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .year-dropdown {
+            position: relative;
+        }
+
+        .year-select {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s ease;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="white" d="M2 0L0 2h4zm0 5L0 3h4z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 0.7rem auto;
+            padding-right: 3rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .year-select:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.05);
+        }
+
+        .year-select:focus {
+            border-color: var(--warm-orange);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .year-select option {
+            background: var(--text-dark);
+            color: white;
+            padding: 0.5rem;
+        }
+
+        .calendar-week-day {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .calendar-week-day div {
+            padding: 1.2rem;
+            text-align: center;
+            font-weight: bold;
+            color: var(--warm-orange);
+            background: rgba(244, 208, 63, 0.15);
+            border-radius: 12px;
+            border: 1px solid var(--natural-brown);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            backdrop-filter: blur(5px);
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+        }
+
+        .calendar-days div {
+            padding: 1.2rem;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            background: rgba(251, 245, 233, 0.3);
+            color: var(--text-dark);
+            backdrop-filter: blur(5px);
+        }
+
+        .calendar-days div::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(244, 208, 63, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .calendar-days div:hover::before {
+            left: 100%;
+        }
+
+        .calendar-days div:hover {
+            background: var(--gold-gradient);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: var(--golden-glow);
+            border-color: var(--sunset-orange);
+        }
+
+        .calendar-days div.selected {
+            background: var(--gold-gradient);
+            color: white;
+            border-color: var(--warm-orange);
+            box-shadow: var(--warm-shadow);
+            animation: naturalGlow 2s infinite;
+        }
+
+        .calendar-days div.curr-date {
+            border-color: var(--forest-green);
+            font-weight: bold;
+            background: rgba(123, 167, 123, 0.2);
+        }
+
+        /* Enhanced Booking Process Styles */
+        .booking-section {
+            display: none;
+            padding: 6rem 2rem;
+            background: rgba(123, 167, 123, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .booking-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(230, 126, 34, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(123, 167, 123, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .booking-section.active {
+            display: block;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .booking-steps {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            margin: 0 1.5rem;
+            position: relative;
+        }
+
+        .step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -3rem;
+            width: 3rem;
+            height: 3px;
+            background: rgba(188, 176, 148, 0.5);
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+
+        .step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(188, 176, 148, 0.3);
+            border: 2px solid var(--natural-brown);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            color: var(--text-medium);
+            backdrop-filter: blur(5px);
+        }
+
+        .step-number::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .step.active .step-number::before {
+            left: 100%;
+        }
+
+        .step.active .step-number {
+            background: var(--gold-gradient);
+            color: white;
+            border-color: var(--warm-orange);
+            transform: scale(1.1);
+            box-shadow: var(--golden-glow);
+        }
+
+        .step.completed .step-number {
+            background: var(--green-gradient);
+            color: white;
+            border-color: var(--forest-green);
+            transform: scale(1.1);
+        }
+
+        .step.completed::after {
+            background: var(--green-gradient);
+        }
+
+        .step span {
+            color: var(--text-dark);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Enhanced Quantity Section */
+        .quantity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quantity-card {
+            background: var(--warm-gradient);
+            border: 2px solid var(--natural-brown);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--natural-shadow);
+            backdrop-filter: blur(10px);
+        }
+
+        .quantity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(123, 167, 123, 0.1), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .quantity-card:hover::before {
+            left: 100%;
+        }
+
+        .quantity-card:hover {
+            transform: translateY(-12px) scale(1.05);
+            border-color: var(--forest-green);
+            box-shadow: var(--deep-shadow);
+        }
+
+        .quantity-card .quantity-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--warm-orange);
+            transition: all 0.3s ease;
+            text-shadow: 0 0 20px rgba(244, 208, 63, 0.5);
+        }
+
+        .quantity-card:hover .quantity-icon {
+            color: var(--forest-green);
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .quantity-card h3 {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+            font-family: 'Georgia', serif;
+        }
+
+        .quantity-card:hover h3 {
+            background: var(--green-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .quantity-card .price {
+            font-size: 1.6rem;
+            color: var(--warm-orange);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 15px rgba(244, 208, 63, 0.5);
+        }
+
+        .quantity-card .description {
+            color: var(--text-medium);
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .quantity-card.selected {
+            background: var(--green-gradient);
+            color: white;
+            border-color: var(--pine-green);
+            transform: translateY(-12px) scale(1.05);
+            box-shadow: var(--deep-shadow);
+            animation: naturalGlow 2s infinite;
+        }
+
+        .quantity-card.selected .quantity-icon,
+        .quantity-card.selected h3,
+        .quantity-card.selected .price {
+            color: white;
+            text-shadow: none;
+        }
+
+        /* Enhanced Slot Selection */
+        .slots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .slot-card {
+            background: var(--warm-gradient);
+            border: 2px solid var(--natural-brown);
+            border-radius: 15px;
+            padding: 1.8rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--soft-shadow);
+            color: var(--text-dark);
+            backdrop-filter: blur(10px);
+        }
+
+        .slot-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(177, 206, 177, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .slot-card:hover::before {
+            left: 100%;
+        }
+
+        .slot-card:hover {
+            background: var(--green-gradient);
+            color: white;
+            transform: scale(1.08);
+            box-shadow: var(--green-glow);
+            border-color: var(--pine-green);
+        }
+
+        .slot-card.selected {
+            background: var(--green-gradient);
+            color: white;
+            border-color: var(--forest-green);
+            transform: scale(1.08);
+            box-shadow: var(--warm-shadow);
+            animation: naturalGlow 2s infinite;
+        }
+
+        .slot-card.booked {
+            background: rgba(188, 176, 148, 0.1);
+            color: var(--text-muted);
+            cursor: not-allowed;
+            opacity: 0.5;
+            border-color: var(--text-muted);
+        }
+
+        .slot-card.booked:hover {
+            transform: none;
+            background: rgba(188, 176, 148, 0.1);
+            color: var(--text-muted);
+            box-shadow: none;
+        }
+
+        .slot-card.booked::before {
+            display: none;
+        }
+
+        /* User Panel Styles - Natural Enhancement */
+        .user-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--natural-gradient);
+            z-index: 9999;
+            overflow-y: auto;
+        }
+
+        .user-panel.active {
+            display: block;
+            animation: slideInLeft 0.5s ease;
+        }
+
+        .user-header {
+            background: var(--gold-gradient);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--warm-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .user-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 15px,
+                rgba(255,255,255,0.05) 15px,
+                rgba(255,255,255,0.05) 30px
+            );
+            animation: goldenShimmer 4s linear infinite;
+        }
+
+        .user-header h1 {
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            position: relative;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Georgia', serif;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .user-btn {
+            background: var(--sunset-orange);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .user-btn:hover {
+            background: var(--warm-orange);
+            transform: translateY(-2px);
+            box-shadow: var(--golden-glow);
+        }
+
+        .user-btn.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .user-btn.secondary:hover {
+            background: white;
+            color: var(--text-dark);
+        }
+
+        .user-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .user-bookings {
+            background: var(--warm-gradient);
+            border: 2px solid var(--natural-brown);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--natural-shadow);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .user-bookings::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gold-gradient);
+        }
+
+        .user-bookings h2 {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.8rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .booking-card {
+            background: rgba(244, 208, 63, 0.08);
+            border: 1px solid var(--natural-brown);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--warm-orange);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .booking-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(244, 208, 63, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .booking-card:hover::before {
+            left: 100%;
+        }
+
+        .booking-card:hover {
+            transform: translateX(15px);
+            box-shadow: var(--golden-glow);
+            border-left-color: var(--sunset-orange);
+        }
+
+        .booking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .booking-id {
+            font-weight: bold;
+            color: var(--warm-orange);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .booking-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* Admin Panel Styles - Enhanced Natural Design */
+        .admin-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--natural-gradient);
+            z-index: 9999;
+            overflow-y: auto;
+        }
+
+        .admin-panel.active {
+            display: block;
+            animation: slideInLeft 0.5s ease;
+        }
+
+        .admin-nav {
+            background: var(--gold-gradient);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--warm-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .admin-nav::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 15px,
+                rgba(255,255,255,0.05) 15px,
+                rgba(255,255,255,0.05) 30px
+            );
+            animation: goldenShimmer 4s linear infinite;
+        }
+
+        .admin-nav h1 {
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            position: relative;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Georgia', serif;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .admin-btn {
+            background: var(--sunset-orange);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .admin-btn:hover {
+            background: var(--warm-orange);
+            transform: translateY(-2px);
+            box-shadow: var(--golden-glow);
+        }
+
+        .admin-btn.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .admin-btn.secondary:hover {
+            background: white;
+            color: var(--text-dark);
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--warm-gradient);
+            border: 2px solid var(--natural-brown);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--natural-shadow);
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(123, 167, 123, 0.1), transparent);
+            transition: left 0.8s;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--forest-green);
+            box-shadow: var(--deep-shadow);
+        }
+
+        .stat-icon {
+            width: 90px;
+            height: 90px;
+            background: var(--green-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.2rem;
+            color: white;
+            animation: naturalGlow 3s infinite;
+            box-shadow: var(--green-glow);
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: var(--warm-orange);
+            margin-bottom: 0.5rem;
+            display: block;
+            text-shadow: 0 0 15px rgba(244, 208, 63, 0.5);
+        }
+
+        .stat-label {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .orders-section {
+            background: var(--warm-gradient);
+            border: 2px solid var(--natural-brown);
+            border-radius: 20px;
+            box-shadow: var(--natural-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .orders-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gold-gradient);
+        }
+
+        .orders-header {
+            background: var(--text-dark);
+            color: white;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .orders-header h2 {
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Georgia', serif;
+        }
+
+        .orders-table-container {
+            overflow-x: auto;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        .orders-table th,
+        .orders-table td {
+            padding: 1.5rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(188, 176, 148, 0.3);
+        }
+
+        .orders-table th {
+            background: rgba(244, 208, 63, 0.15);
+            font-weight: 600;
+            color: var(--text-dark);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            backdrop-filter: blur(5px);
+        }
+
+        .orders-table td {
+            color: var(--text-dark);
+        }
+
+        .orders-table tr {
+            transition: all 0.3s ease;
+        }
+
+        .orders-table tr:hover {
+            background: rgba(244, 208, 63, 0.08);
+            transform: scale(1.01);
+        }
+
+        .status-badge {
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: naturalGlow 3s infinite;
+        }
+
+        .status-pending {
+            background: linear-gradient(135deg, #F39C12, #E67E22);
+            color: white;
+        }
+
+        .status-confirmed {
+            background: linear-gradient(135deg, #27AE60, #229954);
+            color: white;
+        }
+
+        .status-completed {
+            background: linear-gradient(135deg, #3498DB, #2E86C1);
+            color: white;
+        }
+
+        .status-cancelled {
+            background: linear-gradient(135deg, #E74C3C, #C0392B);
+            color: white;
+        }
+
+        .action-btn {
+            padding: 0.6rem 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin: 0 0.3rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-confirm {
+            background: linear-gradient(135deg, #27AE60, #229954);
+            color: white;
+        }
+
+        .btn-confirm:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(39, 174, 96, 0.4);
+        }
+
+        .btn-complete {
+            background: linear-gradient(135deg, #3498DB, #2E86C1);
+            color: white;
+        }
+
+        .btn-complete:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn-cancel {
+            background: linear-gradient(135deg, #F39C12, #E67E22);
+            color: white;
+        }
+
+        .btn-cancel:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(243, 156, 18, 0.4);
+        }
+
+        .btn-delete {
+            background: linear-gradient(135deg, #E74C3C, #C0392B);
+            color: white;
+        }
+
+        .btn-delete:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.4);
+        }
+
+        /* Product Management Section */
+        .product-management {
+            background: var(--warm-gradient);
+            border: 2px solid var(--natural-brown);
+            border-radius: 20px;
+            box-shadow: var(--natural-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .product-management::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--green-gradient);
+        }
+
+        .product-management-header {
+            background: var(--text-dark);
+            color: white;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .product-form {
+            padding: 2rem;
+            border-bottom: 1px solid rgba(188, 176, 148, 0.3);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .admin-product-card {
+            background: rgba(244, 208, 63, 0.08);
+            border: 2px solid var(--natural-brown);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .admin-product-card:hover {
+            transform: translateX(10px);
+            box-shadow: var(--golden-glow);
+            border-color: var(--warm-orange);
+        }
+
+        /* User Management Section - Enhanced */
+        .user-management {
+            background: var(--warm-gradient);
+            border: 2px solid var(--natural-brown);
+            border-radius: 20px;
+            box-shadow: var(--natural-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .user-management::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--sunset-gradient);
+        }
+
+        .user-management-header {
+            background: var(--text-dark);
+            color: white;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .user-card {
+            background: rgba(244, 208, 63, 0.08);
+            border: 2px solid var(--natural-brown);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem;
+            border-left: 5px solid var(--warm-orange);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .user-card:hover {
+            transform: translateX(15px);
+            box-shadow: var(--golden-glow);
+            border-left-color: var(--sunset-orange);
+        }
+
+        .user-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1rem;
+        }
+
+        .user-stat-card {
+            background: rgba(251, 245, 233, 0.3);
+            border: 2px solid var(--natural-brown);
+            border-radius: 12px;
+            padding: 1.5rem;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .user-stat-card:hover {
+            border-color: var(--forest-green);
+            transform: scale(1.02);
+        }
+
+        /* Footer - Natural Enhancement */
+        .footer {
+            background: var(--natural-gradient);
+            color: var(--text-dark);
+            padding: 4rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+            border-top: 2px solid var(--natural-brown);
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 70%, rgba(230, 126, 34, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(123, 167, 123, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-section h3 {
+            color: var(--warm-orange);
+            margin-bottom: 1.5rem;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Georgia', serif;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gold-gradient);
+            border-radius: 2px;
+        }
+
+        .footer-section p, .footer-section a {
+            color: var(--text-medium);
+            text-decoration: none;
+            margin-bottom: 0.8rem;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--warm-orange);
+            transform: translateX(8px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 55px;
+            height: 55px;
+            background: var(--green-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--green-glow);
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .social-links a:hover::before {
+            left: 100%;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-8px) scale(1.15);
+            box-shadow: var(--warm-shadow);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(188, 176, 148, 0.3);
+            color: var(--text-medium);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Notification styles - Natural Enhancement */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1.2rem 2rem;
+            border-radius: 12px;
+            box-shadow: var(--warm-shadow);
+            z-index: 10001;
+            animation: slideInRight 0.4s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            max-width: 400px;
+            backdrop-filter: blur(10px);
+            border: 2px solid;
+        }
+
+        .notification.success {
+            background: linear-gradient(135deg, rgba(39, 174, 96, 0.2), rgba(34, 153, 84, 0.1));
+            color: #27AE60;
+            border-color: #27AE60;
+        }
+
+        .notification.error {
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.2), rgba(192, 57, 43, 0.1));
+            color: #E74C3C;
+            border-color: #E74C3C;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(120px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Loading Animation - Enhanced */
+        .loading {
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: var(--warm-orange);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Mobile Responsive Design - Perfect Mobile Experience */
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 1.5rem;
+                padding: 0 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+                line-height: 1.3;
+                margin-bottom: 1rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+                line-height: 1.6;
+                margin-bottom: 1.5rem;
+            }
+
+            /* Hero Image - Smaller on Mobile */
+            .hero-image img {
+                max-width: 280px;
+                height: auto;
+            }
+            
+            /* Hero Stats - Keep in Same Row */
+            .hero-stats {
+                display: flex;
+                justify-content: center;
+                flex-wrap: nowrap;
+                gap: 0.8rem;
+                margin-bottom: 1.5rem;
+                overflow-x: auto;
+                padding: 0.5rem;
+            }
+
+            .stat {
+                padding: 0.8rem 1rem;
+                min-width: 100px;
+                flex: 1;
+                max-width: 120px;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
+            }
+
+            .stat-label {
+                font-size: 0.75rem;
+            }
+
+            /* Products - Keep 2 Per Row on Mobile (DON'T CHANGE) */
+            .products-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                max-width: 100%;
+                padding: 0 0.5rem;
+            }
+
+            .product-card {
+                padding: 1.2rem 0.8rem;
+                min-width: 0;
+            }
+
+            .product-card h3 {
+                font-size: 1.2rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .product-card .price {
+                font-size: 1.1rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .product-card .description {
+                font-size: 0.8rem;
+                margin-bottom: 1rem;
+                line-height: 1.4;
+            }
+
+            .product-image {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 1rem;
+            }
+
+            .select-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            /* About - Single Row on Mobile */
+            .about-container {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding: 0.5rem;
+                margin-top: 2rem;
+            }
+
+            .about-card {
+                min-width: 260px;
+                max-width: 280px;
+                padding: 1.5rem;
+                flex-shrink: 0;
+            }
+
+            .about-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .about-card h3 {
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .about-card .description {
+                font-size: 0.85rem;
+                line-height: 1.5;
+                margin-bottom: 0;
+            }
+
+            .nav-container {
+                padding: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                font-size: 1.8rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--warm-gradient);
+                border: 1px solid var(--soft-sand);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: var(--natural-shadow);
+                border-radius: 0 0 15px 15px;
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-links.active {
+                display: flex;
+                animation: fadeInUp 0.5s ease;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .section-header p {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+                margin-top: 1rem;
+            }
+
+            .booking-steps {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+                margin-bottom: 2rem;
+            }
+
+            .step {
+                margin: 0;
+            }
+
+            .step::after {
+                display: none;
+            }
+
+            .step span {
+                font-size: 0.9rem;
+            }
+
+            .quantity-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .slots-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .slot-card {
+                padding: 1.2rem 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .calendar-container {
+                padding: 1.2rem;
+                margin: 0 0.5rem;
+            }
+
+            .calendar-header {
+                padding: 1.2rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .month-picker {
+                font-size: 1.3rem;
+            }
+
+            .year-select {
+                font-size: 1rem;
+                padding: 0.6rem 1rem;
+            }
+
+            .calendar-days div {
+                padding: 0.8rem 0.3rem;
+                font-size: 0.9rem;
+            }
+
+            .calendar-week-day div {
+                padding: 0.8rem 0.2rem;
+                font-size: 0.8rem;
+            }
+
+            .form-group input {
+                padding: 0.9rem;
+                font-size: 1rem;
+            }
+
+            .otp-btn {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+
+            .progress-bar {
+                margin-bottom: 1.5rem;
+            }
+
+            .login-required {
+                padding: 1.5rem;
+                margin: 1.5rem 0;
+            }
+
+            .login-required h3 {
+                font-size: 1.3rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .login-required p {
+                font-size: 0.95rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .notification {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+                max-width: none;
+                padding: 1rem 1.5rem;
+            }
+
+            /* Admin Panel Mobile */
+            .dashboard-container {
+                padding: 1rem;
+            }
+
+            .dashboard-stats {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .admin-nav {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .admin-nav h1 {
+                font-size: 1.5rem;
+            }
+
+            .orders-header,
+            .user-management-header,
+            .product-management-header {
+                padding: 1.5rem;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .user-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .booking-card {
+                padding: 1.5rem;
+            }
+
+            .booking-details {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .detail-label {
+                font-size: 0.8rem;
+            }
+
+            .detail-value {
+                font-size: 0.9rem;
+            }
+
+            .otp-modal-content,
+            .admin-modal-content {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+        }
+
+        /* Mobile Menu Toggle - Natural Theme */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background: var(--cream-white);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* Progress Bar for Steps - Enhanced */
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(188, 176, 148, 0.3);
+            border-radius: 3px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--green-gradient);
+            border-radius: 3px;
+            transition: width 0.6s ease;
+            width: 33.33%;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: goldenShimmer 2s linear infinite;
+        }
+
+        /* Login Required Notification - Enhanced */
+        .login-required {
+            background: var(--warm-gradient);
+            border: 2px solid var(--warm-orange);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            animation: naturalGlow 3s infinite;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--natural-shadow);
+        }
+
+        .login-required h3 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Georgia', serif;
+        }
+
+        .login-required p {
+            color: var(--text-medium);
+            margin-bottom: 1.5rem;
+        }
+
+        .login-required .cta-button {
+            margin: 0 0.8rem;
+        }
+
+        /* Additional enhancements for natural feel */
+        .natural-divider {
+            height: 2px;
+            background: var(--gold-gradient);
+            border: none;
+            border-radius: 1px;
+            margin: 2rem 0;
+        }
+
+        .natural-accent {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px rgba(244, 208, 63, 0.5);
+        }
+
+        /* Scrollbar styling for natural theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--text-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-gradient);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--warm-orange);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation - Natural Design -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Sufala</a>
+            
+            <div class="menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            
+            <!-- User State - Only shows when logged in -->
+            <div id="user-nav" class="nav-auth" style="display: none;">
+                <div class="user-menu">
+                    <button class="user-menu-btn" onclick="toggleUserMenu()">
+                        <i class="fas fa-user"></i>
+                        <span id="user-name">User</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-menu-dropdown">
+                        <div class="user-menu-item" onclick="showUserPanel()">
+                            <i class="fas fa-calendar"></i> My Bookings
+                        </div>
+                        <div class="user-menu-item" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Discrete Admin Access -->
+    <div class="admin-access">
+        <button class="admin-access-btn" onclick="showAdminModal()" title="Admin Access">
+            <i class="fas fa-cog" style="font-size: 0.9rem;"></i> Admin
+        </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content fade-in-up">
+                <h1>Pure, Fresh <span class="highlight">Cold Pressed</span> Oils</h1>
+                <p>Experience the authentic taste and nutrition of traditionally extracted oils. Watch your oil being freshly pressed right before your eyes in our natural oil pressing experience!</p>
+                
+                <div class="display-mobile">
+                    <div class="hero-image fade-in-up">
+                        <div><img src="Artboard 1 - Edited.png" alt="Fresh Cold Pressed Oil" style="animation: warmFloat 6s ease-in-out infinite;"></div>
+                    </div>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Pure & Natural</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">24hrs</span>
+                        <span class="stat-label">Fresh Pressing</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">15M+</span>
+                        <span class="stat-label">Happy Customers</span>
+                    </div>
+                </div>
+
+                <a href="#products" class="cta-button">
+                    <i class="fas fa-leaf"></i> Book Fresh Oil Now
+                </a>
+            </div>
+            
+            <div class="display-desktop">
+                <div class="hero-image">
+                    <div><img src="Artboard 1 - Edited.png" alt="Fresh Cold Pressed Oil" style="animation: warmFloat 6s ease-in-out infinite;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section - 2 Per Row -->
+    <section class="products" id="products">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Choose Your Fresh Oil</h2>
+                <p>Select from our premium collection of oils, each cold-pressed to perfection using traditional natural methods</p>
+            </div>
+
+            <div class="products-container" id="products-container">
+                <!-- Products will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking-section" id="booking-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 id="booking-title">Select Your Pressing Date</h2>
+                <p id="booking-description">Choose when you'd like your oil to be freshly pressed with our natural process</p>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+
+            <!-- Booking Steps -->
+            <div class="booking-steps">
+                <div class="step active" id="step-1">
+                    <div class="step-number">1</div>
+                    <span>Select Date</span>
+                </div>
+                <div class="step" id="step-2">
+                    <div class="step-number">2</div>
+                    <span>Choose Quantity</span>
+                </div>
+                <div class="step" id="step-3">
+                    <div class="step-number">3</div>
+                    <span>Pick Time Slot</span>
+                </div>
+            </div>
+
+            <!-- Calendar Section -->
+            <div id="calendar-step" class="booking-step">
+                <div class="calendar-container">
+                    <div class="calendar">
+                        <div class="calendar-header">
+                            <div class="month-picker">
+                                <span class="month-change" id="prev-month">
+                                    <i class="fas fa-chevron-left"></i>
+                                </span>
+                                <span id="month-display">January</span>
+                                <span class="month-change" id="next-month">
+                                    <i class="fas fa-chevron-right"></i>
+                                </span>
+                            </div>
+                            <div class="year-picker">
+                                <select class="year-select" id="year-select"></select>
+                            </div>
+                        </div>
+                        <div class="calendar-week-day">
+                            <div>Sun</div>
+                            <div>Mon</div>
+                            <div>Tue</div>
+                            <div>Wed</div>
+                            <div>Thu</div>
+                            <div>Fri</div>
+                            <div>Sat</div>
+                        </div>
+                        <div class="calendar-days" id="calendar-days"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quantity Section -->
+            <div id="quantity-step" class="booking-step" style="display: none;">
+                <div class="quantity-grid">
+                    <div class="quantity-card" onclick="selectQuantity('1 Liter', 1)">
+                        <div class="quantity-icon">
+                            <i class="fas fa-wine-bottle"></i>
+                        </div>
+                        <h3>1 Liter</h3>
+                        <div class="price" id="price-1">₹120</div>
+                        <div class="description">Perfect for trying our natural oil</div>
+                    </div>
+
+                    <div class="quantity-card" onclick="selectQuantity('3 Liters', 3)">
+                        <div class="quantity-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3>3 Liters</h3>
+                        <div class="price" id="price-3">₹360</div>
+                        <div class="description">Ideal for natural families</div>
+                    </div>
+
+                    <div class="quantity-card" onclick="selectQuantity('5 Liters', 5)">
+                        <div class="quantity-icon">
+                            <i class="fas fa-fill-drip"></i>
+                        </div>
+                        <h3>5 Liters</h3>
+                        <div class="price" id="price-5">₹600</div>
+                        <div class="description">Best value for premium use</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slots Section -->
+            <div id="slots-step" class="booking-step" style="display: none;">
+                <div class="slots-grid" id="slots-grid">
+                    <!-- Slots will be populated by JavaScript -->
+                </div>
+
+                <!-- Login Required Notice -->
+                <div id="login-required-notice" class="login-required" style="display: none;">
+                    <h3><i class="fas fa-lock"></i> Login Required</h3>
+                    <p>Please login with your phone number to complete your booking and secure your natural time slot.</p>
+                    <button class="cta-button" onclick="showOtpModal()">
+                        <i class="fas fa-phone"></i> Login with Phone
+                    </button>
+                    <button class="cta-button" onclick="resetBooking()" style="background: linear-gradient(135deg, #6c757d, #5a6268);">
+                        <i class="fas fa-arrow-left"></i> Go Back
+                    </button>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <button class="cta-button" id="confirm-booking" onclick="confirmBooking()" style="display: none;">
+                        <i class="fas fa-check"></i> Confirm Natural Booking
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section - Single Row -->
+    <section class="products" id="about" style="background: rgba(247, 237, 221, 0.3);">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Why Choose Sufala?</h2>
+                <p>Experience the difference of traditionally made, naturally pure oils</p>
+            </div>
+
+            <!-- About Cards in Single Row -->
+            <div class="about-container">
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Watch The Process</h3>
+                    <div class="description">See your oil being freshly pressed right before your eyes using our traditional natural methods</div>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>100% Pure & Natural</h3>
+                    <div class="description">No chemicals, no preservatives - just pure, natural oil extracted through traditional ways</div>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Fresh Daily Production</h3>
+                    <div class="description">Oil pressed fresh on your selected date with care, ensuring maximum nutrition and pure taste</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Sufala Naturals</h3>
+                <p>Experience the purity of traditionally extracted cold-pressed oils. Fresh, natural, and pure for healthy living.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/sufala_naturals/?hl=en"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#home">Home</a>
+                <a href="#products">Products</a>
+                <a href="#about">About Us</a>
+                <a href="#contact">Contact</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Rajahmundry, Andhra Pradesh</p>
+                <p><i class="fas fa-phone"></i> +91 91535 97999</p>
+                <p><i class="fas fa-envelope"></i> info@sufala.com</p>
+                <p><i class="fas fa-clock"></i> Mon-Sat: 8AM-8PM</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Our Pure Promise</h3>
+                <p>✓ 100% Pure & Natural</p>
+                <p>✓ Traditional Methods</p>
+                <p>✓ Fresh Daily Pressing</p>
+                <p>✓ No Chemicals Added</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sufala Naturals. All rights reserved. Made with ❤️ and pure care for healthy living.</p>
+        </div>
+    </footer>
+
+    <!-- OTP Modal -->
+    <div id="otp-modal" class="otp-modal">
+        <div class="otp-modal-content">
+            <button class="otp-modal-close" onclick="closeOtpModal()">&times;</button>
+            
+            <h2>Natural Login Portal</h2>
+            
+            <!-- Name Input for First Time Users -->
+            <div id="name-step" class="form-group" style="display: none;">
+                <label for="user-name-input">Enter Your Full Name</label>
+                <input type="text" id="user-name-input" placeholder="Your full name" required>
+                <div class="hint">This is your first visit, please enter your name</div>
+                <button class="otp-btn" onclick="proceedWithName()">
+                    <i class="fas fa-arrow-right"></i> Continue
+                </button>
+                <div id="name-msg" class="msg"></div>
+            </div>
+
+            <!-- Phone Input -->
+            <div id="phone-step">
+                <div class="form-group">
+                    <label for="phone-input">Mobile Number (India)</label>
+                    <input type="tel" id="phone-input" placeholder="e.g. 9347xxxxxx" maxlength="10" required>
+                </div>
+
+                <button class="otp-btn" id="btnSend" onclick="sendOTP()">
+                    <i class="fas fa-paper-plane"></i> Send Verification Code
+                </button>
+                <div id="phone-msg" class="msg"></div>
+            </div>
+
+            <!-- OTP Input -->
+            <div id="otp-step" class="otp-wrap">
+                <div class="form-group">
+                    <label for="otp-input">Enter Verification Code</label>
+                    <div class="otp-row">
+                        <input type="text" id="otp-input" placeholder="6-digit code" maxlength="15" required>
+                        <button class="otp-btn" id="btnVerify" onclick="verifyOTP()" style="width: auto; padding: 0.8rem 1.2rem;">
+                            <i class="fas fa-check"></i> Verify
+                        </button>
+                    </div>
+                </div>
+                <div class="hint">Check your WhatsApp for the verification code.</div>
+                <div id="otp-msg" class="msg"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="admin-modal" class="admin-modal">
+        <div class="admin-modal-content">
+            <button class="otp-modal-close" onclick="closeAdminModal()">&times;</button>
+            
+            <h2>Natural Admin Portal</h2>
+            
+            <form id="admin-form" onsubmit="handleAdminLogin(event)">
+                <div class="form-group">
+                    <label for="admin-email">Admin Email</label>
+                    <input type="email" id="admin-email" value="admin@sufala.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="admin-password">Admin Password</label>
+                    <input type="password" id="admin-password" value="admin123" required>
+                </div>
+                <button type="submit" class="otp-btn">
+                    <i class="fas fa-sign-in-alt"></i> Access Admin Panel
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- User Panel -->
+    <div id="user-panel" class="user-panel">
+        <div class="user-header">
+            <h1><i class="fas fa-user"></i> My Natural Dashboard</h1>
+            <div class="user-actions">
+                <button class="user-btn" onclick="hideUserPanel()">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+                <button class="user-btn secondary" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+        
+        <div class="user-content">
+            <div class="user-bookings">
+                <h2><i class="fas fa-calendar-alt"></i> My Natural Bookings</h2>
+                <div id="user-bookings-list">
+                    <!-- User bookings will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="admin-panel" class="admin-panel">
+        <nav class="admin-nav">
+            <h1><i class="fas fa-leaf"></i> Sufala Natural Admin</h1>
+            <div class="nav-actions">
+                <button class="admin-btn" onclick="hideAdminPanel()">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+                <button class="admin-btn secondary" onclick="refreshDashboard()">
+                    <i class="fas fa-refresh"></i> Refresh
+                </button>
+                <button class="admin-btn secondary" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </nav>
+
+        <div class="dashboard-container">
+            <!-- Dashboard Stats -->
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <span class="stat-number" id="admin-total-orders">0</span>
+                    <div class="stat-label">Total Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <span class="stat-number" id="admin-pending-orders">0</span>
+                    <div class="stat-label">Pending Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <span class="stat-number" id="admin-confirmed-orders">0</span>
+                    <div class="stat-label">Confirmed Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <span class="stat-number" id="admin-completed-orders">0</span>
+                    <div class="stat-label">Completed Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <span class="stat-number" id="admin-total-revenue">₹0</span>
+                    <div class="stat-label">Total Revenue</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <span class="stat-number" id="admin-total-users">0</span>
+                    <div class="stat-label">Total Users</div>
+                </div>
+            </div>
+
+            <!-- Product Management Section -->
+            <div class="product-management">
+                <div class="product-management-header">
+                    <h2><i class="fas fa-boxes"></i> Natural Product Management</h2>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="admin-btn" onclick="showAddProductForm()">
+                            <i class="fas fa-plus"></i> Add New Product
+                        </button>
+                        <button class="admin-btn secondary" onclick="loadProductManagement()">
+                            <i class="fas fa-refresh"></i> Refresh Products
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Add Product Form -->
+                <div id="add-product-form" class="product-form" style="display: none;">
+                    <h3 style="color: var(--warm-orange); margin-bottom: 1.5rem;">
+                        <i class="fas fa-plus-circle"></i> Add New Natural Product
+                    </h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-name">Product Name</label>
+                            <input type="text" id="product-name" placeholder="e.g. Natural Coconut Oil" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-price">Price (₹ per Liter)</label>
+                            <input type="number" id="product-price" placeholder="e.g. 150" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-image">Image URL</label>
+                            <input type="url" id="product-image" placeholder="https://example.com/image.jpg">
+                        </div>
+                        <div class="form-group">
+                            <label for="product-description">Description</label>
+                            <input type="text" id="product-description" placeholder="Natural benefits and properties...">
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <button class="admin-btn" onclick="addNewProduct()">
+                            <i class="fas fa-save"></i> Add Product
+                        </button>
+                        <button class="admin-btn secondary" onclick="hideAddProductForm()">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+
+                <div id="product-management-content">
+                    <!-- Product management content will be loaded here -->
+                </div>
+            </div>
+
+            <!-- User Management Section -->
+            <div class="user-management">
+                <div class="user-management-header">
+                    <h2><i class="fas fa-users"></i> Natural User Management</h2>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="admin-btn" onclick="loadUserManagement()">
+                            <i class="fas fa-refresh"></i> Refresh Users
+                        </button>
+                        <button class="admin-btn secondary" onclick="exportUserData()">
+                            <i class="fas fa-download"></i> Export Data
+                        </button>
+                    </div>
+                </div>
+                <div id="user-management-content">
+                    <!-- User management content will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Orders Section -->
+            <div class="orders-section">
+                <div class="orders-header">
+                    <h2><i class="fas fa-list"></i> Natural Order Management</h2>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="admin-btn" onclick="filterAdminOrders('all')">
+                            <i class="fas fa-list"></i> All Orders
+                        </button>
+                        <button class="admin-btn secondary" onclick="filterAdminOrders('today')">
+                            <i class="fas fa-calendar-day"></i> Today's Orders
+                        </button>
+                    </div>
+                </div>
+                <div class="orders-table-container">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Product Details</th>
+                                <th>Schedule</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-orders-list">
+                            <!-- Orders will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API Configuration
+        const API_BASE = 'https://anandnodered.kalpatech.co.in';
+
+        // Global variables
+        let currentUser = null;
+        let selectedProduct = '';
+        let selectedDate = '';
+        let selectedQuantity = '';
+        let selectedSlot = '';
+        let basePrice = 0;
+        let quantityMultiplier = 1;
+        let currentStep = 1;
+        let pendingUserData = null;
+
+        // Available time slots
+        const timeSlots = [
+            '8:00 - 8:30 AM', '8:30 - 9:00 AM', '9:00 - 9:30 AM', '9:30 - 10:00 AM',
+            '10:00 - 10:30 AM', '10:30 - 11:00 AM', '11:00 - 11:30 AM', '11:30 - 12:00 PM',
+            '12:00 - 12:30 PM', '12:30 - 1:00 PM', '3:00 - 3:30 PM', '3:30 - 4:00 PM',
+            '4:00 - 4:30 PM', '4:30 - 5:00 PM', '5:00 - 5:30 PM', '5:30 - 6:00 PM',
+            '6:00 - 6:30 PM', '6:30 - 7:00 PM', '7:00 - 7:30 PM', '7:30 - 8:00 PM'
+        ];
+
+        // Demo admin credentials
+        const adminCredentials = {
+            email: 'admin@sufala.com',
+            password: 'admin123'
+        };
+
+        // Data storage
+        let allUsers = JSON.parse(localStorage.getItem('sufala_users')) || [];
+        let allOrders = JSON.parse(localStorage.getItem('sufala_orders')) || [];
+        let allProducts = JSON.parse(localStorage.getItem('sufala_products')) || [];
+
+        // Calendar variables
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        const currDate = new Date();
+        const currMonth = { value: currDate.getMonth() };
+        const currYear = { value: currDate.getFullYear() };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeProducts();
+            initializeCalendar();
+            populateYearDropdown();
+            checkLoginStatus();
+            loadUserBookings();
+            loadAdminDashboard();
+            addFadeInAnimations();
+        });
+
+        function addFadeInAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-up');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.section-container, .product-card, .about-card').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Initialize Products
+        function initializeProducts() {
+            if (allProducts.length === 0) {
+                // Default products with proper images
+                allProducts = [
+                    {
+                        id: 1,
+                        name: 'Natural Sesame Oil',
+                        price: 120,
+                        image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&h=400&fit=crop&crop=center',
+                        description: 'Rich in antioxidants and natural vitamins, perfect for cooking and therapeutic natural use'
+                    },
+                    {
+                        id: 2,
+                        name: 'Pure Groundnut Oil',
+                        price: 95,
+                        image: 'https://images.unsplash.com/photo-1628191081676-d8d4a6c0c5e4?w=400&h=400&fit=crop&crop=center',
+                        description: 'Light, healthy cooking oil with natural goodness, mild flavor and high nutritional value'
+                    }
+                ];
+                localStorage.setItem('sufala_products', JSON.stringify(allProducts));
+            }
+            renderProducts();
+        }
+
+        function renderProducts() {
+            const container = document.getElementById('products-container');
+            container.innerHTML = '';
+
+            allProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.onclick = () => selectProduct(product.name, product.price, product.id);
+                
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}" 
+                             onerror="this.src='https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&h=400&fit=crop&crop=center'">
+                    </div>
+                    <h3>${product.name}</h3>
+                    <div class="price">₹${product.price}/Liter</div>
+                    <div class="description">${product.description}</div>
+                    <button class="select-btn">Book Fresh Oil</button>
+                `;
+                
+                container.appendChild(productCard);
+            });
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        }
+
+        // OTP Authentication Functions
+        function showOtpModal() {
+            document.getElementById('otp-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            resetOtpModal();
+        }
+
+        function closeOtpModal() {
+            document.getElementById('otp-modal').classList.remove('active');
+            document.body.style.overflow = '';
+            resetOtpModal();
+        }
+
+        function resetOtpModal() {
+            document.getElementById('phone-step').style.display = 'block';
+            document.getElementById('name-step').style.display = 'none';
+            document.getElementById('otp-step').classList.remove('active');
+            document.getElementById('phone-input').value = '';
+            document.getElementById('otp-input').value = '';
+            document.getElementById('user-name-input').value = '';
+            document.getElementById('phone-msg').textContent = '';
+            document.getElementById('otp-msg').textContent = '';
+            document.getElementById('name-msg').textContent = '';
+            pendingUserData = null;
+        }
+
+        async function sendOTP() {
+            const phoneInput = document.getElementById('phone-input');
+            const phoneMsg = document.getElementById('phone-msg');
+            const btnSend = document.getElementById('btnSend');
+            
+            const phone = (phoneInput.value || '').replace(/\D/g, '');
+            
+            phoneMsg.className = 'msg';
+            phoneMsg.textContent = '';
+
+            if (phone.length !== 10) {
+                phoneMsg.classList.add('err');
+                phoneMsg.textContent = 'Phone must be 10 digits.';
+                return;
+            }
+
+            btnSend.disabled = true;
+            btnSend.innerHTML = '<span class="loading"></span> Sending Natural Code...';
+
+            try {
+                const response = await fetch(API_BASE + '/otpreq', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ phone: phone })
+                });
+
+                const data = await response.json().catch(() => ({}));
+
+                if (response.ok && (data.success || data.ok)) {
+                    phoneMsg.classList.add('ok');
+                    phoneMsg.textContent = 'Natural OTP sent to WhatsApp.';
+                    
+                    // Check if this is a new user
+                    const existingUser = allUsers.find(u => u.phone === phone);
+                    if (!existingUser) {
+                        // New user - show name input
+                        document.getElementById('phone-step').style.display = 'none';
+                        document.getElementById('name-step').style.display = 'block';
+                        pendingUserData = { phone: phone };
+                    } else {
+                        // Existing user - show OTP input
+                        document.getElementById('otp-step').classList.add('active');
+                        pendingUserData = existingUser;
+                    }
+                } else {
+                    phoneMsg.classList.add('err');
+                    phoneMsg.textContent = (data && (data.error || data.message)) || 'Failed to send natural OTP.';
+                }
+            } catch(e) {
+                phoneMsg.classList.add('err');
+                phoneMsg.textContent = 'Network error. Try again.';
+            } finally {
+                btnSend.disabled = false;
+                btnSend.innerHTML = '<i class="fas fa-paper-plane"></i> Send Natural Code';
+            }
+        }
+
+        function proceedWithName() {
+            const nameInput = document.getElementById('user-name-input');
+            const nameMsg = document.getElementById('name-msg');
+            
+            const name = nameInput.value.trim();
+            
+            nameMsg.className = 'msg';
+            nameMsg.textContent = '';
+
+            if (!name) {
+                nameMsg.classList.add('err');
+                nameMsg.textContent = 'Please enter your name.';
+                return;
+            }
+
+            if (pendingUserData) {
+                pendingUserData.name = name;
+                pendingUserData.isNewUser = true;
+                
+                // Show OTP input
+                document.getElementById('name-step').style.display = 'none';
+                document.getElementById('otp-step').classList.add('active');
+                
+                nameMsg.classList.add('ok');
+                nameMsg.textContent = 'Name saved. Please verify natural OTP.';
+            }
+        }
+
+        async function verifyOTP() {
+            const otpInput = document.getElementById('otp-input');
+            const otpMsg = document.getElementById('otp-msg');
+            const btnVerify = document.getElementById('btnVerify');
+            
+            const code = (otpInput.value || '').trim();
+            
+            otpMsg.className = 'msg';
+            otpMsg.textContent = '';
+
+            if (!code || !pendingUserData) {
+                otpMsg.classList.add('err');
+                otpMsg.textContent = 'Enter valid natural OTP.';
+                return;
+            }
+
+            btnVerify.disabled = true;
+            btnVerify.innerHTML = '<span class="loading"></span> Verifying...';
+
+            try {
+                const response = await fetch(API_BASE + '/otpverify', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ 
+                        phone: pendingUserData.phone, 
+                        otp: code 
+                    })
+                });
+
+                const data = await response.json().catch(() => ({}));
+
+                if (response.ok && (data.success || data.ok)) {
+                    otpMsg.classList.add('ok');
+                    otpMsg.textContent = 'Verified! Entering natural realm...';
+
+                    // Handle user creation/login
+                    if (pendingUserData.isNewUser) {
+                        // Create new user
+                        const newUser = {
+                            id: Date.now(),
+                            name: pendingUserData.name,
+                            phone: pendingUserData.phone,
+                            role: 'user',
+                            createdAt: new Date().toISOString(),
+                            bookingCount: 0
+                        };
+
+                        allUsers.push(newUser);
+                        localStorage.setItem('sufala_users', JSON.stringify(allUsers));
+                        currentUser = newUser;
+                        
+                        showNotification(`Welcome to the natural realm, ${newUser.name}! Account created.`, 'success');
+                    } else {
+                        // Login existing user
+                        currentUser = pendingUserData;
+                        showNotification(`Welcome back to the natural realm, ${currentUser.name}!`, 'success');
+                    }
+
+                    localStorage.setItem('sufala_current_user', JSON.stringify(currentUser));
+                    updateNavigation();
+                    closeOtpModal();
+
+                    // Continue with booking process if they were in the middle of it
+                    if (selectedSlot) {
+                        document.getElementById('login-required-notice').style.display = 'none';
+                        document.getElementById('confirm-booking').style.display = 'inline-block';
+                    }
+
+                } else {
+                    otpMsg.classList.add('err');
+                    otpMsg.textContent = (data && data.error) || 'Invalid natural OTP';
+                }
+            } catch(e) {
+                otpMsg.classList.add('err');
+                otpMsg.textContent = 'Network error.';
+            } finally {
+                btnVerify.disabled = false;
+                btnVerify.innerHTML = '<i class="fas fa-check"></i> Verify';
+            }
+        }
+
+        // Admin Authentication Functions
+        function showAdminModal() {
+            document.getElementById('admin-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAdminModal() {
+            document.getElementById('admin-modal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('admin-email').value;
+            const password = document.getElementById('admin-password').value;
+            
+            if (email === adminCredentials.email && password === adminCredentials.password) {
+                currentUser = {
+                    id: 'admin',
+                    name: 'Natural Admin',
+                    email: email,
+                    role: 'admin'
+                };
+                
+                localStorage.setItem('sufala_current_user', JSON.stringify(currentUser));
+                updateNavigation();
+                closeAdminModal();
+                showAdminPanel();
+                showNotification('Welcome to the Natural Admin Realm!', 'success');
+            } else {
+                showNotification('Invalid natural admin credentials', 'error');
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('sufala_current_user');
+            updateNavigation();
+            hideUserPanel();
+            hideAdminPanel();
+            showNotification('Logout successful', 'success');
+        }
+
+        function checkLoginStatus() {
+            const savedUser = localStorage.getItem('sufala_current_user');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                updateNavigation();
+            }
+        }
+
+        function updateNavigation() {
+            const userNav = document.getElementById('user-nav');
+            
+            if (!currentUser || currentUser.role === 'admin') {
+                userNav.style.display = 'none';
+            } else {
+                userNav.style.display = 'flex';
+                document.getElementById('user-name').textContent = currentUser.name;
+            }
+        }
+
+        function toggleUserMenu() {
+            const userMenu = event.currentTarget.parentElement;
+            userMenu.classList.toggle('active');
+        }
+
+        // Product Selection - No login required
+        function selectProduct(productName, price, productId) {
+            selectedProduct = productName;
+            basePrice = price;
+            
+            // Update UI
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            
+            // Show booking section
+            showBookingSection();
+            updateQuantityPrices();
+            
+            // Scroll to booking section
+            document.getElementById('booking-section').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        function showBookingSection() {
+            document.getElementById('booking-section').classList.add('active');
+            currentStep = 1;
+            updateBookingSteps();
+        }
+
+        function updateBookingSteps() {
+            // Update step indicators
+            for (let i = 1; i <= 3; i++) {
+                const step = document.getElementById(`step-${i}`);
+                step.classList.remove('active', 'completed');
+                
+                if (i < currentStep) {
+                    step.classList.add('completed');
+                } else if (i === currentStep) {
+                    step.classList.add('active');
+                }
+            }
+
+            // Update progress bar
+            const progressFill = document.getElementById('progress-fill');
+            const progressWidth = (currentStep / 3) * 100;
+            progressFill.style.width = `${progressWidth}%`;
+            
+            // Show/hide step content
+            document.getElementById('calendar-step').style.display = currentStep === 1 ? 'block' : 'none';
+            document.getElementById('quantity-step').style.display = currentStep === 2 ? 'block' : 'none';
+            document.getElementById('slots-step').style.display = currentStep === 3 ? 'block' : 'none';
+            
+            // Update titles
+            const titles = {
+                1: 'Select Your Natural Pressing Date',
+                2: 'Choose Your Pure Quantity',
+                3: 'Pick Your Natural Time Slot'
+            };
+            
+            const descriptions = {
+                1: 'Choose when you\'d like your oil to be freshly pressed with natural care',
+                2: 'Select the amount of natural oil you need for your healthy journey',
+                3: 'Choose a perfect time for your oil pressing ceremony'
+            };
+            
+            document.getElementById('booking-title').textContent = titles[currentStep];
+            document.getElementById('booking-description').textContent = descriptions[currentStep];
+        }
+
+        // Calendar Functions
+        function initializeCalendar() {
+            generateCalendar(currMonth.value, currYear.value);
+            
+            document.querySelector("#prev-month").onclick = () => {
+                currMonth.value--;
+                if (currMonth.value < 0) {
+                    currMonth.value = 11;
+                    currYear.value--;
+                    updateYearSelect();
+                }
+                generateCalendar(currMonth.value, currYear.value);
+            };
+            
+            document.querySelector("#next-month").onclick = () => {
+                currMonth.value++;
+                if (currMonth.value > 11) {
+                    currMonth.value = 0;
+                    currYear.value++;
+                    updateYearSelect();
+                }
+                generateCalendar(currMonth.value, currYear.value);
+            };
+        }
+
+        function populateYearDropdown() {
+            const currentYear = new Date().getFullYear();
+            const yearSelect = document.getElementById('year-select');
+            
+            yearSelect.innerHTML = '';
+            
+            for (let year = currentYear; year <= currentYear + 2; year++) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                if (year === currentYear) {
+                    option.selected = true;
+                }
+                yearSelect.appendChild(option);
+            }
+            
+            yearSelect.addEventListener('change', function() {
+                currYear.value = parseInt(this.value);
+                generateCalendar(currMonth.value, currYear.value);
+            });
+        }
+
+        function updateYearSelect() {
+            const yearSelect = document.getElementById('year-select');
+            yearSelect.value = currYear.value;
+        }
+
+        function generateCalendar(month, year) {
+            const daysOfMonth = [31, getFebDays(year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            const calendarDays = document.getElementById('calendar-days');
+            calendarDays.innerHTML = "";
+            
+            const firstDay = new Date(year, month, 1);
+            document.getElementById('month-display').textContent = monthNames[month];
+            
+            for (let i = 0; i <= daysOfMonth[month] + firstDay.getDay() - 1; i++) {
+                const day = document.createElement("div");
+                
+                if (i >= firstDay.getDay()) {
+                    const dateNumber = i - firstDay.getDay() + 1;
+                    day.innerHTML = dateNumber;
+                    
+                    const currentDate = new Date(year, month, dateNumber);
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+                    
+                    if (currentDate < today) {
+                        day.style.opacity = '0.3';
+                        day.style.cursor = 'not-allowed';
+                    } else {
+                        if (dateNumber === currDate.getDate() && 
+                            month === currDate.getMonth() && 
+                            year === currDate.getFullYear()) {
+                            day.classList.add('curr-date');
+                        }
+                        
+                        day.onclick = () => {
+                            selectDate(`${dateNumber}-${monthNames[month]}-${year}`, day);
+                        };
+                    }
+                }
+                
+                calendarDays.appendChild(day);
+            }
+        }
+
+        function selectDate(date, dayElement) {
+            selectedDate = date;
+            
+            // Update UI
+            document.querySelectorAll('.calendar-days div').forEach(d => {
+                d.classList.remove('selected');
+            });
+            
+            dayElement.classList.add('selected');
+            
+            // Move to next step
+            setTimeout(() => {
+                currentStep = 2;
+                updateBookingSteps();
+            }, 500);
+        }
+
+        function selectQuantity(quantity, multiplier) {
+            selectedQuantity = quantity;
+            quantityMultiplier = multiplier;
+            
+            // Update UI
+            document.querySelectorAll('.quantity-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            event.currentTarget.classList.add('selected');
+            
+            // Move to next step
+            setTimeout(() => {
+                currentStep = 3;
+                updateBookingSteps();
+                loadTimeSlots();
+            }, 500);
+        }
+
+        function loadTimeSlots() {
+            const slotsGrid = document.getElementById('slots-grid');
+            slotsGrid.innerHTML = '';
+            
+            // Get booked slots for selected date
+            const bookedSlots = getBookedSlots(selectedDate);
+            
+            timeSlots.forEach(slot => {
+                const slotCard = document.createElement('div');
+                slotCard.className = 'slot-card';
+                slotCard.textContent = slot;
+                
+                if (bookedSlots.includes(slot)) {
+                    slotCard.classList.add('booked');
+                    slotCard.innerHTML += '<br><small style="font-size: 0.8rem; opacity: 0.7;">Booked</small>';
+                } else {
+                    slotCard.onclick = () => selectSlot(slot, slotCard);
+                }
+                
+                slotsGrid.appendChild(slotCard);
+            });
+        }
+
+        function getBookedSlots(date) {
+            return allOrders
+                .filter(order => order.date === date && order.status !== 'cancelled')
+                .map(order => order.timeSlot);
+        }
+
+        function selectSlot(slot, slotElement) {
+            selectedSlot = slot;
+            
+            // Update UI
+            document.querySelectorAll('.slot-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            slotElement.classList.add('selected');
+            
+            // Check if user is logged in
+            if (!currentUser || currentUser.role === 'admin') {
+                // Show login required notice
+                document.getElementById('login-required-notice').style.display = 'block';
+                document.getElementById('confirm-booking').style.display = 'none';
+            } else {
+                // User is logged in, show confirm button
+                document.getElementById('login-required-notice').style.display = 'none';
+                document.getElementById('confirm-booking').style.display = 'inline-block';
+                setTimeout(() => {
+                    document.getElementById('confirm-booking').style.animation = 'fadeInUp 0.5s ease';
+                }, 100);
+            }
+        }
+
+        function confirmBooking() {
+            if (!currentUser || currentUser.role === 'admin') {
+                showNotification('Please login as user to book natural experience', 'error');
+                showOtpModal();
+                return;
+            }
+
+            const totalPrice = basePrice * quantityMultiplier;
+            
+            const newOrder = {
+                id: 'ORD' + String(allOrders.length + 1).padStart(3, '0'),
+                userId: currentUser.id,
+                customerName: currentUser.name,
+                customerPhone: currentUser.phone,
+                product: selectedProduct,
+                quantity: selectedQuantity,
+                date: selectedDate,
+                timeSlot: selectedSlot,
+                amount: totalPrice,
+                status: 'pending',
+                createdAt: new Date().toISOString()
+            };
+            
+            allOrders.push(newOrder);
+            localStorage.setItem('sufala_orders', JSON.stringify(allOrders));
+
+            // Update user booking count
+            const userIndex = allUsers.findIndex(u => u.id === currentUser.id);
+            if (userIndex !== -1) {
+                allUsers[userIndex].bookingCount = (allUsers[userIndex].bookingCount || 0) + 1;
+                localStorage.setItem('sufala_users', JSON.stringify(allUsers));
+                currentUser.bookingCount = allUsers[userIndex].bookingCount;
+            }
+            
+            showNotification(`Natural booking confirmed! Order ID: ${newOrder.id}`, 'success');
+            
+            // Reset booking process
+            resetBooking();
+            
+            // Reload data
+            loadUserBookings();
+            loadAdminDashboard();
+        }
+
+        function resetBooking() {
+            selectedProduct = '';
+            selectedDate = '';
+            selectedQuantity = '';
+            selectedSlot = '';
+            basePrice = 0;
+            quantityMultiplier = 1;
+            currentStep = 1;
+            
+            document.getElementById('booking-section').classList.remove('active');
+            document.getElementById('confirm-booking').style.display = 'none';
+            document.getElementById('login-required-notice').style.display = 'none';
+            
+            // Clear selections
+            document.querySelectorAll('.selected').forEach(el => el.classList.remove('selected'));
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+        }
+
+        function updateQuantityPrices() {
+            document.getElementById('price-1').textContent = `₹${basePrice}`;
+            document.getElementById('price-3').textContent = `₹${basePrice * 3}`;
+            document.getElementById('price-5').textContent = `₹${basePrice * 5}`;
+        }
+
+        function getFebDays(year) {
+            return ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) ? 29 : 28;
+        }
+
+        // User Panel Functions
+        function showUserPanel() {
+            document.getElementById('user-panel').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            loadUserBookings();
+        }
+
+        function hideUserPanel() {
+            document.getElementById('user-panel').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function loadUserBookings() {
+            if (!currentUser || currentUser.role === 'admin') return;
+            
+            const userBookings = allOrders.filter(order => order.userId === currentUser.id);
+            const bookingsList = document.getElementById('user-bookings-list');
+            
+            bookingsList.innerHTML = '';
+            
+            if (userBookings.length === 0) {
+                bookingsList.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: var(--text-muted);">
+                        <i class="fas fa-calendar" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3; color: var(--warm-orange);"></i>
+                        <h3 style="color: var(--text-dark);">No natural bookings yet</h3>
+                        <p>Start by booking your first natural oil pressing experience!</p>
+                        <button class="cta-button" onclick="hideUserPanel(); scrollToProducts();" style="margin-top: 1rem;">
+                            <i class="fas fa-plus"></i> Make Natural Booking
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            userBookings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(booking => {
+                const bookingCard = document.createElement('div');
+                bookingCard.className = 'booking-card';
+                bookingCard.innerHTML = `
+                    <div class="booking-header">
+                        <div class="booking-id">${booking.id}</div>
+                        <span class="status-badge status-${booking.status}">
+                            ${booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
+                        </span>
+                    </div>
+                    <div class="booking-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Natural Product</div>
+                            <div class="detail-value">${booking.product}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Pure Quantity</div>
+                            <div class="detail-value">${booking.quantity}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Pressing Date</div>
+                            <div class="detail-value">${booking.date}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Time Slot</div>
+                            <div class="detail-value">${booking.timeSlot}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Natural Amount</div>
+                            <div class="detail-value" style="color: var(--warm-orange); font-weight: bold; text-shadow: 0 0 10px rgba(244, 208, 63, 0.3);">₹${booking.amount}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Booked On</div>
+                            <div class="detail-value">${new Date(booking.createdAt).toLocaleDateString()}</div>
+                        </div>
+                    </div>
+                `;
+                bookingsList.appendChild(bookingCard);
+            });
+        }
+
+        // Admin Panel Functions
+        function showAdminPanel() {
+            document.getElementById('admin-panel').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            loadAdminDashboard();
+        }
+
+        function hideAdminPanel() {
+            document.getElementById('admin-panel').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function loadAdminDashboard() {
+            updateAdminStats();
+            loadAdminOrders();
+            loadUserManagement();
+            loadProductManagement();
+        }
+
+        function updateAdminStats() {
+            const totalOrders = allOrders.length;
+            const pendingOrders = allOrders.filter(o => o.status === 'pending').length;
+            const confirmedOrders = allOrders.filter(o => o.status === 'confirmed').length;
+            const completedOrders = allOrders.filter(o => o.status === 'completed').length;
+            const totalRevenue = allOrders.filter(o => o.status !== 'cancelled').reduce((sum, o) => sum + o.amount, 0);
+            const totalUsers = allUsers.length;
+
+            document.getElementById('admin-total-orders').textContent = totalOrders;
+            document.getElementById('admin-pending-orders').textContent = pendingOrders;
+            document.getElementById('admin-confirmed-orders').textContent = confirmedOrders;
+            document.getElementById('admin-completed-orders').textContent = completedOrders;
+            document.getElementById('admin-total-revenue').textContent = `₹${totalRevenue.toLocaleString()}`;
+            document.getElementById('admin-total-users').textContent = totalUsers;
+        }
+
+        // Product Management Functions
+        function loadProductManagement() {
+            const productManagementContent = document.getElementById('product-management-content');
+            
+            if (allProducts.length === 0) {
+                productManagementContent.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: var(--text-muted);">
+                        <i class="fas fa-boxes" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3; color: var(--warm-orange);"></i>
+                        <h3 style="color: var(--text-dark);">No natural products yet</h3>
+                        <p>Add your first natural product to get started</p>
+                        <button class="cta-button" onclick="showAddProductForm()" style="margin-top: 1rem;">
+                            <i class="fas fa-plus"></i> Add First Product
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            const productGrid = document.createElement('div');
+            productGrid.className = 'user-stats-grid';
+
+            allProducts.forEach(product => {
+                const productOrders = allOrders.filter(o => o.product === product.name);
+                const productRevenue = productOrders.reduce((sum, o) => sum + (o.status !== 'cancelled' ? o.amount : 0), 0);
+
+                const productCard = document.createElement('div');
+                productCard.className = 'admin-product-card';
+                productCard.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <div>
+                            <h4 style="margin: 0; color: var(--warm-orange);">${product.name}</h4>
+                            <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">₹${product.price}/Liter</p>
+                        </div>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="admin-btn" onclick="editProduct(${product.id})" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="admin-btn secondary" onclick="deleteProduct(${product.id})" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center;">
+                        <div>
+                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--warm-orange);">${productOrders.length}</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Total Orders</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--forest-green);">₹${productRevenue}</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Revenue</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.9rem; font-weight: bold; color: var(--text-dark);">Active</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Status</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+                        ${product.description}
+                    </div>
+                `;
+                productGrid.appendChild(productCard);
+            });
+
+            productManagementContent.innerHTML = '';
+            productManagementContent.appendChild(productGrid);
+        }
+
+        function showAddProductForm() {
+            document.getElementById('add-product-form').style.display = 'block';
+            document.getElementById('product-name').focus();
+        }
+
+        function hideAddProductForm() {
+            document.getElementById('add-product-form').style.display = 'none';
+            // Clear form
+            document.getElementById('product-name').value = '';
+            document.getElementById('product-price').value = '';
+            document.getElementById('product-image').value = '';
+            document.getElementById('product-description').value = '';
+        }
+
+        function addNewProduct() {
+            const name = document.getElementById('product-name').value.trim();
+            const price = parseFloat(document.getElementById('product-price').value);
+            const image = document.getElementById('product-image').value.trim() || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI0Y0RDAzRiIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+T2lsPC90ZXh0Pjwvc3ZnPg==';
+            const description = document.getElementById('product-description').value.trim();
+
+            if (!name || !price || price <= 0) {
+                showNotification('Please fill all required natural fields correctly', 'error');
+                return;
+            }
+
+            const newProduct = {
+                id: Date.now(),
+                name: name,
+                price: price,
+                image: image,
+                description: description || 'A natural oil with pure properties'
+            };
+
+            allProducts.push(newProduct);
+            localStorage.setItem('sufala_products', JSON.stringify(allProducts));
+            
+            renderProducts();
+            loadProductManagement();
+            hideAddProductForm();
+            
+            showNotification(`Natural product "${name}" added successfully!`, 'success');
+        }
+
+        function editProduct(productId) {
+            const product = allProducts.find(p => p.id === productId);
+            if (!product) return;
+
+            const newName = prompt('Edit product name:', product.name);
+            if (newName === null) return;
+            
+            const newPrice = prompt('Edit price (₹ per Liter):', product.price);
+            if (newPrice === null) return;
+            
+            const newDescription = prompt('Edit description:', product.description);
+            if (newDescription === null) return;
+
+            const parsedPrice = parseFloat(newPrice);
+            if (!newName.trim() || !parsedPrice || parsedPrice <= 0) {
+                showNotification('Invalid natural product details', 'error');
+                return;
+            }
+
+            // Update product
+            const productIndex = allProducts.findIndex(p => p.id === productId);
+            if (productIndex !== -1) {
+                allProducts[productIndex] = {
+                    ...allProducts[productIndex],
+                    name: newName.trim(),
+                    price: parsedPrice,
+                    description: newDescription.trim()
+                };
+                
+                localStorage.setItem('sufala_products', JSON.stringify(allProducts));
+                renderProducts();
+                loadProductManagement();
+                showNotification('Natural product updated successfully!', 'success');
+            }
+        }
+
+        function deleteProduct(productId) {
+            const product = allProducts.find(p => p.id === productId);
+            if (!product) return;
+
+            if (confirm(`Are you sure you want to delete "${product.name}" from the natural realm?`)) {
+                // Check if product has any orders
+                const productOrders = allOrders.filter(o => o.product === product.name);
+                if (productOrders.length > 0) {
+                    if (!confirm(`This product has ${productOrders.length} orders. Deleting it will affect order history. Continue?`)) {
+                        return;
+                    }
+                }
+
+                allProducts = allProducts.filter(p => p.id !== productId);
+                localStorage.setItem('sufala_products', JSON.stringify(allProducts));
+                
+                renderProducts();
+                loadProductManagement();
+                showNotification(`Natural product "${product.name}" removed from realm!`, 'success');
+            }
+        }
+
+        function loadUserManagement() {
+            const userManagementContent = document.getElementById('user-management-content');
+            
+            if (allUsers.length === 0) {
+                userManagementContent.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: var(--text-muted);">
+                        <i class="fas fa-users" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3; color: var(--warm-orange);"></i>
+                        <h3 style="color: var(--text-dark);">No natural users yet</h3>
+                        <p>Users will appear here after they register via natural OTP</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const userStatsGrid = document.createElement('div');
+            userStatsGrid.className = 'user-stats-grid';
+
+            allUsers.forEach(user => {
+                const userOrders = allOrders.filter(o => o.userId === user.id);
+                const userRevenue = userOrders.reduce((sum, o) => sum + (o.status !== 'cancelled' ? o.amount : 0), 0);
+                const lastBooking = userOrders.length > 0 ? 
+                    new Date(Math.max(...userOrders.map(o => new Date(o.createdAt)))).toLocaleDateString() : 'Never';
+
+                const userCard = document.createElement('div');
+                userCard.className = 'user-stat-card';
+                userCard.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <div>
+                            <h4 style="margin: 0; color: var(--warm-orange);">${user.name}</h4>
+                            <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">${user.phone}</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="background: var(--green-gradient); color: white; padding: 0.3rem 0.8rem; border-radius: 12px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">
+                                ${user.role}
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center;">
+                        <div>
+                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--warm-orange);">${userOrders.length}</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Natural Bookings</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--forest-green);">₹${userRevenue}</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Total Revenue</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.9rem; font-weight: bold; color: var(--text-dark);">${lastBooking}</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Last Booking</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted);">
+                        Joined Natural Realm: ${new Date(user.createdAt).toLocaleDateString()}
+                    </div>
+                `;
+                userStatsGrid.appendChild(userCard);
+            });
+
+            userManagementContent.innerHTML = '';
+            userManagementContent.appendChild(userStatsGrid);
+        }
+
+        function exportUserData() {
+            const userData = allUsers.map(user => {
+                const userOrders = allOrders.filter(o => o.userId === user.id);
+                const userRevenue = userOrders.reduce((sum, o) => sum + (o.status !== 'cancelled' ? o.amount : 0), 0);
+                
+                return {
+                    name: user.name,
+                    phone: user.phone,
+                    totalBookings: userOrders.length,
+                    totalRevenue: userRevenue,
+                    joinedDate: new Date(user.createdAt).toLocaleDateString(),
+                    lastBooking: userOrders.length > 0 ? 
+                        new Date(Math.max(...userOrders.map(o => new Date(o.createdAt)))).toLocaleDateString() : 'Never'
+                };
+            });
+
+            const csvContent = "data:text/csv;charset=utf-8," + 
+                "Name,Phone,Total Bookings,Total Revenue,Joined Date,Last Booking\n" +
+                userData.map(u => `${u.name},${u.phone},${u.totalBookings},${u.totalRevenue},${u.joinedDate},${u.lastBooking}`).join("\n");
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `sufala_natural_users_${new Date().toISOString().split('T')[0]}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            showNotification('Natural user data exported successfully!', 'success');
+        }
+
+        function loadAdminOrders(filteredOrders = null) {
+            const ordersList = document.getElementById('admin-orders-list');
+            const ordersToShow = filteredOrders || allOrders;
+            
+            ordersList.innerHTML = '';
+
+            if (ordersToShow.length === 0) {
+                ordersList.innerHTML = `
+                    <tr>
+                        <td colspan="7" style="text-align: center; padding: 3rem; color: var(--text-muted);">
+                            <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3; color: var(--warm-orange);"></i>
+                            <h3 style="color: var(--text-dark);">No natural orders found</h3>
+                            <p>No orders match the current natural filter</p>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            ordersToShow.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(order => {
+                const user = allUsers.find(u => u.id === order.userId);
+                const userInfo = user ? {
+                    name: user.name,
+                    phone: user.phone,
+                    bookingCount: allOrders.filter(o => o.userId === user.id).length
+                } : {
+                    name: order.customerName || 'Unknown',
+                    phone: order.customerPhone || 'N/A',
+                    bookingCount: 1
+                };
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><strong style="color: var(--warm-orange);">${order.id}</strong></td>
+                    <td>
+                        <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+                            <div style="font-weight: 600; color: var(--text-dark);">${userInfo.name}</div>
+                            <div style="font-size: 0.85rem; color: var(--text-muted);">${userInfo.phone}</div>
+                            <div style="font-size: 0.75rem; color: var(--forest-green); font-weight: 500;">
+                                ${userInfo.bookingCount} natural booking${userInfo.bookingCount > 1 ? 's' : ''}
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+                            <div style="font-weight: 600; color: var(--warm-orange);">${order.product}</div>
+                            <div style="color: var(--text-muted); font-size: 0.85rem;">${order.quantity}</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="margin-bottom: 0.3rem;"><strong style="color: var(--text-dark);">${order.date}</strong></div>
+                        <div style="color: var(--text-muted); font-size: 0.85rem;">${order.timeSlot}</div>
+                    </td>
+                    <td><div style="font-weight: bold; color: var(--forest-green); font-size: 1.1rem; text-shadow: 0 0 10px rgba(123, 167, 123, 0.3);">₹${order.amount}</div></td>
+                    <td>
+                        <span class="status-badge status-${order.status}">
+                            ${order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+                        </span>
+                    </td>
+                    <td>${getOrderActions(order)}</td>
+                `;
+                ordersList.appendChild(row);
+            });
+        }
+
+        function getOrderActions(order) {
+            let actions = '';
+            
+            if (order.status === 'pending') {
+                actions += `<button class="action-btn btn-confirm" onclick="updateOrderStatus('${order.id}', 'confirmed')">
+                    <i class="fas fa-check"></i> Confirm
+                </button>`;
+                actions += `<button class="action-btn btn-cancel" onclick="updateOrderStatus('${order.id}', 'cancelled')">
+                    <i class="fas fa-times"></i> Cancel
+                </button>`;
+            }
+            
+            if (order.status === 'confirmed') {
+                actions += `<button class="action-btn btn-complete" onclick="updateOrderStatus('${order.id}', 'completed')">
+                    <i class="fas fa-check-double"></i> Complete
+                </button>`;
+            }
+            
+            if (order.status !== 'completed') {
+                actions += `<button class="action-btn btn-delete" onclick="deleteOrder('${order.id}')">
+                    <i class="fas fa-trash"></i> Delete
+                </button>`;
+            }
+            
+            return actions || '<span style="color: var(--text-muted);">No actions</span>';
+        }
+
+        function updateOrderStatus(orderId, newStatus) {
+            const orderIndex = allOrders.findIndex(o => o.id === orderId);
+            if (orderIndex !== -1) {
+                allOrders[orderIndex].status = newStatus;
+                allOrders[orderIndex].updatedAt = new Date().toISOString();
+                localStorage.setItem('sufala_orders', JSON.stringify(allOrders));
+                
+                loadAdminDashboard();
+                loadUserBookings();
+                
+                showNotification(`Natural order ${orderId} ${newStatus} successfully!`, 'success');
+            }
+        }
+
+        function deleteOrder(orderId) {
+            if (confirm(`Are you sure you want to remove natural order ${orderId} from the realm?`)) {
+                allOrders = allOrders.filter(o => o.id !== orderId);
+                localStorage.setItem('sufala_orders', JSON.stringify(allOrders));
+                
+                loadAdminDashboard();
+                loadUserBookings();
+                
+                showNotification(`Natural order ${orderId} removed from realm!`, 'success');
+            }
+        }
+
+        function filterAdminOrders(filterType) {
+            let filteredOrders = allOrders;
+
+            switch(filterType) {
+                case 'today':
+                    const today = new Date().toLocaleDateString('en-GB', {
+                        day: '2-digit',
+                        month: 'long', 
+                        year: 'numeric'
+                    });
+                    filteredOrders = allOrders.filter(o => o.date === today);
+                    break;
+                case 'all':
+                default:
+                    filteredOrders = allOrders;
+            }
+
+            loadAdminOrders(filteredOrders);
+        }
+
+        function refreshDashboard() {
+            loadAdminDashboard();
+            showNotification('Natural dashboard refreshed!', 'success');
+        }
+
+        // Utility Functions
+        function scrollToProducts() {
+            document.getElementById('products').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                ${message}
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 4000);
+        }
+
+        // Close modals when clicking outside
+        document.getElementById('otp-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeOtpModal();
+            }
+        });
+
+        document.getElementById('admin-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAdminModal();
+            }
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.user-menu')) {
+                document.querySelectorAll('.user-menu').forEach(menu => {
+                    menu.classList.remove('active');
+                });
+            }
+            
+            if (!e.target.closest('.nav-container')) {
+                document.querySelector('.nav-links').classList.remove('active');
+                document.querySelector('.menu-toggle').classList.remove('active');
+            }
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeOtpModal();
+                closeAdminModal();
+                hideUserPanel();
+                hideAdminPanel();
+                hideAddProductForm();
+                
+                document.querySelector('.nav-links').classList.remove('active');
+                document.querySelector('.menu-toggle').classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    document.querySelector('.nav-links').classList.remove('active');
+                    document.querySelector('.menu-toggle').classList.remove('active');
+                }
+            });
+        });
+
+        // Auto-save data periodically
+        setInterval(() => {
+            if (allOrders.length > 0) {
+                localStorage.setItem('sufala_orders', JSON.stringify(allOrders));
+            }
+            if (allUsers.length > 0) {
+                localStorage.setItem('sufala_users', JSON.stringify(allUsers));
+            }
+            if (allProducts.length > 0) {
+                localStorage.setItem('sufala_products', JSON.stringify(allProducts));
+            }
+        }, 30000);
+
+        // Add some sample data for demo if none exists
+        if (allOrders.length === 0 && allUsers.length === 0) {
+            const sampleUsers = [
+                {
+                    id: 1001,
+                    name: 'Ravi Kumar',
+                    phone: '9876543210',
+                    role: 'user',
+                    createdAt: '2025-01-20T10:30:00.000Z',
+                    bookingCount: 3
+                },
+                {
+                    id: 1002,
+                    name: 'Priya Singh',
+                    phone: '9876543211',
+                    role: 'user',
+                    createdAt: '2025-01-22T14:15:00.000Z',
+                    bookingCount: 1
+                }
+            ];
+
+            const sampleOrders = [
+                {
+                    id: 'ORD001',
+                    userId: 1001,
+                    customerName: 'Ravi Kumar',
+                    customerPhone: '9876543210',
+                    product: 'Natural Sesame Oil',
+                    quantity: '3 Liters',
+                    date: '28-January-2025',
+                    timeSlot: '10:00 - 10:30 AM',
+                    amount: 360,
+                    status: 'confirmed',
+                    createdAt: '2025-01-26T10:30:00.000Z'
+                },
+                {
+                    id: 'ORD002',
+                    userId: 1002,
+                    customerName: 'Priya Singh',
+                    customerPhone: '9876543211',
+                    product: 'Pure Groundnut Oil',
+                    quantity: '1 Liter',
+                    date: '29-January-2025',
+                    timeSlot: '2:00 - 2:30 PM',
+                    amount: 95,
+                    status: 'pending',
+                    createdAt: '2025-01-26T11:15:00.000Z'
+                },
+                {
+                    id: 'ORD003',
+                    userId: 1001,
+                    customerName: 'Ravi Kumar',
+                    customerPhone: '9876543210',
+                    product: 'Natural Sesame Oil',
+                    quantity: '5 Liters',
+                    date: '30-January-2025',
+                    timeSlot: '4:00 - 4:30 PM',
+                    amount: 600,
+                    status: 'completed',
+                    createdAt: '2025-01-25T14:20:00.000Z'
+                }
+            ];
+            
+            allUsers = sampleUsers;
+            allOrders = sampleOrders;
+            localStorage.setItem('sufala_users', JSON.stringify(allUsers));
+            localStorage.setItem('sufala_orders', JSON.stringify(allOrders));
+        }
+
+        // Console helpers for development
+        window.sufalaSystem = {
+            getCurrentUser: () => currentUser,
+            getAllOrders: () => allOrders,
+            getAllUsers: () => allUsers,
+            getAllProducts: () => allProducts,
+            loginAsAdmin: () => {
+                currentUser = {
+                    id: 'admin',
+                    name: 'Natural Admin',
+                    email: 'admin@sufala.com',
+                    role: 'admin'
+                };
+                localStorage.setItem('sufala_current_user', JSON.stringify(currentUser));
+                updateNavigation();
+                showAdminPanel();
+                showNotification('Logged in as natural admin', 'success');
+            },
+            clearAllData: () => {
+                if (confirm('Are you sure you want to clear all natural data? This cannot be undone.')) {
+                    localStorage.removeItem('sufala_orders');
+                    localStorage.removeItem('sufala_users');
+                    localStorage.removeItem('sufala_products');
+                    localStorage.removeItem('sufala_current_user');
+                    location.reload();
+                }
+            },
+            resetToDemo: () => {
+                localStorage.removeItem('sufala_orders');
+                localStorage.removeItem('sufala_users');
+                localStorage.removeItem('sufala_products');
+                localStorage.removeItem('sufala_current_user');
+                location.reload();
+            }
+        };
+
+        console.log('🌿 Sufala Natural Classic Oil Booking System Loaded');
+        console.log('✨ Features: Natural, classic UI with warm earthy colors');
+        console.log('👤 User Experience: Browse freely → Login only at time slot selection');
+        console.log('📦 Products: 2 per row layout with admin management');
+        console.log('👨‍💼 Admin Features: Add/Edit/Delete products + price management');
+        console.log('📱 User Login: OTP-based via phone number');
+        console.log('🔑 Admin Login: admin@sufala.com / admin123');
+        console.log('🛠️ Developer Commands:');
+        console.log('   sufalaSystem.getCurrentUser() - Get current user');
+        console.log('   sufalaSystem.loginAsAdmin() - Quick admin login');
+        console.log('   sufalaSystem.getAllProducts() - View all products');
+        console.log('   sufalaSystem.clearAllData() - Clear all stored data');
+        console.log('   sufalaSystem.resetToDemo() - Reset to demo state');
+        console.log('🎨 Design: Natural classic color palette for maximum trust & conversion');
+        console.log('📱 Mobile: Perfect responsive experience with no overlapping content');
+    </script>
+</body>
+</html>
