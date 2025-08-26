@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edible Oil Extraction - Live Sessions</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #4CAF50;
+            --secondary-green: #81C784;
+            --light-green: #C8E6C9;
+            --accent-orange: #FF9800;
+            --light-orange: #FFE0B2;
+            --text-dark: #2E7D32;
+            --text-gray: #666;
+            --light-gray: #F5F5F5;
+            --white: #FFFFFF;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-hover: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--white);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-green);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-orange);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-orange);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            display: flex;
+            align-items: center;
+            padding: 100px 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--light-green) 0%, rgba(200, 230, 201, 0.3) 100%);
+            border-radius: 50% 0 0 50%;
+            opacity: 0.7;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            line-height: 1.4;
+        }
+
+        .book-now-btn {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: var(--shadow);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .book-now-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .hero-image {
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.1));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--accent-orange), #FFB74D);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .benefit-card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Featured Sessions */
+        .sessions {
+            padding: 6rem 2rem;
+            background: var(--light-gray);
+        }
+
+        .sessions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .session-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .session-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .session-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--light-green), var(--secondary-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .session-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .session-card:hover .session-image::before {
+            left: 100%;
+        }
+
+        .session-content {
+            padding: 1.5rem;
+        }
+
+        .session-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .session-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .session-duration {
+            background: var(--light-green);
+            color: var(--text-dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-weight: 500;
+        }
+
+        .session-price {
+            font-weight: 600;
+            color: var(--accent-orange);
+            font-size: 1.1rem;
+        }
+
+        .session-book-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .session-book-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .testimonial-card {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2rem;
+            background: var(--light-gray);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 4rem;
+            color: var(--primary-green);
+            background: var(--white);
+            padding: 0 1rem;
+            border-radius: 50%;
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--accent-orange);
+        }
+
+        /* Booking Modal */
+        .booking-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .booking-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-gray);
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--accent-orange);
+            transform: scale(1.2);
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #E0E0E0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+
+        .modal-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+        }
+
+        .modal-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-orange);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.3);
+        }
+
+        /* Notifications */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            z-index: 10001;
+            animation: slideInRight 0.4s ease;
+            max-width: 400px;
+        }
+
+        .notification.success {
+            background: linear-gradient(135deg, #27AE60, #2ECC71);
+            color: white;
+        }
+
+        .notification.error {
+            background: linear-gradient(135deg, #E74C3C, #EC7063);
+            color: white;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(120px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: var(--shadow);
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+                gap: 4px;
+            }
+
+            .menu-toggle span {
+                width: 25px;
+                height: 3px;
+                background: var(--text-dark);
+                transition: all 0.3s ease;
+            }
+
+            .benefits-grid,
+            .sessions-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Session Details in Modal */
+        .session-details {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: var(--light-gray);
+            border-radius: 10px;
+        }
+
+        .session-details h4 {
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .session-details p {
+            color: var(--text-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Success Message Styling */
+        .success-message {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--light-green), rgba(200, 230, 201, 0.3));
+            border-radius: 15px;
+            margin: 1rem 0;
+        }
+
+        .success-message i {
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .success-message h3 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <span>SUFALA</span>
+            </a>
+            
+            <div class="menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#sessions">Live Sessions</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Book Live Sessions on Edible Oil Extraction</h1>
+                <p class="subtitle">Learn line process from industry experts</p>
+                <button class="book-now-btn" onclick="openBookingModal()">
+                    Book Now
+                </button>
+            </div>
+            <div class="hero-image">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8IS0tIEJvdHRsZSBDb250YWluZXIgLS0+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9Im9pbEdyYWRpZW50IiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6I0ZGQzEwNztzdG9wLW9wYWNpdHk6MSIgLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojRkY5ODAwO3N0b3Atb3BhY2l0eToxIiAvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ2xhc3NHcmFkaWVudCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNGRkZGRkY7c3RvcC1vcGFjaXR5OjAuOCIgLz4KICAgICAgPHN0b3Agb2Zmc2V0PSI1MCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNGRkZGRkY7c3RvcC1vcGFjaXR5OjAuMyIgLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojRkZGRkZGO3N0b3Atb3BhY2l0eTowLjEiIC8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8IS0tIEJhY2tncm91bmQgQ2lyY2xlIC0tPgogIDxjaXJjbGUgY3g9IjIwMCIgY3k9IjIwMCIgcj0iMTgwIiBmaWxsPSJyZ2JhKDIwMCwgMjMwLCAyMDEsIDAuMykiLz4KICA8IS0tIEJvdHRsZSBCb2R5IC0tPgogIDxyZWN0IHg9IjE0MCIgeT0iMTIwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjIwMCIgcng9IjIwIiBmaWxsPSJ1cmwoI2dsYXNzR3JhZGllbnQpIiBzdHJva2U9IiM0Q0FGNTBIISBZDCI9IjMiLz4KICA8IS0tIEJvdHRsZSBOZWNrIC0tPgogIDxyZWN0IHg9IjE3MCIgeT0iODAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI0MCIgZmlsbD0idXJsKCNnbGFzc0dyYWRpZW50KSIgc3Ryb2tlPSIjNENBRjUwIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8IS0tIEJvdHRsZSBDYXAgLS0+CiAgPHJlY3QgeD0iMTY1IiB5PSI2NSIgd2lkdGg9IjcwIiBoZWlnaHQ9IjIwIiByeD0iMTAiIGZpbGw9IiM4QkMzNEEiIHN0cm9rZT0iIzZBOUIzQSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPCEtLSBPaWwgSW5zaWRlIEJvdHRsZSAtLT4KICA8cmVjdCB4PSIxNTAiIHk9IjE2MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxNDAiIHJ4PSIxNSIgZmlsbD0idXJsKCNvaWxHcmFkaWVudCkiIG9wYWNpdHk9IjAuOSIvPgogIDwhLS0gU2VlZHMgLS0+CiAgPGVsbGlwc2UgY3g9IjEwMCIgY3k9IjMwMCIgcng9IjgiIHJ5PSI2IiBmaWxsPSIjOEJDMzRBIi8+CiAgPGVsbGlwc2UgY3g9IjEyMCIgY3k9IjMxMCIgcng9IjYiIHJ5PSI0IiBmaWxsPSIjNkE5QjNBIi8+CiAgPGVsbGlwc2UgY3g9Ijg1IiBjeT0iMzIwIiByeD0iNyIgcnk9IjUiIGZpbGw9IiM4QkMzNEEiLz4KICA8ZWxsaXBzZSBjeD0iMTA1IiBjeT0iMzMwIiByeD0iNSIgcnk9IjMiIGZpbGw9IiM2QTlCM0EiLz4KICA8ZWxsaXBzZSBjeD0iMTMwIiBjeT0iMzI1IiByeD0iNiIgcnk9IjQiIGZpbGw9IiM4QkMzNEEiLz4KICA8IS0tIE1vcmUgU2VlZHMgYXJvdW5kIGJvdHRsZSAtLT4KICA8ZWxsaXBzZSBjeD0iMzIwIiBjeT0iMjgwIiByeD0iOCIgcnk9IjYiIGZpbGw9IiM4QkMzNEEiLz4KICA8ZWxsaXBzZSBjeD0iMzAwIiBjeT0iMjk1IiByeD0iNiIgcnk9IjQiIGZpbGw9IiM2QTlCM0EiLz4KICA8ZWxsaXBzZSBjeD0iMzM1IiBjeT0iMzAwIiByeD0iNyIgcnk9IjUiIGZpbGw9IiM4QkMzNEEiLz4KICA8ZWxsaXBzZSBjeD0iMzE1IiBjeT0iMzEwIiByeD0iNSIgcnk9IjMiIGZpbGw9IiM2QTlCM0EiLz4KICA8ZWxsaXBzZSBjeD0iMzI4IiBjeT0iMzIwIiByeD0iNiIgcnk9IjQiIGZpbGw9IiM4QkMzNEEiLz4KICA8IS0tIExlZnQgc2lkZSBzZWVkcyAtLT4KICA8ZWxsaXBzZSBjeD0iNzAiIGN5PSIyNzAiIHJ4PSI2IiByeT0iNCIgZmlsbD0iIzZBOUIzQSIvPgogIDxlbGxpcHNlIGN4PSI1NSIgY3k9IjI5MCIgcng9IjgiIHJ5PSI2IiBmaWxsPSIjOEJDMzRBIi8+CiAgPGVsbGlwc2UgY3g9IjQwIiBjeT0iMzEwIiByeD0iNyIgcnk9IjUiIGZpbGw9IiM2QTlCM0EiLz4KICA8IS0tIExpZ2h0IFJlZmxlY3Rpb24gb24gQm90dGxlIC0tPgogIDxlbGxpcHNlIGN4PSIxNjUiIGN5PSIxNDAiIHJ4PSIxNSIgcnk9IjQwIiBmaWxsPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuNCkiLz4KPC9zdmc+" alt="Oil Extraction Process" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="about">
+        <div class="section-container">
+            <h2 class="section-title">Benefits of Edible Oil Extraction</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3>High-Quality Oils</h3>
+                    <p>Eracet ncccs tod industry learn advanced extraction techniques for premium quality oils</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Natural Ingredients</h3>
+                    <p>Xoustarsdior atripiratol lso red taerroesku learn about pure, natural ingredient processing</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Efficient Processes</h3>
+                    <p>Sundled to dolrceaid predicted antwuety master industrial-grade extraction processes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Sessions -->
+    <section class="sessions" id="sessions">
+        <div class="section-container">
+            <h2 class="section-title">Featured Live Sessions</h2>
+            <div class="sessions-grid">
+                <div class="session-card" onclick="openBookingModal('Sunflower Oil Extraction')">
+                    <div class="session-image">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="session-content">
+                        <h3>Sunflower Oil Extraction</h3>
+                        <div class="session-meta">
+                            <span class="session-duration">2 hours</span>
+                            <span class="session-price">₹1,299</span>
+                        </div>
+                        <button class="session-book-btn">Book Now</button>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="openBookingModal('Olive Oil Extraction')">
+                    <div class="session-image" style="background: linear-gradient(135deg, #8BC34A, #689F38);">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="session-content">
+                        <h3>Olive Oil Extraction</h3>
+                        <div class="session-meta">
+                            <span class="session-duration">2.5 hours</span>
+                            <span class="session-price">₹1,599</span>
+                        </div>
+                        <button class="session-book-btn">Book Now</button>
+                    </div>
+                </div>
+
+                <div class="session-card" onclick="openBookingModal('Coconut Oil Extraction')">
+                    <div class="session-image" style="background: linear-gradient(135deg, #4CAF50, #388E3C);">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <div class="session-content">
+                        <h3>Coconut Oil Extraction</h3>
+                        <div class="session-meta">
+                            <span class="session-duration">1.5 hours</span>
+                            <span class="session-price">₹999</span>
+                        </div>
+                        <button class="session-book-btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-container">
+            <h2 class="section-title">Testimonials</h2>
+            <div class="testimonial-card">
+                <p class="testimonial-text">Very-informative and visit-presearched Highly recommend!</p>
+                <p class="testimonial-author">- Industry Expert</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#sessions">Live Sessions</a>
+                <a href="#contact">Contact</a>
+            </div>
+            
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            
+            <p>&copy; 2025 Edible Oil Extraction Academy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="booking-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeBookingModal()">&times;</button>
+            
+            <h2 class="modal-title">Book Live Session</h2>
+            
+            <div id="session-details" class="session-details">
+                <!-- Session details will be populated here -->
+            </div>
+            
+            <form id="booking-form" onsubmit="submitBooking(event)">
+                <div class="form-group">
+                    <label for="student-name">Full Name</label>
+                    <input type="text" id="student-name" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="student-email">Email Address</label>
+                    <input type="email" id="student-email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="student-phone">Phone Number</label>
+                    <input type="tel" id="student-phone" placeholder="Enter your phone number" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="session-date">Preferred Date</label>
+                    <input type="date" id="session-date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="session-time">Preferred Time</label>
+                    <select id="session-time" required>
+                        <option value="">Select time slot</option>
+                        <option value="9:00-11:00">9:00 AM - 11:00 AM</option>
+                        <option value="11:30-13:30">11:30 AM - 1:30 PM</option>
+                        <option value="14:00-16:00">2:00 PM - 4:00 PM</option>
+                        <option value="16:30-18:30">4:30 PM - 6:30 PM</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="experience-level">Experience Level</label>
+                    <select id="experience-level" required>
+                        <option value="">Select your level</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="special-requirements">Special Requirements (Optional)</label>
+                    <textarea id="special-requirements" rows="3" placeholder="Any special learning requirements or questions..."></textarea>
+                </div>
+                
+                <button type="submit" class="modal-btn" id="submit-booking">
+                    <i class="fas fa-calendar-check"></i> Confirm Booking
+                </button>
+            </form>
+            
+            <div id="booking-success" style="display: none;">
+                <div class="success-message">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Booking Confirmed!</h3>
+                    <p>Your live session has been booked successfully. You'll receive a confirmation email with session details shortly.</p>
+                    <button class="modal-btn" onclick="closeBookingModal()" style="margin-top: 1rem;">
+                        <i class="fas fa-home"></i> Back to Home
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedSession = '';
+        let sessionPrices = {
+            'Sunflower Oil Extraction': 1299,
+            'Olive Oil Extraction': 1599,
+            'Coconut Oil Extraction': 999
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set minimum date to today
+            const today = new Date();
+            const minDate = today.toISOString().split('T')[0];
+            document.getElementById('session-date').min = minDate;
+            
+            // Set default date to tomorrow
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.getElementById('session-date').value = tomorrow.toISOString().split('T')[0];
+        });
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        }
+
+        function openBookingModal(sessionName = '') {
+    selectedSession = sessionName || 'Live Oil Extraction Session';
+    
+    const modal = document.getElementById('booking-modal');
+    const sessionDetails = document.getElementById('session-details');
+    
+    // Reset form and show form, hide success
+    document.getElementById('booking-form').style.display = 'block';
+    document.getElementById('booking-success').style.display = 'none';
+    document.getElementById('booking-form').reset();
+    
+    // Set session details
+    const price = sessionPrices[selectedSession] || 1299;
+    const duration = getDuration(selectedSession);
+    const description = getSessionDescription(selectedSession);
+    
+    sessionDetails.innerHTML = `
+        <h4>${selectedSession}</h4>
+        <p><strong>Duration:</strong> ${duration}</p>
+        <p><strong>Price:</strong> ₹${price.toLocaleString()}</p>
+        <p><strong>What you'll learn:</strong> ${description}</p>
+    `;
+    
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Set default date to tomorrow
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    document.getElementById('session-date').value = tomorrow.toISOString().split('T')[0];
+}
+
+
+        function closeBookingModal() {
+            const modal = document.getElementById('booking-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function getDuration(sessionName) {
+            const durations = {
+                'Sunflower Oil Extraction': '2 hours',
+                'Olive Oil Extraction': '2.5 hours',
+                'Coconut Oil Extraction': '1.5 hours'
+            };
+            return durations[sessionName] || '2 hours';
+        }
+
+        function getSessionDescription(sessionName) {
+            const descriptions = {
+                'Sunflower Oil Extraction': 'Complete sunflower oil extraction process, from seed preparation to final filtration',
+                'Olive Oil Extraction': 'Traditional and modern olive oil pressing techniques, quality testing, and storage methods',
+                'Coconut Oil Extraction': 'Cold-pressed coconut oil extraction, wet and dry processing methods'
+            };
+            return descriptions[sessionName] || 'Professional oil extraction techniques and industry best practices';
+        }
+
+        async function submitBooking(event) {
+            event.preventDefault();
+            
+            const submitBtn = document.getElementById('submit-booking');
+            const originalText = submitBtn.innerHTML;
+            
+            // Show loading
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="loading"></span> Booking Session...';
+            
+            // Get form data
+            const formData = {
+                sessionName: selectedSession,
+                studentName: document.getElementById('student-name').value,
+                email: document.getElementById('student-email').value,
+                phone: document.getElementById('student-phone').value,
+                date: document.getElementById('session-date').value,
+                time: document.getElementById('session-time').value,
+                experienceLevel: document.getElementById('experience-level').value,
+                specialRequirements: document.getElementById('special-requirements').value,
+                price: sessionPrices[selectedSession] || 1299,
+                bookingId: 'SES' + Date.now().toString().substr(-6)
+            };
+            
+            try {
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // Store booking (in real app, this would be sent to backend)
+                const bookings = JSON.parse(localStorage.getItem('session_bookings') || '[]');
+                bookings.push({
+                    ...formData,
+                    createdAt: new Date().toISOString(),
+                    status: 'confirmed'
+                });
+                localStorage.setItem('session_bookings', JSON.stringify(bookings));
+                
+                // Show success message
+                document.getElementById('booking-form').style.display = 'none';
+                document.getElementById('booking-success').style.display = 'block';
+                
+                // Show notification
+                showNotification(`Session "${selectedSession}" booked successfully! Booking ID: ${formData.bookingId}`, 'success');
+                
+            } catch (error) {
+                showNotification('Booking failed. Please try again.', 'error');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
+        }
+
+        // Utility Functions
+        function showNotification(message, type) {
+            // Remove existing notifications
+            document.querySelectorAll('.notification').forEach(n => n.remove());
+            
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                ${message}
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 5000);
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('booking-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeBookingModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeBookingModal();
+            }
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('.nav-links').classList.remove('active');
+                    document.querySelector('.menu-toggle').classList.remove('active');
+                }
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.nav-container')) {
+                document.querySelector('.nav-links').classList.remove('active');
+                document.querySelector('.menu-toggle').classList.remove('active');
+            }
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.backdropFilter = 'blur(10px)';
+            } else {
+                navbar.style.background = var(--white);
+                navbar.style.backdropFilter = 'none';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.benefit-card, .session-card, .testimonial-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        // Console logging for development
+        console.log('🎓 Edible Oil Extraction Academy Loaded');
+        console.log('📚 Focus: Educational live sessions on oil extraction');
+        console.log('🎯 Target: Industry professionals and learners');
+        console.log('💡 Sessions: Sunflower, Olive, and Coconut oil extraction');
+        console.log('📱 Features: Responsive design with booking system');
+        console.log('🎨 Design: Clean, professional UI matching uploaded image');
+    </script>
+</body>
+</html>
