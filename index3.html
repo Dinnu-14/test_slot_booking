@@ -1,0 +1,4903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sufala - Fresh Cold Pressed Oils</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Light Spiritual Color Palette */
+            --pure-white: #FFFFFF;
+            --holy-cream: #FEF7E0;
+            --spiritual-beige: #F5E6B8;
+            --clean-ivory: #FAF6E8;
+            --innocent-pearl: #F8F4E6;
+            --purity-snow: #FEFCF6;
+            --hope-gold: #E5C547;
+            --divine-amber: #D4B041;
+            
+            /* Dark Contrast Colors */
+            --cold-charcoal: #2C2C2C;
+            --isolation-gray: #4A4A4A;
+            --empty-stone: #6B6B6B;
+            --deep-earth: #3B3021;
+            --sacred-brown: #5D4E37;
+            --warm-bronze: #8B6914;
+            
+            /* Gradients */
+            --primary-gradient: linear-gradient(135deg, #E5C547 0%, #D4B041 50%, #B8941F 100%);
+            --holy-gradient: linear-gradient(135deg, #FEFCF6 0%, #F5E6B8 100%);
+            --warm-gradient: linear-gradient(45deg, #FAF6E8, #E5C547, #D4B041);
+            --dark-gradient: linear-gradient(135deg, #2C2C2C 0%, #3B3021 100%);
+            
+            /* Effects */
+            --golden-glow: 0 0 25px rgba(229, 197, 71, 0.4);
+            --holy-shadow: 0 10px 40px rgba(212, 176, 65, 0.2);
+            --pure-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            --warm-shadow: 0 15px 50px rgba(59, 48, 33, 0.15);
+            
+            --text-dark: #2C2C2C;
+            --text-muted: #6B6B6B;
+            --text-light: #F8F4E6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--holy-gradient);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(229, 197, 71, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(212, 176, 65, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(184, 148, 31, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Enhanced Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes holyPulse {
+            0%, 100% { 
+                transform: scale(1); 
+                box-shadow: var(--golden-glow);
+            }
+            50% { 
+                transform: scale(1.05); 
+                box-shadow: 0 0 35px rgba(229, 197, 71, 0.6);
+            }
+        }
+
+        @keyframes spiritualFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-8px) rotate(1deg); }
+            66% { transform: translateY(-4px) rotate(-1deg); }
+        }
+
+        @keyframes goldenShimmer {
+            0% { background-position: -200px 0; }
+            100% { background-position: calc(200px + 100%) 0; }
+        }
+
+        @keyframes divineGlow {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.6s ease;
+        }
+
+        /* OTP Modal Styles */
+        .otp-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(31, 27, 46, 0.9);
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .otp-modal.active {
+            display: flex;
+        }
+
+        .otp-modal-content {
+            background: var(--dark-gradient);
+            border: 2px solid var(--mystical-pink);
+            border-radius: 25px;
+            padding: 3rem;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: var(--luxury-shadow);
+            position: relative;
+            animation: mysticalPulse 3s infinite;
+        }
+
+        .otp-modal-content::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--mystical-gradient);
+            border-radius: 25px;
+            z-index: -1;
+            animation: shimmerMystical 2s linear infinite;
+        }
+
+        .otp-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--mystical-pink);
+            transition: all 0.3s ease;
+        }
+
+        .otp-modal-close:hover {
+            transform: rotate(90deg) scale(1.2);
+            color: var(--luxury-magenta);
+        }
+
+        .otp-modal h2 {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            text-align: center;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--ethereal-lavender);
+            transition: color 0.3s ease;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--primary-violet);
+            border-radius: 15px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: rgba(75, 29, 149, 0.2);
+            color: var(--text-light);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--mystical-pink);
+            box-shadow: var(--mystical-glow);
+            transform: translateY(-2px);
+        }
+
+        .form-group input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .otp-btn {
+            width: 100%;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 1.2rem;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .otp-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .otp-btn:hover::before {
+            left: 100%;
+        }
+
+        .otp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--luxury-shadow);
+        }
+
+        .otp-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .otp-wrap {
+            display: none;
+        }
+
+        .otp-wrap.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .otp-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .hint {
+            font-size: 12px;
+            color: var(--ethereal-lavender);
+            margin-top: 6px;
+            text-align: center;
+        }
+
+        .msg {
+            margin-top: 10px;
+            font-size: 13px;
+            text-align: center;
+            padding: 0.8rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .ok {
+            color: #10B981;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid #10B981;
+        }
+
+        .err {
+            color: #EF4444;
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #EF4444;
+        }
+
+        /* Admin Access Styles */
+        .admin-access {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .admin-access-btn {
+            background: rgba(107, 70, 193, 0.2);
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            color: var(--mystical-pink);
+            padding: 0.6rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .admin-access-btn:hover {
+            background: var(--primary-gradient);
+            color: white;
+            border-color: var(--luxury-magenta);
+            box-shadow: var(--mystical-glow);
+            transform: scale(1.1);
+        }
+
+        /* Admin Login Modal Styles */
+        .admin-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(31, 27, 46, 0.9);
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .admin-modal.active {
+            display: flex;
+        }
+
+        .admin-modal-content {
+            background: var(--dark-gradient);
+            border: 2px solid var(--royal-indigo);
+            border-radius: 25px;
+            padding: 3rem;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: var(--luxury-shadow);
+            position: relative;
+            animation: mysticalPulse 3s infinite;
+        }
+
+        /* Navigation - Luxury Design */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(31, 27, 46, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(236, 72, 153, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+            text-shadow: var(--mystical-glow);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--primary-gradient);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--mystical-pink);
+            transform: translateY(-2px);
+        }
+
+        .nav-auth {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .user-menu {
+            position: relative;
+        }
+
+        .user-menu-btn {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .user-menu-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--luxury-shadow);
+        }
+
+        .user-menu-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--dark-gradient);
+            border: 2px solid var(--primary-violet);
+            border-radius: 15px;
+            box-shadow: var(--luxury-shadow);
+            min-width: 220px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+            animation: fadeInUp 0.3s ease;
+            backdrop-filter: blur(20px);
+        }
+
+        .user-menu.active .user-menu-dropdown {
+            display: block;
+        }
+
+        .user-menu-item {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+        }
+
+        .user-menu-item:hover {
+            background: rgba(236, 72, 153, 0.1);
+            transform: translateX(8px);
+            border-left-color: var(--mystical-pink);
+            color: var(--mystical-pink);
+        }
+
+        /* Hero Section - Mystical Enhancement */
+        .display-desktop{
+            display: block;
+        }
+        .display-mobile{
+            display: none;
+        }
+
+        @media screen and (max-width: 768px) {
+            .display-desktop{
+                display: none;
+            }
+            .display-mobile{
+                display: block;
+            }
+        }
+
+        .hero {
+            min-height: 100vh;
+            background: var(--dark-gradient);
+            display: flex;
+            align-items: center;
+            padding: 6rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(107, 70, 193, 0.15) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-content .highlight {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: etherealGlow 3s infinite;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(107, 70, 193, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(236, 72, 153, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--mystical-glow);
+            border-color: var(--mystical-pink);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--mystical-pink);
+            display: block;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.8rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: var(--luxury-shadow);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: var(--cosmic-shadow);
+        }
+
+        .hero-image {
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            right: -30px;
+            bottom: -30px;
+            background: var(--mystical-gradient);
+            border-radius: 50%;
+            opacity: 0.2;
+            z-index: -1;
+            animation: mysticalPulse 4s infinite;
+        }
+
+        .hero-image img {
+            animation: luxuryFloat 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.3));
+        }
+
+        /* Products Section - 2 Per Row Layout */
+        .products {
+            padding: 6rem 2rem;
+            background: rgba(75, 29, 149, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .products::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 80% 20%, rgba(219, 39, 119, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Products Container - 2 Per Row */
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .product-card {
+            background: var(--dark-gradient);
+            border: 2px solid var(--primary-violet);
+            border-radius: 25px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: var(--luxury-shadow);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(236, 72, 153, 0.1), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .product-card:hover::before {
+            left: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            border-color: var(--mystical-pink);
+            box-shadow: var(--cosmic-shadow);
+            background: linear-gradient(135deg, rgba(107, 70, 193, 0.2), rgba(236, 72, 153, 0.1));
+        }
+
+        .product-image {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+            border: 3px solid var(--mystical-pink);
+            box-shadow: var(--mystical-glow);
+        }
+
+        .product-card:hover .product-image {
+            transform: rotate(360deg) scale(1.1);
+            box-shadow: var(--luxury-shadow);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.2);
+        }
+
+        .product-card h3 {
+            font-size: 1.8rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .product-card:hover h3 {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .product-card .price {
+            font-size: 1.4rem;
+            color: var(--mystical-pink);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
+        }
+
+        .product-card .description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .select-btn {
+            background: transparent;
+            color: var(--mystical-pink);
+            border: 2px solid var(--mystical-pink);
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .select-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .select-btn:hover::before {
+            left: 0;
+        }
+
+        .select-btn:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--mystical-glow);
+        }
+
+        .product-card.selected {
+            border-color: var(--luxury-magenta);
+            background: linear-gradient(135deg, rgba(219, 39, 119, 0.2), rgba(107, 70, 193, 0.1));
+            animation: mysticalPulse 2s infinite;
+        }
+
+        .product-card.selected .select-btn {
+            background: var(--primary-gradient);
+            color: white;
+            border-color: var(--luxury-magenta);
+        }
+
+        /* About Container - Single Row */
+        .about-container {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        /* About Section Cards - Spiritual Theme */
+        .about-card {
+            background: var(--pure-white);
+            border: 2px solid var(--spiritual-beige);
+            border-radius: 25px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: var(--holy-shadow);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            max-width: 350px;
+            backdrop-filter: blur(20px);
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(229, 197, 71, 0.1), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .about-card:hover::before {
+            left: 100%;
+        }
+
+        .about-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            border-color: var(--hope-gold);
+            box-shadow: var(--warm-shadow);
+        }
+
+        .about-icon {
+            width: 90px;
+            height: 90px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.2rem;
+            color: white;
+            animation: holyPulse 3s infinite;
+            box-shadow: var(--golden-glow);
+        }
+
+        .about-card h3 {
+            font-size: 1.6rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .about-card:hover h3 {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-card .description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* Calendar Section - Mystical Enhancement */
+        .calendar-section {
+            padding: 6rem 2rem;
+            background: rgba(75, 29, 149, 0.05);
+            display: none;
+        }
+
+        .calendar-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--dark-gradient);
+            border: 2px solid var(--primary-violet);
+            border-radius: 25px;
+            padding: 2rem;
+            box-shadow: var(--luxury-shadow);
+            overflow: visible;
+            position: relative;
+            backdrop-filter: blur(20px);
+        }
+
+        .calendar-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+            border-radius: 25px 25px 0 0;
+        }
+
+        .calendar {
+            background: transparent;
+            width: 100%;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: var(--primary-gradient);
+            border-radius: 20px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calendar-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.1) 10px,
+                rgba(255,255,255,0.1) 20px
+            );
+            animation: shimmerMystical 3s linear infinite;
+        }
+
+        .month-picker {
+            font-size: 1.6rem;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0.8rem 1.5rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .month-picker:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .month-change {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.3rem;
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .month-change:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .year-picker {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .year-dropdown {
+            position: relative;
+        }
+
+        .year-select {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 0.8rem 1.5rem;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s ease;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="white" d="M2 0L0 2h4zm0 5L0 3h4z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 0.7rem auto;
+            padding-right: 3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .year-select:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.05);
+        }
+
+        .year-select:focus {
+            border-color: var(--mystical-pink);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .year-select option {
+            background: var(--mystical-dark);
+            color: white;
+            padding: 0.5rem;
+        }
+
+        .calendar-week-day {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .calendar-week-day div {
+            padding: 1.2rem;
+            text-align: center;
+            font-weight: bold;
+            color: var(--mystical-pink);
+            background: rgba(107, 70, 193, 0.2);
+            border-radius: 15px;
+            border: 1px solid var(--primary-violet);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            backdrop-filter: blur(10px);
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+        }
+
+        .calendar-days div {
+            padding: 1.2rem;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            background: rgba(75, 29, 149, 0.1);
+            color: var(--text-light);
+            backdrop-filter: blur(10px);
+        }
+
+        .calendar-days div::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(236, 72, 153, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .calendar-days div:hover::before {
+            left: 100%;
+        }
+
+        .calendar-days div:hover {
+            background: var(--primary-gradient);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: var(--mystical-glow);
+            border-color: var(--luxury-magenta);
+        }
+
+        .calendar-days div.selected {
+            background: var(--primary-gradient);
+            color: white;
+            border-color: var(--mystical-pink);
+            box-shadow: var(--luxury-shadow);
+            animation: mysticalPulse 2s infinite;
+        }
+
+        .calendar-days div.curr-date {
+            border-color: var(--ethereal-lavender);
+            font-weight: bold;
+            background: rgba(196, 181, 253, 0.2);
+        }
+
+        /* Enhanced Booking Process Styles */
+        .booking-section {
+            display: none;
+            padding: 6rem 2rem;
+            background: rgba(75, 29, 149, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .booking-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(219, 39, 119, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(107, 70, 193, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .booking-section.active {
+            display: block;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .booking-steps {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            margin: 0 1.5rem;
+            position: relative;
+        }
+
+        .step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -3rem;
+            width: 3rem;
+            height: 3px;
+            background: rgba(107, 70, 193, 0.3);
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+
+        .step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(75, 29, 149, 0.3);
+            border: 2px solid var(--primary-violet);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            color: var(--text-muted);
+            backdrop-filter: blur(10px);
+        }
+
+        .step-number::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .step.active .step-number::before {
+            left: 100%;
+        }
+
+        .step.active .step-number {
+            background: var(--primary-gradient);
+            color: white;
+            border-color: var(--mystical-pink);
+            transform: scale(1.1);
+            box-shadow: var(--mystical-glow);
+        }
+
+        .step.completed .step-number {
+            background: var(--luxury-gradient);
+            color: white;
+            border-color: var(--ethereal-lavender);
+            transform: scale(1.1);
+        }
+
+        .step.completed::after {
+            background: var(--primary-gradient);
+        }
+
+        .step span {
+            color: var(--text-light);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Enhanced Quantity Section */
+        .quantity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quantity-card {
+            background: var(--dark-gradient);
+            border: 2px solid var(--primary-violet);
+            border-radius: 25px;
+            padding: 2.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--luxury-shadow);
+            backdrop-filter: blur(20px);
+        }
+
+        .quantity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .quantity-card:hover::before {
+            left: 100%;
+        }
+
+        .quantity-card:hover {
+            transform: translateY(-12px) scale(1.05);
+            border-color: var(--ethereal-lavender);
+            box-shadow: var(--cosmic-shadow);
+        }
+
+        .quantity-card .quantity-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--mystical-pink);
+            transition: all 0.3s ease;
+            text-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+        }
+
+        .quantity-card:hover .quantity-icon {
+            color: var(--ethereal-lavender);
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .quantity-card h3 {
+            font-size: 1.8rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .quantity-card:hover h3 {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .quantity-card .price {
+            font-size: 1.6rem;
+            color: var(--mystical-pink);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 15px rgba(236, 72, 153, 0.5);
+        }
+
+        .quantity-card .description {
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .quantity-card.selected {
+            background: var(--primary-gradient);
+            color: white;
+            border-color: var(--luxury-magenta);
+            transform: translateY(-12px) scale(1.05);
+            box-shadow: var(--cosmic-shadow);
+            animation: mysticalPulse 2s infinite;
+        }
+
+        .quantity-card.selected .quantity-icon,
+        .quantity-card.selected h3,
+        .quantity-card.selected .price {
+            color: white;
+            text-shadow: none;
+        }
+
+        /* Enhanced Slot Selection */
+        .slots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .slot-card {
+            background: var(--dark-gradient);
+            border: 2px solid var(--primary-violet);
+            border-radius: 20px;
+            padding: 1.8rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--ethereal-shadow);
+            color: var(--text-light);
+            backdrop-filter: blur(20px);
+        }
+
+        .slot-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(196, 181, 253, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .slot-card:hover::before {
+            left: 100%;
+        }
+
+        .slot-card:hover {
+            background: var(--primary-gradient);
+            color: white;
+            transform: scale(1.08);
+            box-shadow: var(--mystical-glow);
+            border-color: var(--luxury-magenta);
+        }
+
+        .slot-card.selected {
+            background: var(--primary-gradient);
+            color: white;
+            border-color: var(--mystical-pink);
+            transform: scale(1.08);
+            box-shadow: var(--luxury-shadow);
+            animation: mysticalPulse 2s infinite;
+        }
+
+        .slot-card.booked {
+            background: rgba(75, 29, 149, 0.1);
+            color: var(--text-muted);
+            cursor: not-allowed;
+            opacity: 0.5;
+            border-color: var(--text-muted);
+        }
+
+        .slot-card.booked:hover {
+            transform: none;
+            background: rgba(75, 29, 149, 0.1);
+            color: var(--text-muted);
+            box-shadow: none;
+        }
+
+        .slot-card.booked::before {
+            display: none;
+        }
+
+        /* User Panel Styles - Mystical Enhancement */
+        .user-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-gradient);
+            z-index: 9999;
+            overflow-y: auto;
+        }
+
+        .user-panel.active {
+            display: block;
+            animation: slideInLeft 0.5s ease;
+        }
+
+        .user-header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--luxury-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .user-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 15px,
+                rgba(255,255,255,0.05) 15px,
+                rgba(255,255,255,0.05) 30px
+            );
+            animation: shimmerMystical 4s linear infinite;
+        }
+
+        .user-header h1 {
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            position: relative;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .user-btn {
+            background: var(--luxury-magenta);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .user-btn:hover {
+            background: var(--mystical-pink);
+            transform: translateY(-2px);
+            box-shadow: var(--mystical-glow);
+        }
+
+        .user-btn.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .user-btn.secondary:hover {
+            background: white;
+            color: var(--deep-purple);
+        }
+
+        .user-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .user-bookings {
+            background: var(--dark-gradient);
+            border: 2px solid var(--primary-violet);
+            border-radius: 25px;
+            padding: 2rem;
+            box-shadow: var(--luxury-shadow);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+        }
+
+        .user-bookings::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+        }
+
+        .user-bookings h2 {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.8rem;
+        }
+
+        .booking-card {
+            background: rgba(107, 70, 193, 0.1);
+            border: 1px solid var(--primary-violet);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--mystical-pink);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .booking-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(236, 72, 153, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .booking-card:hover::before {
+            left: 100%;
+        }
+
+        .booking-card:hover {
+            transform: translateX(15px);
+            box-shadow: var(--mystical-glow);
+            border-left-color: var(--luxury-magenta);
+        }
+
+        .booking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .booking-id {
+            font-weight: bold;
+            color: var(--mystical-pink);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .booking-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        /* Admin Panel Styles - Enhanced Mystical Design */
+        .admin-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-gradient);
+            z-index: 9999;
+            overflow-y: auto;
+        }
+
+        .admin-panel.active {
+            display: block;
+            animation: slideInLeft 0.5s ease;
+        }
+
+        .admin-nav {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--luxury-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .admin-nav::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 15px,
+                rgba(255,255,255,0.05) 15px,
+                rgba(255,255,255,0.05) 30px
+            );
+            animation: shimmerMystical 4s linear infinite;
+        }
+
+        .admin-nav h1 {
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            position: relative;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .admin-btn {
+            background: var(--luxury-magenta);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .admin-btn:hover {
+            background: var(--mystical-pink);
+            transform: translateY(-2px);
+            box-shadow: var(--mystical-glow);
+        }
+
+        .admin-btn.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .admin-btn.secondary:hover {
+            background: white;
+            color: var(--deep-purple);
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--dark-gradient);
+            border: 2px solid var(--primary-violet);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: var(--luxury-shadow);
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+            transition: left 0.8s;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--ethereal-lavender);
+            box-shadow: var(--cosmic-shadow);
+        }
+
+        .stat-icon {
+            width: 90px;
+            height: 90px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.2rem;
+            color: white;
+            animation: mysticalPulse 3s infinite;
+            box-shadow: var(--mystical-glow);
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: var(--mystical-pink);
+            margin-bottom: 0.5rem;
+            display: block;
+            text-shadow: 0 0 15px rgba(236, 72, 153, 0.5);
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .orders-section {
+            background: var(--dark-gradient);
+            border: 2px solid var(--primary-violet);
+            border-radius: 25px;
+            box-shadow: var(--luxury-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            position: relative;
+            backdrop-filter: blur(20px);
+        }
+
+        .orders-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+        }
+
+        .orders-header {
+            background: var(--mystical-dark);
+            color: white;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .orders-header h2 {
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .orders-table-container {
+            overflow-x: auto;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        .orders-table th,
+        .orders-table td {
+            padding: 1.5rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(107, 70, 193, 0.2);
+        }
+
+        .orders-table th {
+            background: rgba(107, 70, 193, 0.2);
+            font-weight: 600;
+            color: var(--text-light);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            backdrop-filter: blur(10px);
+        }
+
+        .orders-table td {
+            color: var(--text-light);
+        }
+
+        .orders-table tr {
+            transition: all 0.3s ease;
+        }
+
+        .orders-table tr:hover {
+            background: rgba(236, 72, 153, 0.05);
+            transform: scale(1.01);
+        }
+
+        .status-badge {
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: mysticalPulse 3s infinite;
+        }
+
+        .status-pending {
+            background: linear-gradient(135deg, #F59E0B, #F97316);
+            color: white;
+        }
+
+        .status-confirmed {
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: white;
+        }
+
+        .status-completed {
+            background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+            color: white;
+        }
+
+        .status-cancelled {
+            background: linear-gradient(135deg, #EF4444, #DC2626);
+            color: white;
+        }
+
+        .action-btn {
+            padding: 0.6rem 1rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin: 0 0.3rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-confirm {
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: white;
+        }
+
+        .btn-confirm:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-complete {
+            background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+            color: white;
+        }
+
+        .btn-complete:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-cancel {
+            background: linear-gradient(135deg, #F59E0B, #F97316);
+            color: white;
+        }
+
+        .btn-cancel:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-delete {
+            background: linear-gradient(135deg, #EF4444, #DC2626);
+            color: white;
+        }
+
+        .btn-delete:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+        }
+
+        /* Product Management Section */
+        .product-management {
+            background: var(--dark-gradient);
+            border: 2px solid var(--royal-indigo);
+            border-radius: 25px;
+            box-shadow: var(--luxury-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            position: relative;
+            backdrop-filter: blur(20px);
+        }
+
+        .product-management::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--mystical-gradient);
+        }
+
+        .product-management-header {
+            background: var(--mystical-dark);
+            color: white;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .product-form {
+            padding: 2rem;
+            border-bottom: 1px solid rgba(107, 70, 193, 0.2);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .admin-product-card {
+            background: rgba(107, 70, 193, 0.1);
+            border: 2px solid var(--primary-violet);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .admin-product-card:hover {
+            transform: translateX(10px);
+            box-shadow: var(--mystical-glow);
+            border-color: var(--mystical-pink);
+        }
+
+        /* User Management Section - Enhanced */
+        .user-management {
+            background: var(--dark-gradient);
+            border: 2px solid var(--deep-purple);
+            border-radius: 25px;
+            box-shadow: var(--luxury-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            position: relative;
+            backdrop-filter: blur(20px);
+        }
+
+        .user-management::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--luxury-gradient);
+        }
+
+        .user-management-header {
+            background: var(--mystical-dark);
+            color: white;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .user-card {
+            background: rgba(107, 70, 193, 0.1);
+            border: 2px solid var(--primary-violet);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 1rem;
+            border-left: 5px solid var(--mystical-pink);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .user-card:hover {
+            transform: translateX(15px);
+            box-shadow: var(--mystical-glow);
+            border-left-color: var(--luxury-magenta);
+        }
+
+        .user-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1rem;
+        }
+
+        .user-stat-card {
+            background: rgba(75, 29, 149, 0.2);
+            border: 2px solid var(--primary-violet);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .user-stat-card:hover {
+            border-color: var(--ethereal-lavender);
+            transform: scale(1.02);
+        }
+
+        /* Footer - Mystical Enhancement */
+        .footer {
+            background: var(--dark-gradient);
+            color: var(--text-light);
+            padding: 4rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+            border-top: 2px solid var(--primary-violet);
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 70%, rgba(219, 39, 119, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(107, 70, 193, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-section h3 {
+            color: var(--mystical-pink);
+            margin-bottom: 1.5rem;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+        }
+
+        .footer-section p, .footer-section a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: 0.8rem;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--mystical-pink);
+            transform: translateX(8px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 55px;
+            height: 55px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--mystical-glow);
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .social-links a:hover::before {
+            left: 100%;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-8px) scale(1.15);
+            box-shadow: var(--luxury-shadow);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(107, 70, 193, 0.3);
+            color: var(--text-muted);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Notification styles - Mystical Enhancement */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1.2rem 2rem;
+            border-radius: 15px;
+            box-shadow: var(--luxury-shadow);
+            z-index: 10001;
+            animation: slideInRight 0.4s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            max-width: 400px;
+            backdrop-filter: blur(20px);
+            border: 2px solid;
+        }
+
+        .notification.success {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.1));
+            color: #10B981;
+            border-color: #10B981;
+        }
+
+        .notification.error {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(220, 38, 38, 0.1));
+            color: #EF4444;
+            border-color: #EF4444;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(120px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Loading Animation - Enhanced */
+        .loading {
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: var(--mystical-pink);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Mobile Responsive Design - Perfect Mobile Experience */
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 1.5rem;
+                padding: 0 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+                line-height: 1.3;
+                margin-bottom: 1rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+                line-height: 1.6;
+                margin-bottom: 1.5rem;
+            }
+
+            /* Hero Image - Smaller on Mobile */
+            .hero-image img {
+                max-width: 280px;
+                height: auto;
+            }
+            
+            /* Hero Stats - Keep in Same Row */
+            .hero-stats {
+                display: flex;
+                justify-content: center;
+                flex-wrap: nowrap;
+                gap: 0.8rem;
+                margin-bottom: 1.5rem;
+                overflow-x: auto;
+                padding: 0.5rem;
+            }
+
+            .stat {
+                padding: 0.8rem 1rem;
+                min-width: 100px;
+                flex: 1;
+                max-width: 120px;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
+            }
+
+            .stat-label {
+                font-size: 0.75rem;
+            }
+
+            /* Products - Keep 2 Per Row on Mobile (DON'T CHANGE) */
+            .products-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                max-width: 100%;
+                padding: 0 0.5rem;
+            }
+
+            .product-card {
+                padding: 1.2rem 0.8rem;
+                min-width: 0;
+            }
+
+            .product-card h3 {
+                font-size: 1.2rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .product-card .price {
+                font-size: 1.1rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .product-card .description {
+                font-size: 0.8rem;
+                margin-bottom: 1rem;
+                line-height: 1.4;
+            }
+
+            .product-image {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 1rem;
+            }
+
+            .select-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            /* About - Single Row on Mobile */
+            .about-container {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding: 0.5rem;
+                margin-top: 2rem;
+            }
+
+            .about-card {
+                min-width: 260px;
+                max-width: 280px;
+                padding: 1.5rem;
+                flex-shrink: 0;
+            }
+
+            .about-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .about-card h3 {
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .about-card .description {
+                font-size: 0.85rem;
+                line-height: 1.5;
+                margin-bottom: 0;
+            }
+
+            .nav-container {
+                padding: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                font-size: 1.8rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--holy-gradient);
+                border: 2px solid var(--spiritual-beige);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: var(--holy-shadow);
+                border-radius: 0 0 25px 25px;
+                backdrop-filter: blur(20px);
+            }
+
+            .nav-links.active {
+                display: flex;
+                animation: fadeInUp 0.5s ease;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .section-header p {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+                margin-top: 1rem;
+            }
+
+            .booking-steps {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+                margin-bottom: 2rem;
+            }
+
+            .step {
+                margin: 0;
+            }
+
+            .step::after {
+                display: none;
+            }
+
+            .step span {
+                font-size: 0.9rem;
+            }
+
+            .quantity-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .slots-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .slot-card {
+                padding: 1.2rem 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .calendar-container {
+                padding: 1.2rem;
+                margin: 0 0.5rem;
+            }
+
+            .calendar-header {
+                padding: 1.2rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .month-picker {
+                font-size: 1.3rem;
+            }
+
+            .year-select {
+                font-size: 1rem;
+                padding: 0.6rem 1rem;
+            }
+
+            .calendar-days div {
+                padding: 0.8rem 0.3rem;
+                font-size: 0.9rem;
+            }
+
+            .calendar-week-day div {
+                padding: 0.8rem 0.2rem;
+                font-size: 0.8rem;
+            }
+
+            .form-group input {
+                padding: 0.9rem;
+                font-size: 1rem;
+            }
+
+            .otp-btn {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+
+            .progress-bar {
+                margin-bottom: 1.5rem;
+            }
+
+            .login-required {
+                padding: 1.5rem;
+                margin: 1.5rem 0;
+            }
+
+            .login-required h3 {
+                font-size: 1.3rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .login-required p {
+                font-size: 0.95rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .notification {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+                max-width: none;
+                padding: 1rem 1.5rem;
+            }
+
+            /* Admin Panel Mobile */
+            .dashboard-container {
+                padding: 1rem;
+            }
+
+            .dashboard-stats {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .admin-nav {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .admin-nav h1 {
+                font-size: 1.5rem;
+            }
+
+            .orders-header,
+            .user-management-header,
+            .product-management-header {
+                padding: 1.5rem;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .user-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .booking-card {
+                padding: 1.5rem;
+            }
+
+            .booking-details {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .detail-label {
+                font-size: 0.8rem;
+            }
+
+            .detail-value {
+                font-size: 0.9rem;
+            }
+
+            .otp-modal-content,
+            .admin-modal-content {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+        }
+
+        /* Mobile Menu Toggle - Spiritual Theme */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background: var(--hope-gold);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* Progress Bar for Steps - Enhanced */
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(107, 70, 193, 0.2);
+            border-radius: 3px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-gradient);
+            border-radius: 3px;
+            transition: width 0.6s ease;
+            width: 33.33%;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmerMystical 2s linear infinite;
+        }
+
+        /* Login Required Notification - Enhanced */
+        .login-required {
+            background: var(--dark-gradient);
+            border: 2px solid var(--mystical-pink);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            animation: mysticalPulse 3s infinite;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--luxury-shadow);
+        }
+
+        .login-required h3 {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .login-required p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .login-required .cta-button {
+            margin: 0 0.8rem;
+        }
+
+        /* Additional enhancements for luxury feel */
+        .luxury-divider {
+            height: 2px;
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: 1px;
+            margin: 2rem 0;
+        }
+
+        .mystical-accent {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+        }
+
+        /* Scrollbar styling for mystical theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--mystical-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-gradient);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--mystical-pink);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation - Mystical Design -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Sufala</a>
+            
+            <div class="menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            
+            <!-- User State - Only shows when logged in -->
+            <div id="user-nav" class="nav-auth" style="display: none;">
+                <div class="user-menu">
+                    <button class="user-menu-btn" onclick="toggleUserMenu()">
+                        <i class="fas fa-user"></i>
+                        <span id="user-name">User</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-menu-dropdown">
+                        <div class="user-menu-item" onclick="showUserPanel()">
+                            <i class="fas fa-calendar"></i> My Bookings
+                        </div>
+                        <div class="user-menu-item" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Discrete Admin Access -->
+    <div class="admin-access">
+        <button class="admin-access-btn" onclick="showAdminModal()" title="Admin Access">
+            <i class="fas fa-cog" style="font-size: 0.9rem;"></i> Admin
+        </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content fade-in-up">
+                <h1>Pure, Fresh <span class="highlight">Cold Pressed</span> Oils</h1>
+                <p>Experience the authentic taste and nutrition of traditionally extracted oils. Watch your oil being freshly pressed right before your eyes in our mystical oil pressing experience!</p>
+                
+                <div class="display-mobile">
+                    <div class="hero-image fade-in-up">
+                        <div><img src="Artboard 1 - Edited.png" alt="Fresh Cold Pressed Oil" style="animation: luxuryFloat 6s ease-in-out infinite;"></div>
+                    </div>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Pure & Natural</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">24hrs</span>
+                        <span class="stat-label">Fresh Pressing</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">15M+</span>
+                        <span class="stat-label">Happy Customers</span>
+                    </div>
+                </div>
+
+                <a href="#products" class="cta-button">
+                    <i class="fas fa-leaf"></i> Book Fresh Oil Now
+                </a>
+            </div>
+            
+            <div class="display-desktop">
+                <div class="hero-image">
+                    <div><img src="Artboard 1 - Edited.png" alt="Fresh Cold Pressed Oil" style="animation: luxuryFloat 6s ease-in-out infinite;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section - 2 Per Row -->
+    <section class="products" id="products">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Choose Your Fresh Oil</h2>
+                <p>Select from our premium collection of oils, each cold-pressed to perfection using traditional mystical methods</p>
+            </div>
+
+            <div class="products-container" id="products-container">
+                <!-- Products will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking-section" id="booking-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 id="booking-title">Select Your Pressing Date</h2>
+                <p id="booking-description">Choose when you'd like your oil to be freshly pressed with our mystical process</p>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+
+            <!-- Booking Steps -->
+            <div class="booking-steps">
+                <div class="step active" id="step-1">
+                    <div class="step-number">1</div>
+                    <span>Select Date</span>
+                </div>
+                <div class="step" id="step-2">
+                    <div class="step-number">2</div>
+                    <span>Choose Quantity</span>
+                </div>
+                <div class="step" id="step-3">
+                    <div class="step-number">3</div>
+                    <span>Pick Time Slot</span>
+                </div>
+            </div>
+
+            <!-- Calendar Section -->
+            <div id="calendar-step" class="booking-step">
+                <div class="calendar-container">
+                    <div class="calendar">
+                        <div class="calendar-header">
+                            <div class="month-picker">
+                                <span class="month-change" id="prev-month">
+                                    <i class="fas fa-chevron-left"></i>
+                                </span>
+                                <span id="month-display">January</span>
+                                <span class="month-change" id="next-month">
+                                    <i class="fas fa-chevron-right"></i>
+                                </span>
+                            </div>
+                            <div class="year-picker">
+                                <select class="year-select" id="year-select"></select>
+                            </div>
+                        </div>
+                        <div class="calendar-week-day">
+                            <div>Sun</div>
+                            <div>Mon</div>
+                            <div>Tue</div>
+                            <div>Wed</div>
+                            <div>Thu</div>
+                            <div>Fri</div>
+                            <div>Sat</div>
+                        </div>
+                        <div class="calendar-days" id="calendar-days"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quantity Section -->
+            <div id="quantity-step" class="booking-step" style="display: none;">
+                <div class="quantity-grid">
+                    <div class="quantity-card" onclick="selectQuantity('1 Liter', 1)">
+                        <div class="quantity-icon">
+                            <i class="fas fa-wine-bottle"></i>
+                        </div>
+                        <h3>1 Liter</h3>
+                        <div class="price" id="price-1">₹120</div>
+                        <div class="description">Perfect for trying our mystical oil</div>
+                    </div>
+
+                    <div class="quantity-card" onclick="selectQuantity('3 Liters', 3)">
+                        <div class="quantity-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3>3 Liters</h3>
+                        <div class="price" id="price-3">₹360</div>
+                        <div class="description">Ideal for mystical families</div>
+                    </div>
+
+                    <div class="quantity-card" onclick="selectQuantity('5 Liters', 5)">
+                        <div class="quantity-icon">
+                            <i class="fas fa-fill-drip"></i>
+                        </div>
+                        <h3>5 Liters</h3>
+                        <div class="price" id="price-5">₹600</div>
+                        <div class="description">Best value for luxury use</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slots Section -->
+            <div id="slots-step" class="booking-step" style="display: none;">
+                <div class="slots-grid" id="slots-grid">
+                    <!-- Slots will be populated by JavaScript -->
+                </div>
+
+                <!-- Login Required Notice -->
+                <div id="login-required-notice" class="login-required" style="display: none;">
+                    <h3><i class="fas fa-lock"></i> Login Required</h3>
+                    <p>Please login with your phone number to complete your booking and secure your mystical time slot.</p>
+                    <button class="cta-button" onclick="showOtpModal()">
+                        <i class="fas fa-phone"></i> Login with Phone
+                    </button>
+                    <button class="cta-button" onclick="resetBooking()" style="background: linear-gradient(135deg, #6c757d, #5a6268);">
+                        <i class="fas fa-arrow-left"></i> Go Back
+                    </button>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <button class="cta-button" id="confirm-booking" onclick="confirmBooking()" style="display: none;">
+                        <i class="fas fa-check"></i> Confirm Mystical Booking
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section - Single Row -->
+    <section class="products" id="about" style="background: rgba(245, 230, 184, 0.3);">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Why Choose Sufala?</h2>
+                <p>Experience the difference of traditionally made, spiritually blessed oils</p>
+            </div>
+
+            <!-- About Cards in Single Row -->
+            <div class="about-container">
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Watch The Magic</h3>
+                    <div class="description">See your oil being freshly pressed right before your eyes using our sacred traditional methods</div>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>100% Pure & Natural</h3>
+                    <div class="description">No chemicals, no preservatives - just pure, natural oil extracted through blessed traditional ways</div>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Blessed Fresh Daily</h3>
+                    <div class="description">Oil pressed fresh on your selected date with divine energy, ensuring maximum nutrition and taste</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Sufala Naturals</h3>
+                <p>Experience the purity of traditionally extracted cold-pressed oils with mystical energy. Fresh, natural, and spiritually enhanced.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/sufala_naturals/?hl=en"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#home">Home</a>
+                <a href="#products">Products</a>
+                <a href="#about">About Us</a>
+                <a href="#contact">Contact</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Rajahmundry, Andhra Pradesh</p>
+                <p><i class="fas fa-phone"></i> +91 91535 97999</p>
+                <p><i class="fas fa-envelope"></i> info@sufala.com</p>
+                <p><i class="fas fa-clock"></i> Mon-Sat: 8AM-8PM</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Our Mystical Promise</h3>
+                <p>✓ 100% Pure & Natural</p>
+                <p>✓ Traditional Mystical Methods</p>
+                <p>✓ Fresh Daily Pressing</p>
+                <p>✓ Spiritual Energy Infused</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sufala Naturals. All rights reserved. Made with ❤️ and mystical energy for healthy living.</p>
+        </div>
+    </footer>
+
+    <!-- OTP Modal -->
+    <div id="otp-modal" class="otp-modal">
+        <div class="otp-modal-content">
+            <button class="otp-modal-close" onclick="closeOtpModal()">&times;</button>
+            
+            <h2>Spiritual Login Portal</h2>
+            
+            <!-- Name Input for First Time Users -->
+            <div id="name-step" class="form-group" style="display: none;">
+                <label for="user-name-input">Enter Your Sacred Name</label>
+                <input type="text" id="user-name-input" placeholder="Your full blessed name" required>
+                <div class="hint">This is your first spiritual journey, please enter your name</div>
+                <button class="otp-btn" onclick="proceedWithName()">
+                    <i class="fas fa-arrow-right"></i> Continue Sacred Journey
+                </button>
+                <div id="name-msg" class="msg"></div>
+            </div>
+
+            <!-- Phone Input -->
+            <div id="phone-step">
+                <div class="form-group">
+                    <label for="phone-input">Sacred Mobile Number (India)</label>
+                    <input type="tel" id="phone-input" placeholder="e.g. 9347xxxxxx" maxlength="10" required>
+                </div>
+
+                <button class="otp-btn" id="btnSend" onclick="sendOTP()">
+                    <i class="fas fa-paper-plane"></i> Send Blessed Code
+                </button>
+                <div id="phone-msg" class="msg"></div>
+            </div>
+
+            <!-- OTP Input -->
+            <div id="otp-step" class="otp-wrap">
+                <div class="form-group">
+                    <label for="otp-input">Enter Blessed Code</label>
+                    <div class="otp-row">
+                        <input type="text" id="otp-input" placeholder="6-digit blessed code" maxlength="15" required>
+                        <button class="otp-btn" id="btnVerify" onclick="verifyOTP()" style="width: auto; padding: 0.8rem 1.2rem;">
+                            <i class="fas fa-check"></i> Verify
+                        </button>
+                    </div>
+                </div>
+                <div class="hint">Check your WhatsApp for the blessed OTP.</div>
+                <div id="otp-msg" class="msg"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="admin-modal" class="admin-modal">
+        <div class="admin-modal-content">
+            <button class="otp-modal-close" onclick="closeAdminModal()">&times;</button>
+            
+            <h2>Sacred Admin Portal</h2>
+            
+            <form id="admin-form" onsubmit="handleAdminLogin(event)">
+                <div class="form-group">
+                    <label for="admin-email">Sacred Email</label>
+                    <input type="email" id="admin-email" value="admin@sufala.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="admin-password">Divine Password</label>
+                    <input type="password" id="admin-password" value="admin123" required>
+                </div>
+                <button type="submit" class="otp-btn">
+                    <i class="fas fa-sign-in-alt"></i> Access Sacred Admin Panel
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- User Panel -->
+    <div id="user-panel" class="user-panel">
+        <div class="user-header">
+            <h1><i class="fas fa-user"></i> My Mystical Dashboard</h1>
+            <div class="user-actions">
+                <button class="user-btn" onclick="hideUserPanel()">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+                <button class="user-btn secondary" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+        
+        <div class="user-content">
+            <div class="user-bookings">
+                <h2><i class="fas fa-calendar-alt"></i> My Mystical Bookings</h2>
+                <div id="user-bookings-list">
+                    <!-- User bookings will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="admin-panel" class="admin-panel">
+        <nav class="admin-nav">
+            <h1><i class="fas fa-leaf"></i> Sufala Mystical Admin</h1>
+            <div class="nav-actions">
+                <button class="admin-btn" onclick="hideAdminPanel()">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+                <button class="admin-btn secondary" onclick="refreshDashboard()">
+                    <i class="fas fa-refresh"></i> Refresh
+                </button>
+                <button class="admin-btn secondary" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </nav>
+
+        <div class="dashboard-container">
+            <!-- Dashboard Stats -->
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <span class="stat-number" id="admin-total-orders">0</span>
+                    <div class="stat-label">Total Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <span class="stat-number" id="admin-pending-orders">0</span>
+                    <div class="stat-label">Pending Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <span class="stat-number" id="admin-confirmed-orders">0</span>
+                    <div class="stat-label">Confirmed Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <span class="stat-number" id="admin-completed-orders">0</span>
+                    <div class="stat-label">Completed Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <span class="stat-number" id="admin-total-revenue">₹0</span>
+                    <div class="stat-label">Total Revenue</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <span class="stat-number" id="admin-total-users">0</span>
+                    <div class="stat-label">Total Users</div>
+                </div>
+            </div>
+
+            <!-- Product Management Section -->
+            <div class="product-management">
+                <div class="product-management-header">
+                    <h2><i class="fas fa-boxes"></i> Mystical Product Management</h2>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="admin-btn" onclick="showAddProductForm()">
+                            <i class="fas fa-plus"></i> Add New Product
+                        </button>
+                        <button class="admin-btn secondary" onclick="loadProductManagement()">
+                            <i class="fas fa-refresh"></i> Refresh Products
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Add Product Form -->
+                <div id="add-product-form" class="product-form" style="display: none;">
+                    <h3 style="color: var(--mystical-pink); margin-bottom: 1.5rem;">
+                        <i class="fas fa-plus-circle"></i> Add New Mystical Product
+                    </h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-name">Product Name</label>
+                            <input type="text" id="product-name" placeholder="e.g. Mystical Coconut Oil" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-price">Price (₹ per Liter)</label>
+                            <input type="number" id="product-price" placeholder="e.g. 150" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-image">Image URL</label>
+                            <input type="url" id="product-image" placeholder="https://example.com/image.jpg">
+                        </div>
+                        <div class="form-group">
+                            <label for="product-description">Description</label>
+                            <input type="text" id="product-description" placeholder="Mystical benefits and properties...">
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <button class="admin-btn" onclick="addNewProduct()">
+                            <i class="fas fa-save"></i> Add Product
+                        </button>
+                        <button class="admin-btn secondary" onclick="hideAddProductForm()">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+
+                <div id="product-management-content">
+                    <!-- Product management content will be loaded here -->
+                </div>
+            </div>
+
+            <!-- User Management Section -->
+            <div class="user-management">
+                <div class="user-management-header">
+                    <h2><i class="fas fa-users"></i> Mystical User Management</h2>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="admin-btn" onclick="loadUserManagement()">
+                            <i class="fas fa-refresh"></i> Refresh Users
+                        </button>
+                        <button class="admin-btn secondary" onclick="exportUserData()">
+                            <i class="fas fa-download"></i> Export Data
+                        </button>
+                    </div>
+                </div>
+                <div id="user-management-content">
+                    <!-- User management content will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Orders Section -->
+            <div class="orders-section">
+                <div class="orders-header">
+                    <h2><i class="fas fa-list"></i> Mystical Order Management</h2>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="admin-btn" onclick="filterAdminOrders('all')">
+                            <i class="fas fa-list"></i> All Orders
+                        </button>
+                        <button class="admin-btn secondary" onclick="filterAdminOrders('today')">
+                            <i class="fas fa-calendar-day"></i> Today's Orders
+                        </button>
+                    </div>
+                </div>
+                <div class="orders-table-container">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Product Details</th>
+                                <th>Schedule</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-orders-list">
+                            <!-- Orders will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API Configuration
+        const API_BASE = 'https://anandnodered.kalpatech.co.in';
+
+        // Global variables
+        let currentUser = null;
+        let selectedProduct = '';
+        let selectedDate = '';
+        let selectedQuantity = '';
+        let selectedSlot = '';
+        let basePrice = 0;
+        let quantityMultiplier = 1;
+        let currentStep = 1;
+        let pendingUserData = null;
+
+        // Available time slots
+        const timeSlots = [
+            '8:00 - 8:30 AM', '8:30 - 9:00 AM', '9:00 - 9:30 AM', '9:30 - 10:00 AM',
+            '10:00 - 10:30 AM', '10:30 - 11:00 AM', '11:00 - 11:30 AM', '11:30 - 12:00 PM',
+            '12:00 - 12:30 PM', '12:30 - 1:00 PM', '3:00 - 3:30 PM', '3:30 - 4:00 PM',
+            '4:00 - 4:30 PM', '4:30 - 5:00 PM', '5:00 - 5:30 PM', '5:30 - 6:00 PM',
+            '6:00 - 6:30 PM', '6:30 - 7:00 PM', '7:00 - 7:30 PM', '7:30 - 8:00 PM'
+        ];
+
+        // Demo admin credentials
+        const adminCredentials = {
+            email: 'admin@sufala.com',
+            password: 'admin123'
+        };
+
+        // Data storage
+        let allUsers = JSON.parse(localStorage.getItem('sufala_users')) || [];
+        let allOrders = JSON.parse(localStorage.getItem('sufala_orders')) || [];
+        let allProducts = JSON.parse(localStorage.getItem('sufala_products')) || [];
+
+        // Calendar variables
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        const currDate = new Date();
+        const currMonth = { value: currDate.getMonth() };
+        const currYear = { value: currDate.getFullYear() };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeProducts();
+            initializeCalendar();
+            populateYearDropdown();
+            checkLoginStatus();
+            loadUserBookings();
+            loadAdminDashboard();
+            addFadeInAnimations();
+        });
+
+        function addFadeInAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-up');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.section-container, .product-card, .about-card').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Initialize Products
+        function initializeProducts() {
+            if (allProducts.length === 0) {
+                // Default products with proper images
+                allProducts = [
+                    {
+                        id: 1,
+                        name: 'Mystical Sesame Oil',
+                        price: 120,
+                        image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&h=400&fit=crop&crop=center',
+                        description: 'Rich in antioxidants and mystical vitamins, perfect for cooking and therapeutic spiritual use'
+                    },
+                    {
+                        id: 2,
+                        name: 'Sacred Groundnut Oil',
+                        price: 95,
+                        image: 'https://images.unsplash.com/photo-1628191081676-d8d4a6c0c5e4?w=400&h=400&fit=crop&crop=center',
+                        description: 'Light, healthy cooking oil with mystical energy, mild flavor and high spiritual vibrations'
+                    }
+                ];
+                localStorage.setItem('sufala_products', JSON.stringify(allProducts));
+            }
+            renderProducts();
+        }
+
+        function renderProducts() {
+            const container = document.getElementById('products-container');
+            container.innerHTML = '';
+
+            allProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.onclick = () => selectProduct(product.name, product.price, product.id);
+                
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}" 
+                             onerror="this.src='https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&h=400&fit=crop&crop=center'">
+                    </div>
+                    <h3>${product.name}</h3>
+                    <div class="price">₹${product.price}/Liter</div>
+                    <div class="description">${product.description}</div>
+                    <button class="select-btn">Book Fresh Oil</button>
+                `;
+                
+                container.appendChild(productCard);
+            });
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        }
+
+        // OTP Authentication Functions
+        function showOtpModal() {
+            document.getElementById('otp-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            resetOtpModal();
+        }
+
+        function closeOtpModal() {
+            document.getElementById('otp-modal').classList.remove('active');
+            document.body.style.overflow = '';
+            resetOtpModal();
+        }
+
+        function resetOtpModal() {
+            document.getElementById('phone-step').style.display = 'block';
+            document.getElementById('name-step').style.display = 'none';
+            document.getElementById('otp-step').classList.remove('active');
+            document.getElementById('phone-input').value = '';
+            document.getElementById('otp-input').value = '';
+            document.getElementById('user-name-input').value = '';
+            document.getElementById('phone-msg').textContent = '';
+            document.getElementById('otp-msg').textContent = '';
+            document.getElementById('name-msg').textContent = '';
+            pendingUserData = null;
+        }
+
+        async function sendOTP() {
+            const phoneInput = document.getElementById('phone-input');
+            const phoneMsg = document.getElementById('phone-msg');
+            const btnSend = document.getElementById('btnSend');
+            
+            const phone = (phoneInput.value || '').replace(/\D/g, '');
+            
+            phoneMsg.className = 'msg';
+            phoneMsg.textContent = '';
+
+            if (phone.length !== 10) {
+                phoneMsg.classList.add('err');
+                phoneMsg.textContent = 'Sacred phone must be 10 digits.';
+                return;
+            }
+
+            btnSend.disabled = true;
+            btnSend.innerHTML = '<span class="loading"></span> Sending Mystical Code...';
+
+            try {
+                const response = await fetch(API_BASE + '/otpreq', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ phone: phone })
+                });
+
+                const data = await response.json().catch(() => ({}));
+
+                if (response.ok && (data.success || data.ok)) {
+                    phoneMsg.classList.add('ok');
+                    phoneMsg.textContent = 'Mystical OTP sent to WhatsApp.';
+                    
+                    // Check if this is a new user
+                    const existingUser = allUsers.find(u => u.phone === phone);
+                    if (!existingUser) {
+                        // New user - show name input
+                        document.getElementById('phone-step').style.display = 'none';
+                        document.getElementById('name-step').style.display = 'block';
+                        pendingUserData = { phone: phone };
+                    } else {
+                        // Existing user - show OTP input
+                        document.getElementById('otp-step').classList.add('active');
+                        pendingUserData = existingUser;
+                    }
+                } else {
+                    phoneMsg.classList.add('err');
+                    phoneMsg.textContent = (data && (data.error || data.message)) || 'Failed to send mystical OTP.';
+                }
+            } catch(e) {
+                phoneMsg.classList.add('err');
+                phoneMsg.textContent = 'Network error. Try again.';
+            } finally {
+                btnSend.disabled = false;
+                btnSend.innerHTML = '<i class="fas fa-paper-plane"></i> Send Mystical Code';
+            }
+        }
+
+        function proceedWithName() {
+            const nameInput = document.getElementById('user-name-input');
+            const nameMsg = document.getElementById('name-msg');
+            
+            const name = nameInput.value.trim();
+            
+            nameMsg.className = 'msg';
+            nameMsg.textContent = '';
+
+            if (!name) {
+                nameMsg.classList.add('err');
+                nameMsg.textContent = 'Please enter your sacred name.';
+                return;
+            }
+
+            if (pendingUserData) {
+                pendingUserData.name = name;
+                pendingUserData.isNewUser = true;
+                
+                // Show OTP input
+                document.getElementById('name-step').style.display = 'none';
+                document.getElementById('otp-step').classList.add('active');
+                
+                nameMsg.classList.add('ok');
+                nameMsg.textContent = 'Name saved. Please verify mystical OTP.';
+            }
+        }
+
+        async function verifyOTP() {
+            const otpInput = document.getElementById('otp-input');
+            const otpMsg = document.getElementById('otp-msg');
+            const btnVerify = document.getElementById('btnVerify');
+            
+            const code = (otpInput.value || '').trim();
+            
+            otpMsg.className = 'msg';
+            otpMsg.textContent = '';
+
+            if (!code || !pendingUserData) {
+                otpMsg.classList.add('err');
+                otpMsg.textContent = 'Enter valid mystical OTP.';
+                return;
+            }
+
+            btnVerify.disabled = true;
+            btnVerify.innerHTML = '<span class="loading"></span> Verifying...';
+
+            try {
+                const response = await fetch(API_BASE + '/otpverify', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ 
+                        phone: pendingUserData.phone, 
+                        otp: code 
+                    })
+                });
+
+                const data = await response.json().catch(() => ({}));
+
+                if (response.ok && (data.success || data.ok)) {
+                    otpMsg.classList.add('ok');
+                    otpMsg.textContent = 'Verified! Entering mystical realm...';
+
+                    // Handle user creation/login
+                    if (pendingUserData.isNewUser) {
+                        // Create new user
+                        const newUser = {
+                            id: Date.now(),
+                            name: pendingUserData.name,
+                            phone: pendingUserData.phone,
+                            role: 'user',
+                            createdAt: new Date().toISOString(),
+                            bookingCount: 0
+                        };
+
+                        allUsers.push(newUser);
+                        localStorage.setItem('sufala_users', JSON.stringify(allUsers));
+                        currentUser = newUser;
+                        
+                        showNotification(`Welcome to the mystical realm, ${newUser.name}! Sacred account created.`, 'success');
+                    } else {
+                        // Login existing user
+                        currentUser = pendingUserData;
+                        showNotification(`Welcome back to the mystical realm, ${currentUser.name}!`, 'success');
+                    }
+
+                    localStorage.setItem('sufala_current_user', JSON.stringify(currentUser));
+                    updateNavigation();
+                    closeOtpModal();
+
+                    // Continue with booking process if they were in the middle of it
+                    if (selectedSlot) {
+                        document.getElementById('login-required-notice').style.display = 'none';
+                        document.getElementById('confirm-booking').style.display = 'inline-block';
+                    }
+
+                } else {
+                    otpMsg.classList.add('err');
+                    otpMsg.textContent = (data && data.error) || 'Invalid mystical OTP';
+                }
+            } catch(e) {
+                otpMsg.classList.add('err');
+                otpMsg.textContent = 'Network error.';
+            } finally {
+                btnVerify.disabled = false;
+                btnVerify.innerHTML = '<i class="fas fa-check"></i> Verify';
+            }
+        }
+
+        // Admin Authentication Functions
+        function showAdminModal() {
+            document.getElementById('admin-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAdminModal() {
+            document.getElementById('admin-modal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('admin-email').value;
+            const password = document.getElementById('admin-password').value;
+            
+            if (email === adminCredentials.email && password === adminCredentials.password) {
+                currentUser = {
+                    id: 'admin',
+                    name: 'Mystical Admin',
+                    email: email,
+                    role: 'admin'
+                };
+                
+                localStorage.setItem('sufala_current_user', JSON.stringify(currentUser));
+                updateNavigation();
+                closeAdminModal();
+                showAdminPanel();
+                showNotification('Welcome to the Mystical Admin Realm!', 'success');
+            } else {
+                showNotification('Invalid mystical admin credentials', 'error');
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('sufala_current_user');
+            updateNavigation();
+            hideUserPanel();
+            hideAdminPanel();
+            showNotification('Sacred logout successful', 'success');
+        }
+
+        function checkLoginStatus() {
+            const savedUser = localStorage.getItem('sufala_current_user');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                updateNavigation();
+            }
+        }
+
+        function updateNavigation() {
+            const userNav = document.getElementById('user-nav');
+            
+            if (!currentUser || currentUser.role === 'admin') {
+                userNav.style.display = 'none';
+            } else {
+                userNav.style.display = 'flex';
+                document.getElementById('user-name').textContent = currentUser.name;
+            }
+        }
+
+        function toggleUserMenu() {
+            const userMenu = event.currentTarget.parentElement;
+            userMenu.classList.toggle('active');
+        }
+
+        // Product Selection - No login required
+        function selectProduct(productName, price, productId) {
+            selectedProduct = productName;
+            basePrice = price;
+            
+            // Update UI
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            
+            // Show booking section
+            showBookingSection();
+            updateQuantityPrices();
+            
+            // Scroll to booking section
+            document.getElementById('booking-section').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        function showBookingSection() {
+            document.getElementById('booking-section').classList.add('active');
+            currentStep = 1;
+            updateBookingSteps();
+        }
+
+        function updateBookingSteps() {
+            // Update step indicators
+            for (let i = 1; i <= 3; i++) {
+                const step = document.getElementById(`step-${i}`);
+                step.classList.remove('active', 'completed');
+                
+                if (i < currentStep) {
+                    step.classList.add('completed');
+                } else if (i === currentStep) {
+                    step.classList.add('active');
+                }
+            }
+
+            // Update progress bar
+            const progressFill = document.getElementById('progress-fill');
+            const progressWidth = (currentStep / 3) * 100;
+            progressFill.style.width = `${progressWidth}%`;
+            
+            // Show/hide step content
+            document.getElementById('calendar-step').style.display = currentStep === 1 ? 'block' : 'none';
+            document.getElementById('quantity-step').style.display = currentStep === 2 ? 'block' : 'none';
+            document.getElementById('slots-step').style.display = currentStep === 3 ? 'block' : 'none';
+            
+            // Update titles
+            const titles = {
+                1: 'Select Your Mystical Pressing Date',
+                2: 'Choose Your Sacred Quantity',
+                3: 'Pick Your Mystical Time Slot'
+            };
+            
+            const descriptions = {
+                1: 'Choose when you\'d like your oil to be freshly pressed with mystical energy',
+                2: 'Select the amount of mystical oil you need for your spiritual journey',
+                3: 'Choose a sacred time for your oil pressing ceremony'
+            };
+            
+            document.getElementById('booking-title').textContent = titles[currentStep];
+            document.getElementById('booking-description').textContent = descriptions[currentStep];
+        }
+
+        // Calendar Functions
+        function initializeCalendar() {
+            generateCalendar(currMonth.value, currYear.value);
+            
+            document.querySelector("#prev-month").onclick = () => {
+                currMonth.value--;
+                if (currMonth.value < 0) {
+                    currMonth.value = 11;
+                    currYear.value--;
+                    updateYearSelect();
+                }
+                generateCalendar(currMonth.value, currYear.value);
+            };
+            
+            document.querySelector("#next-month").onclick = () => {
+                currMonth.value++;
+                if (currMonth.value > 11) {
+                    currMonth.value = 0;
+                    currYear.value++;
+                    updateYearSelect();
+                }
+                generateCalendar(currMonth.value, currYear.value);
+            };
+        }
+
+        function populateYearDropdown() {
+            const currentYear = new Date().getFullYear();
+            const yearSelect = document.getElementById('year-select');
+            
+            yearSelect.innerHTML = '';
+            
+            for (let year = currentYear; year <= currentYear + 2; year++) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                if (year === currentYear) {
+                    option.selected = true;
+                }
+                yearSelect.appendChild(option);
+            }
+            
+            yearSelect.addEventListener('change', function() {
+                currYear.value = parseInt(this.value);
+                generateCalendar(currMonth.value, currYear.value);
+            });
+        }
+
+        function updateYearSelect() {
+            const yearSelect = document.getElementById('year-select');
+            yearSelect.value = currYear.value;
+        }
+
+        function generateCalendar(month, year) {
+            const daysOfMonth = [31, getFebDays(year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            const calendarDays = document.getElementById('calendar-days');
+            calendarDays.innerHTML = "";
+            
+            const firstDay = new Date(year, month, 1);
+            document.getElementById('month-display').textContent = monthNames[month];
+            
+            for (let i = 0; i <= daysOfMonth[month] + firstDay.getDay() - 1; i++) {
+                const day = document.createElement("div");
+                
+                if (i >= firstDay.getDay()) {
+                    const dateNumber = i - firstDay.getDay() + 1;
+                    day.innerHTML = dateNumber;
+                    
+                    const currentDate = new Date(year, month, dateNumber);
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+                    
+                    if (currentDate < today) {
+                        day.style.opacity = '0.3';
+                        day.style.cursor = 'not-allowed';
+                    } else {
+                        if (dateNumber === currDate.getDate() && 
+                            month === currDate.getMonth() && 
+                            year === currDate.getFullYear()) {
+                            day.classList.add('curr-date');
+                        }
+                        
+                        day.onclick = () => {
+                            selectDate(`${dateNumber}-${monthNames[month]}-${year}`, day);
+                        };
+                    }
+                }
+                
+                calendarDays.appendChild(day);
+            }
+        }
+
+        function selectDate(date, dayElement) {
+            selectedDate = date;
+            
+            // Update UI
+            document.querySelectorAll('.calendar-days div').forEach(d => {
+                d.classList.remove('selected');
+            });
+            
+            dayElement.classList.add('selected');
+            
+            // Move to next step
+            setTimeout(() => {
+                currentStep = 2;
+                updateBookingSteps();
+            }, 500);
+        }
+
+        function selectQuantity(quantity, multiplier) {
+            selectedQuantity = quantity;
+            quantityMultiplier = multiplier;
+            
+            // Update UI
+            document.querySelectorAll('.quantity-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            event.currentTarget.classList.add('selected');
+            
+            // Move to next step
+            setTimeout(() => {
+                currentStep = 3;
+                updateBookingSteps();
+                loadTimeSlots();
+            }, 500);
+        }
+
+        function loadTimeSlots() {
+            const slotsGrid = document.getElementById('slots-grid');
+            slotsGrid.innerHTML = '';
+            
+            // Get booked slots for selected date
+            const bookedSlots = getBookedSlots(selectedDate);
+            
+            timeSlots.forEach(slot => {
+                const slotCard = document.createElement('div');
+                slotCard.className = 'slot-card';
+                slotCard.textContent = slot;
+                
+                if (bookedSlots.includes(slot)) {
+                    slotCard.classList.add('booked');
+                    slotCard.innerHTML += '<br><small style="font-size: 0.8rem; opacity: 0.7;">Booked</small>';
+                } else {
+                    slotCard.onclick = () => selectSlot(slot, slotCard);
+                }
+                
+                slotsGrid.appendChild(slotCard);
+            });
+        }
+
+        function getBookedSlots(date) {
+            return allOrders
+                .filter(order => order.date === date && order.status !== 'cancelled')
+                .map(order => order.timeSlot);
+        }
+
+        function selectSlot(slot, slotElement) {
+            selectedSlot = slot;
+            
+            // Update UI
+            document.querySelectorAll('.slot-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            slotElement.classList.add('selected');
+            
+            // Check if user is logged in
+            if (!currentUser || currentUser.role === 'admin') {
+                // Show login required notice
+                document.getElementById('login-required-notice').style.display = 'block';
+                document.getElementById('confirm-booking').style.display = 'none';
+            } else {
+                // User is logged in, show confirm button
+                document.getElementById('login-required-notice').style.display = 'none';
+                document.getElementById('confirm-booking').style.display = 'inline-block';
+                setTimeout(() => {
+                    document.getElementById('confirm-booking').style.animation = 'fadeInUp 0.5s ease';
+                }, 100);
+            }
+        }
+
+        function confirmBooking() {
+            if (!currentUser || currentUser.role === 'admin') {
+                showNotification('Please login as user to book mystical experience', 'error');
+                showOtpModal();
+                return;
+            }
+
+            const totalPrice = basePrice * quantityMultiplier;
+            
+            const newOrder = {
+                id: 'ORD' + String(allOrders.length + 1).padStart(3, '0'),
+                userId: currentUser.id,
+                customerName: currentUser.name,
+                customerPhone: currentUser.phone,
+                product: selectedProduct,
+                quantity: selectedQuantity,
+                date: selectedDate,
+                timeSlot: selectedSlot,
+                amount: totalPrice,
+                status: 'pending',
+                createdAt: new Date().toISOString()
+            };
+            
+            allOrders.push(newOrder);
+            localStorage.setItem('sufala_orders', JSON.stringify(allOrders));
+
+            // Update user booking count
+            const userIndex = allUsers.findIndex(u => u.id === currentUser.id);
+            if (userIndex !== -1) {
+                allUsers[userIndex].bookingCount = (allUsers[userIndex].bookingCount || 0) + 1;
+                localStorage.setItem('sufala_users', JSON.stringify(allUsers));
+                currentUser.bookingCount = allUsers[userIndex].bookingCount;
+            }
+            
+            showNotification(`Mystical booking confirmed! Sacred Order ID: ${newOrder.id}`, 'success');
+            
+            // Reset booking process
+            resetBooking();
+            
+            // Reload data
+            loadUserBookings();
+            loadAdminDashboard();
+        }
+
+        function resetBooking() {
+            selectedProduct = '';
+            selectedDate = '';
+            selectedQuantity = '';
+            selectedSlot = '';
+            basePrice = 0;
+            quantityMultiplier = 1;
+            currentStep = 1;
+            
+            document.getElementById('booking-section').classList.remove('active');
+            document.getElementById('confirm-booking').style.display = 'none';
+            document.getElementById('login-required-notice').style.display = 'none';
+            
+            // Clear selections
+            document.querySelectorAll('.selected').forEach(el => el.classList.remove('selected'));
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+        }
+
+        function updateQuantityPrices() {
+            document.getElementById('price-1').textContent = `₹${basePrice}`;
+            document.getElementById('price-3').textContent = `₹${basePrice * 3}`;
+            document.getElementById('price-5').textContent = `₹${basePrice * 5}`;
+        }
+
+        function getFebDays(year) {
+            return ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) ? 29 : 28;
+        }
+
+        // User Panel Functions
+        function showUserPanel() {
+            document.getElementById('user-panel').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            loadUserBookings();
+        }
+
+        function hideUserPanel() {
+            document.getElementById('user-panel').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function loadUserBookings() {
+            if (!currentUser || currentUser.role === 'admin') return;
+            
+            const userBookings = allOrders.filter(order => order.userId === currentUser.id);
+            const bookingsList = document.getElementById('user-bookings-list');
+            
+            bookingsList.innerHTML = '';
+            
+            if (userBookings.length === 0) {
+                bookingsList.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: var(--text-muted);">
+                        <i class="fas fa-calendar" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3; color: var(--mystical-pink);"></i>
+                        <h3 style="color: var(--text-light);">No mystical bookings yet</h3>
+                        <p>Start by booking your first sacred oil pressing experience!</p>
+                        <button class="cta-button" onclick="hideUserPanel(); scrollToProducts();" style="margin-top: 1rem;">
+                            <i class="fas fa-plus"></i> Make Sacred Booking
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            userBookings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(booking => {
+                const bookingCard = document.createElement('div');
+                bookingCard.className = 'booking-card';
+                bookingCard.innerHTML = `
+                    <div class="booking-header">
+                        <div class="booking-id">${booking.id}</div>
+                        <span class="status-badge status-${booking.status}">
+                            ${booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
+                        </span>
+                    </div>
+                    <div class="booking-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Mystical Product</div>
+                            <div class="detail-value">${booking.product}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Sacred Quantity</div>
+                            <div class="detail-value">${booking.quantity}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Pressing Date</div>
+                            <div class="detail-value">${booking.date}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Time Slot</div>
+                            <div class="detail-value">${booking.timeSlot}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Sacred Amount</div>
+                            <div class="detail-value" style="color: var(--mystical-pink); font-weight: bold; text-shadow: 0 0 10px rgba(236, 72, 153, 0.3);">₹${booking.amount}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Booked On</div>
+                            <div class="detail-value">${new Date(booking.createdAt).toLocaleDateString()}</div>
+                        </div>
+                    </div>
+                `;
+                bookingsList.appendChild(bookingCard);
+            });
+        }
+
+        // Admin Panel Functions
+        function showAdminPanel() {
+            document.getElementById('admin-panel').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            loadAdminDashboard();
+        }
+
+        function hideAdminPanel() {
+            document.getElementById('admin-panel').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function loadAdminDashboard() {
+            updateAdminStats();
+            loadAdminOrders();
+            loadUserManagement();
+            loadProductManagement();
+        }
+
+        function updateAdminStats() {
+            const totalOrders = allOrders.length;
+            const pendingOrders = allOrders.filter(o => o.status === 'pending').length;
+            const confirmedOrders = allOrders.filter(o => o.status === 'confirmed').length;
+            const completedOrders = allOrders.filter(o => o.status === 'completed').length;
+            const totalRevenue = allOrders.filter(o => o.status !== 'cancelled').reduce((sum, o) => sum + o.amount, 0);
+            const totalUsers = allUsers.length;
+
+            document.getElementById('admin-total-orders').textContent = totalOrders;
+            document.getElementById('admin-pending-orders').textContent = pendingOrders;
+            document.getElementById('admin-confirmed-orders').textContent = confirmedOrders;
+            document.getElementById('admin-completed-orders').textContent = completedOrders;
+            document.getElementById('admin-total-revenue').textContent = `₹${totalRevenue.toLocaleString()}`;
+            document.getElementById('admin-total-users').textContent = totalUsers;
+        }
+
+        // Product Management Functions
+        function loadProductManagement() {
+            const productManagementContent = document.getElementById('product-management-content');
+            
+            if (allProducts.length === 0) {
+                productManagementContent.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: var(--text-muted);">
+                        <i class="fas fa-boxes" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3; color: var(--mystical-pink);"></i>
+                        <h3 style="color: var(--text-light);">No mystical products yet</h3>
+                        <p>Add your first mystical product to get started</p>
+                        <button class="cta-button" onclick="showAddProductForm()" style="margin-top: 1rem;">
+                            <i class="fas fa-plus"></i> Add First Product
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            const productGrid = document.createElement('div');
+            productGrid.className = 'user-stats-grid';
+
+            allProducts.forEach(product => {
+                const productOrders = allOrders.filter(o => o.product === product.name);
+                const productRevenue = productOrders.reduce((sum, o) => sum + (o.status !== 'cancelled' ? o.amount : 0), 0);
+
+                const productCard = document.createElement('div');
+                productCard.className = 'admin-product-card';
+                productCard.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <div>
+                            <h4 style="margin: 0; color: var(--mystical-pink);">${product.name}</h4>
+                            <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">₹${product.price}/Liter</p>
+                        </div>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="admin-btn" onclick="editProduct(${product.id})" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="admin-btn secondary" onclick="deleteProduct(${product.id})" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center;">
+                        <div>
+                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--mystical-pink);">${productOrders.length}</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Total Orders</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--ethereal-lavender);">₹${productRevenue}</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Revenue</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.9rem; font-weight: bold; color: var(--text-light);">Active</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Status</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+                        ${product.description}
+                    </div>
+                `;
+                productGrid.appendChild(productCard);
+            });
+
+            productManagementContent.innerHTML = '';
+            productManagementContent.appendChild(productGrid);
+        }
+
+        function showAddProductForm() {
+            document.getElementById('add-product-form').style.display = 'block';
+            document.getElementById('product-name').focus();
+        }
+
+        function hideAddProductForm() {
+            document.getElementById('add-product-form').style.display = 'none';
+            // Clear form
+            document.getElementById('product-name').value = '';
+            document.getElementById('product-price').value = '';
+            document.getElementById('product-image').value = '';
+            document.getElementById('product-description').value = '';
+        }
+
+        function addNewProduct() {
+            const name = document.getElementById('product-name').value.trim();
+            const price = parseFloat(document.getElementById('product-price').value);
+            const image = document.getElementById('product-image').value.trim() || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzRDMUQ5NSIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+T2lsPC90ZXh0Pjwvc3ZnPg==';
+            const description = document.getElementById('product-description').value.trim();
+
+            if (!name || !price || price <= 0) {
+                showNotification('Please fill all required mystical fields correctly', 'error');
+                return;
+            }
+
+            const newProduct = {
+                id: Date.now(),
+                name: name,
+                price: price,
+                image: image,
+                description: description || 'A mystical oil with sacred properties'
+            };
+
+            allProducts.push(newProduct);
+            localStorage.setItem('sufala_products', JSON.stringify(allProducts));
+            
+            renderProducts();
+            loadProductManagement();
+            hideAddProductForm();
+            
+            showNotification(`Mystical product "${name}" added successfully!`, 'success');
+        }
+
+        function editProduct(productId) {
+            const product = allProducts.find(p => p.id === productId);
+            if (!product) return;
+
+            const newName = prompt('Edit product name:', product.name);
+            if (newName === null) return;
+            
+            const newPrice = prompt('Edit price (₹ per Liter):', product.price);
+            if (newPrice === null) return;
+            
+            const newDescription = prompt('Edit description:', product.description);
+            if (newDescription === null) return;
+
+            const parsedPrice = parseFloat(newPrice);
+            if (!newName.trim() || !parsedPrice || parsedPrice <= 0) {
+                showNotification('Invalid mystical product details', 'error');
+                return;
+            }
+
+            // Update product
+            const productIndex = allProducts.findIndex(p => p.id === productId);
+            if (productIndex !== -1) {
+                allProducts[productIndex] = {
+                    ...allProducts[productIndex],
+                    name: newName.trim(),
+                    price: parsedPrice,
+                    description: newDescription.trim()
+                };
+                
+                localStorage.setItem('sufala_products', JSON.stringify(allProducts));
+                renderProducts();
+                loadProductManagement();
+                showNotification('Mystical product updated successfully!', 'success');
+            }
+        }
+
+        function deleteProduct(productId) {
+            const product = allProducts.find(p => p.id === productId);
+            if (!product) return;
+
+            if (confirm(`Are you sure you want to delete "${product.name}" from the mystical realm?`)) {
+                // Check if product has any orders
+                const productOrders = allOrders.filter(o => o.product === product.name);
+                if (productOrders.length > 0) {
+                    if (!confirm(`This product has ${productOrders.length} orders. Deleting it will affect order history. Continue?`)) {
+                        return;
+                    }
+                }
+
+                allProducts = allProducts.filter(p => p.id !== productId);
+                localStorage.setItem('sufala_products', JSON.stringify(allProducts));
+                
+                renderProducts();
+                loadProductManagement();
+                showNotification(`Mystical product "${product.name}" removed from realm!`, 'success');
+            }
+        }
+
+        function loadUserManagement() {
+            const userManagementContent = document.getElementById('user-management-content');
+            
+            if (allUsers.length === 0) {
+                userManagementContent.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: var(--text-muted);">
+                        <i class="fas fa-users" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3; color: var(--mystical-pink);"></i>
+                        <h3 style="color: var(--text-light);">No mystical users yet</h3>
+                        <p>Users will appear here after they register via sacred OTP</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const userStatsGrid = document.createElement('div');
+            userStatsGrid.className = 'user-stats-grid';
+
+            allUsers.forEach(user => {
+                const userOrders = allOrders.filter(o => o.userId === user.id);
+                const userRevenue = userOrders.reduce((sum, o) => sum + (o.status !== 'cancelled' ? o.amount : 0), 0);
+                const lastBooking = userOrders.length > 0 ? 
+                    new Date(Math.max(...userOrders.map(o => new Date(o.createdAt)))).toLocaleDateString() : 'Never';
+
+                const userCard = document.createElement('div');
+                userCard.className = 'user-stat-card';
+                userCard.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <div>
+                            <h4 style="margin: 0; color: var(--mystical-pink);">${user.name}</h4>
+                            <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">${user.phone}</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="background: var(--primary-gradient); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">
+                                ${user.role}
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center;">
+                        <div>
+                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--mystical-pink);">${userOrders.length}</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Sacred Bookings</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--ethereal-lavender);">₹${userRevenue}</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Total Revenue</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.9rem; font-weight: bold; color: var(--text-light);">${lastBooking}</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Last Booking</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted);">
+                        Joined Mystical Realm: ${new Date(user.createdAt).toLocaleDateString()}
+                    </div>
+                `;
+                userStatsGrid.appendChild(userCard);
+            });
+
+            userManagementContent.innerHTML = '';
+            userManagementContent.appendChild(userStatsGrid);
+        }
+
+        function exportUserData() {
+            const userData = allUsers.map(user => {
+                const userOrders = allOrders.filter(o => o.userId === user.id);
+                const userRevenue = userOrders.reduce((sum, o) => sum + (o.status !== 'cancelled' ? o.amount : 0), 0);
+                
+                return {
+                    name: user.name,
+                    phone: user.phone,
+                    totalBookings: userOrders.length,
+                    totalRevenue: userRevenue,
+                    joinedDate: new Date(user.createdAt).toLocaleDateString(),
+                    lastBooking: userOrders.length > 0 ? 
+                        new Date(Math.max(...userOrders.map(o => new Date(o.createdAt)))).toLocaleDateString() : 'Never'
+                };
+            });
+
+            const csvContent = "data:text/csv;charset=utf-8," + 
+                "Name,Phone,Total Bookings,Total Revenue,Joined Date,Last Booking\n" +
+                userData.map(u => `${u.name},${u.phone},${u.totalBookings},${u.totalRevenue},${u.joinedDate},${u.lastBooking}`).join("\n");
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `sufala_mystical_users_${new Date().toISOString().split('T')[0]}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            showNotification('Mystical user data exported successfully!', 'success');
+        }
+
+        function loadAdminOrders(filteredOrders = null) {
+            const ordersList = document.getElementById('admin-orders-list');
+            const ordersToShow = filteredOrders || allOrders;
+            
+            ordersList.innerHTML = '';
+
+            if (ordersToShow.length === 0) {
+                ordersList.innerHTML = `
+                    <tr>
+                        <td colspan="7" style="text-align: center; padding: 3rem; color: var(--text-muted);">
+                            <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3; color: var(--mystical-pink);"></i>
+                            <h3 style="color: var(--text-light);">No mystical orders found</h3>
+                            <p>No orders match the current mystical filter</p>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            ordersToShow.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(order => {
+                const user = allUsers.find(u => u.id === order.userId);
+                const userInfo = user ? {
+                    name: user.name,
+                    phone: user.phone,
+                    bookingCount: allOrders.filter(o => o.userId === user.id).length
+                } : {
+                    name: order.customerName || 'Unknown',
+                    phone: order.customerPhone || 'N/A',
+                    bookingCount: 1
+                };
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><strong style="color: var(--mystical-pink);">${order.id}</strong></td>
+                    <td>
+                        <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+                            <div style="font-weight: 600; color: var(--text-light);">${userInfo.name}</div>
+                            <div style="font-size: 0.85rem; color: var(--text-muted);">${userInfo.phone}</div>
+                            <div style="font-size: 0.75rem; color: var(--ethereal-lavender); font-weight: 500;">
+                                ${userInfo.bookingCount} mystical booking${userInfo.bookingCount > 1 ? 's' : ''}
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+                            <div style="font-weight: 600; color: var(--mystical-pink);">${order.product}</div>
+                            <div style="color: var(--text-muted); font-size: 0.85rem;">${order.quantity}</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="margin-bottom: 0.3rem;"><strong style="color: var(--text-light);">${order.date}</strong></div>
+                        <div style="color: var(--text-muted); font-size: 0.85rem;">${order.timeSlot}</div>
+                    </td>
+                    <td><div style="font-weight: bold; color: var(--ethereal-lavender); font-size: 1.1rem; text-shadow: 0 0 10px rgba(196, 181, 253, 0.3);">₹${order.amount}</div></td>
+                    <td>
+                        <span class="status-badge status-${order.status}">
+                            ${order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+                        </span>
+                    </td>
+                    <td>${getOrderActions(order)}</td>
+                `;
+                ordersList.appendChild(row);
+            });
+        }
+
+        function getOrderActions(order) {
+            let actions = '';
+            
+            if (order.status === 'pending') {
+                actions += `<button class="action-btn btn-confirm" onclick="updateOrderStatus('${order.id}', 'confirmed')">
+                    <i class="fas fa-check"></i> Confirm
+                </button>`;
+                actions += `<button class="action-btn btn-cancel" onclick="updateOrderStatus('${order.id}', 'cancelled')">
+                    <i class="fas fa-times"></i> Cancel
+                </button>`;
+            }
+            
+            if (order.status === 'confirmed') {
+                actions += `<button class="action-btn btn-complete" onclick="updateOrderStatus('${order.id}', 'completed')">
+                    <i class="fas fa-check-double"></i> Complete
+                </button>`;
+            }
+            
+            if (order.status !== 'completed') {
+                actions += `<button class="action-btn btn-delete" onclick="deleteOrder('${order.id}')">
+                    <i class="fas fa-trash"></i> Delete
+                </button>`;
+            }
+            
+            return actions || '<span style="color: var(--text-muted);">No actions</span>';
+        }
+
+        function updateOrderStatus(orderId, newStatus) {
+            const orderIndex = allOrders.findIndex(o => o.id === orderId);
+            if (orderIndex !== -1) {
+                allOrders[orderIndex].status = newStatus;
+                allOrders[orderIndex].updatedAt = new Date().toISOString();
+                localStorage.setItem('sufala_orders', JSON.stringify(allOrders));
+                
+                loadAdminDashboard();
+                loadUserBookings();
+                
+                showNotification(`Mystical order ${orderId} ${newStatus} successfully!`, 'success');
+            }
+        }
+
+        function deleteOrder(orderId) {
+            if (confirm(`Are you sure you want to remove mystical order ${orderId} from the sacred realm?`)) {
+                allOrders = allOrders.filter(o => o.id !== orderId);
+                localStorage.setItem('sufala_orders', JSON.stringify(allOrders));
+                
+                loadAdminDashboard();
+                loadUserBookings();
+                
+                showNotification(`Mystical order ${orderId} removed from sacred realm!`, 'success');
+            }
+        }
+
+        function filterAdminOrders(filterType) {
+            let filteredOrders = allOrders;
+
+            switch(filterType) {
+                case 'today':
+                    const today = new Date().toLocaleDateString('en-GB', {
+                        day: '2-digit',
+                        month: 'long', 
+                        year: 'numeric'
+                    });
+                    filteredOrders = allOrders.filter(o => o.date === today);
+                    break;
+                case 'all':
+                default:
+                    filteredOrders = allOrders;
+            }
+
+            loadAdminOrders(filteredOrders);
+        }
+
+        function refreshDashboard() {
+            loadAdminDashboard();
+            showNotification('Mystical dashboard refreshed!', 'success');
+        }
+
+        // Utility Functions
+        function scrollToProducts() {
+            document.getElementById('products').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                ${message}
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 4000);
+        }
+
+        // Close modals when clicking outside
+        document.getElementById('otp-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeOtpModal();
+            }
+        });
+
+        document.getElementById('admin-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAdminModal();
+            }
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.user-menu')) {
+                document.querySelectorAll('.user-menu').forEach(menu => {
+                    menu.classList.remove('active');
+                });
+            }
+            
+            if (!e.target.closest('.nav-container')) {
+                document.querySelector('.nav-links').classList.remove('active');
+                document.querySelector('.menu-toggle').classList.remove('active');
+            }
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeOtpModal();
+                closeAdminModal();
+                hideUserPanel();
+                hideAdminPanel();
+                hideAddProductForm();
+                
+                document.querySelector('.nav-links').classList.remove('active');
+                document.querySelector('.menu-toggle').classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    document.querySelector('.nav-links').classList.remove('active');
+                    document.querySelector('.menu-toggle').classList.remove('active');
+                }
+            });
+        });
+
+        // Auto-save data periodically
+        setInterval(() => {
+            if (allOrders.length > 0) {
+                localStorage.setItem('sufala_orders', JSON.stringify(allOrders));
+            }
+            if (allUsers.length > 0) {
+                localStorage.setItem('sufala_users', JSON.stringify(allUsers));
+            }
+            if (allProducts.length > 0) {
+                localStorage.setItem('sufala_products', JSON.stringify(allProducts));
+            }
+        }, 30000);
+
+        // Add some sample data for demo if none exists
+        if (allOrders.length === 0 && allUsers.length === 0) {
+            const sampleUsers = [
+                {
+                    id: 1001,
+                    name: 'Ravi Kumar',
+                    phone: '9876543210',
+                    role: 'user',
+                    createdAt: '2025-01-20T10:30:00.000Z',
+                    bookingCount: 3
+                },
+                {
+                    id: 1002,
+                    name: 'Priya Singh',
+                    phone: '9876543211',
+                    role: 'user',
+                    createdAt: '2025-01-22T14:15:00.000Z',
+                    bookingCount: 1
+                }
+            ];
+
+            const sampleOrders = [
+                {
+                    id: 'ORD001',
+                    userId: 1001,
+                    customerName: 'Ravi Kumar',
+                    customerPhone: '9876543210',
+                    product: 'Mystical Sesame Oil',
+                    quantity: '3 Liters',
+                    date: '28-January-2025',
+                    timeSlot: '10:00 - 10:30 AM',
+                    amount: 360,
+                    status: 'confirmed',
+                    createdAt: '2025-01-26T10:30:00.000Z'
+                },
+                {
+                    id: 'ORD002',
+                    userId: 1002,
+                    customerName: 'Priya Singh',
+                    customerPhone: '9876543211',
+                    product: 'Sacred Groundnut Oil',
+                    quantity: '1 Liter',
+                    date: '29-January-2025',
+                    timeSlot: '2:00 - 2:30 PM',
+                    amount: 95,
+                    status: 'pending',
+                    createdAt: '2025-01-26T11:15:00.000Z'
+                },
+                {
+                    id: 'ORD003',
+                    userId: 1001,
+                    customerName: 'Ravi Kumar',
+                    customerPhone: '9876543210',
+                    product: 'Mystical Sesame Oil',
+                    quantity: '5 Liters',
+                    date: '30-January-2025',
+                    timeSlot: '4:00 - 4:30 PM',
+                    amount: 600,
+                    status: 'completed',
+                    createdAt: '2025-01-25T14:20:00.000Z'
+                }
+            ];
+            
+            allUsers = sampleUsers;
+            allOrders = sampleOrders;
+            localStorage.setItem('sufala_users', JSON.stringify(allUsers));
+            localStorage.setItem('sufala_orders', JSON.stringify(allOrders));
+        }
+
+        // Console helpers for development
+        window.sufalaSystem = {
+            getCurrentUser: () => currentUser,
+            getAllOrders: () => allOrders,
+            getAllUsers: () => allUsers,
+            getAllProducts: () => allProducts,
+            loginAsAdmin: () => {
+                currentUser = {
+                    id: 'admin',
+                    name: 'Mystical Admin',
+                    email: 'admin@sufala.com',
+                    role: 'admin'
+                };
+                localStorage.setItem('sufala_current_user', JSON.stringify(currentUser));
+                updateNavigation();
+                showAdminPanel();
+                showNotification('Logged in as mystical admin', 'success');
+            },
+            clearAllData: () => {
+                if (confirm('Are you sure you want to clear all mystical data? This cannot be undone.')) {
+                    localStorage.removeItem('sufala_orders');
+                    localStorage.removeItem('sufala_users');
+                    localStorage.removeItem('sufala_products');
+                    localStorage.removeItem('sufala_current_user');
+                    location.reload();
+                }
+            },
+            resetToDemo: () => {
+                localStorage.removeItem('sufala_orders');
+                localStorage.removeItem('sufala_users');
+                localStorage.removeItem('sufala_products');
+                localStorage.removeItem('sufala_current_user');
+                location.reload();
+            }
+        };
+
+        console.log('🌟 Sufala Mystical Booking System Loaded');
+        console.log('✨ Features: Luxury mystical UI with enhanced UX');
+        console.log('👤 User Experience: Browse freely → Login only at time slot selection');
+        console.log('📦 Products: 2 per row layout with admin management');
+        console.log('👨‍💼 Admin Features: Add/Edit/Delete products + price management');
+        console.log('📱 User Login: OTP-based via phone number');
+        console.log('🔑 Admin Login: admin@sufala.com / admin123');
+        console.log('🛠️ Developer Commands:');
+        console.log('   sufalaSystem.getCurrentUser() - Get current user');
+        console.log('   sufalaSystem.loginAsAdmin() - Quick admin login');
+        console.log('   sufalaSystem.getAllProducts() - View all products');
+        console.log('   sufalaSystem.clearAllData() - Clear all stored data');
+        console.log('   sufalaSystem.resetToDemo() - Reset to demo state');
+        console.log('🎨 Design: Luxury mystical color palette for maximum conversion');
+    </script>
+</body>
+</html>
