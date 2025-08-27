@@ -1,0 +1,2509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sufala - Sesame Oil Extraction</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #7fb069;
+            --accent-gold: #D4AF37;
+            --warm-cream: #F5F2E8;
+            --deep-brown: #3E2723;
+            --soft-green: #A8CC8C;
+            --text-dark: #2C3E50;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --gradient: linear-gradient(135deg, #7fb069 0%, #A8CC8C 100%);
+            --glow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            transform: scale(1.4);
+            transform-origin: left center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .nav-auth {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .user-menu {
+            position: relative;
+        }
+
+        .user-menu-btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .user-menu-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--glow);
+        }
+
+        .user-menu-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            min-width: 200px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+        }
+
+        .user-menu.active .user-menu-dropdown {
+            display: block;
+        }
+
+        .user-menu-item {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .user-menu-item:hover {
+            background: var(--warm-cream);
+            transform: translateX(5px);
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            background: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .product-section {
+            background: none;
+            border-radius: 0;
+            padding: 0;
+            box-shadow: none;
+            margin-top: 2rem;
+        }
+
+        .product-info {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .product-info h3 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .book-btn {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .book-btn:hover {
+            background: #6a9c54;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .hero-image {
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 6rem 2rem;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Booking Section */
+        .booking-section {
+            display: none;
+            padding: 6rem 2rem;
+            background: var(--warm-cream);
+            position: relative;
+        }
+
+        .booking-section.active {
+            display: block;
+        }
+
+        .booking-steps {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            margin: 0 1rem;
+            position: relative;
+        }
+
+        .step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -2rem;
+            width: 2rem;
+            height: 2px;
+            background: #ddd;
+            transform: translateY(-50%);
+        }
+
+        .step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .step.active .step-number {
+            background: var(--accent-gold);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .step.completed .step-number {
+            background: var(--primary-green);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .step.completed::after {
+            background: var(--primary-green);
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 2px;
+            transition: width 0.5s ease;
+            width: 33.33%;
+        }
+
+        /* Calendar Styles */
+        .calendar-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .calendar {
+            background: transparent;
+            width: 100%;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--gradient);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .month-picker {
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .month-change {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .month-change:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .year-picker {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .year-select {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .year-select option {
+            background: var(--primary-green);
+            color: white;
+            padding: 0.5rem;
+        }
+
+        .calendar-week-day {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .calendar-week-day div {
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+            color: var(--accent-gold);
+            background: var(--warm-cream);
+            border-radius: 10px;
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+        }
+
+        .calendar-days div {
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-weight: 500;
+        }
+
+        .calendar-days div:hover {
+            background: var(--primary-green);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .calendar-days div.selected {
+            background: var(--gradient);
+            color: white;
+            border-color: var(--accent-gold);
+        }
+
+        .calendar-days div.curr-date {
+            border-color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        /* Quantity Section */
+        .quantity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quantity-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 3px solid transparent;
+            font-weight: 500;
+            box-shadow: var(--shadow);
+        }
+
+        .quantity-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: var(--accent-gold);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .quantity-card .quantity-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-green);
+            transition: all 0.3s ease;
+        }
+
+        .quantity-card:hover .quantity-icon {
+            color: var(--accent-gold);
+            transform: scale(1.1);
+        }
+
+        .quantity-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .quantity-card .price {
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .quantity-card .description {
+            color: #666;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .quantity-card.selected {
+            background: var(--gradient);
+            color: white;
+            border-color: var(--accent-gold);
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .quantity-card.selected .quantity-icon,
+        .quantity-card.selected h3,
+        .quantity-card.selected .price {
+            color: white;
+        }
+
+        /* Slots Section */
+        .slots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .slot-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-weight: 500;
+            box-shadow: var(--shadow);
+        }
+
+        .slot-card:hover {
+            background: var(--primary-green);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .slot-card.selected {
+            background: var(--gradient);
+            color: white;
+            border-color: var(--accent-gold);
+            transform: scale(1.05);
+        }
+
+        .slot-card.booked {
+            background: #f5f5f5;
+            color: #999;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .slot-card.booked:hover {
+            transform: none;
+            background: #f5f5f5;
+            color: #999;
+        }
+
+        /* Login Required Notice */
+        .login-required {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--accent-gold);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .login-required h3 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .login-required p {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: var(--shadow);
+            margin: 0 0.5rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 3rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: #ffd700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .testimonial-card {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-style: italic;
+            position: relative;
+        }
+
+        .testimonial-text::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary-green);
+            position: absolute;
+            left: -30px;
+            top: -20px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-green);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* OTP Modal Styles */
+        .otp-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .otp-modal.active {
+            display: flex;
+        }
+
+        .otp-modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .otp-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        .otp-modal h2 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .otp-btn {
+            width: 100%;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .otp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .otp-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .otp-wrap {
+            display: none;
+        }
+
+        .otp-wrap.active {
+            display: block;
+        }
+
+        .otp-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .hint {
+            font-size: 12px;
+            color: #93a6c7;
+            margin-top: 6px;
+            text-align: center;
+        }
+
+        .msg {
+            margin-top: 10px;
+            font-size: 13px;
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+
+        .ok {
+            color: #45d483;
+            background: rgba(69, 212, 131, 0.1);
+            border: 1px solid #45d483;
+        }
+
+        .err {
+            color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid #ff6b6b;
+        }
+
+        /* User Panel Styles */
+        .user-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--warm-cream);
+            z-index: 9999;
+            overflow-y: auto;
+        }
+
+        .user-panel.active {
+            display: block;
+        }
+
+        .user-header {
+            background: var(--primary-green);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+        }
+
+        .user-header h1 {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .user-btn {
+            background: var(--accent-gold);
+            color: var(--deep-brown);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .user-btn:hover {
+            background: #FFD700;
+            transform: translateY(-2px);
+        }
+
+        .user-btn.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .user-btn.secondary:hover {
+            background: white;
+            color: var(--primary-green);
+        }
+
+        .user-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .user-bookings {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .user-bookings h2 {
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .booking-card {
+            background: var(--warm-cream);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-gold);
+            transition: all 0.3s ease;
+        }
+
+        .booking-card:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow);
+        }
+
+        .booking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .booking-id {
+            font-weight: bold;
+            color: var(--primary-green);
+            font-size: 1.1rem;
+        }
+
+        .booking-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-label {
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            opacity: 0.7;
+            margin-bottom: 0.2rem;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .status-badge {
+            padding: 0.4rem 1rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-confirmed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-completed {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .status-cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Booking Actions */
+        .booking-actions {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cancel-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        .cancel-btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .details-btn {
+            background: var(--accent-gold);
+            color: var(--deep-brown);
+        }
+
+        .details-btn:hover {
+            background: #FFD700;
+            transform: translateY(-2px);
+        }
+
+        /* Cancel Modal */
+        .cancel-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10001;
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cancel-modal.active {
+            display: flex;
+        }
+
+        .cancel-modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .cancel-modal h3 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .cancel-modal p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .cancel-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .confirm-cancel-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .confirm-cancel-btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .keep-booking-btn {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .keep-booking-btn:hover {
+            background: #6a9c54;
+            transform: translateY(-2px);
+        }
+
+        /* Notification styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            max-width: 350px;
+        }
+
+        .notification.success {
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid #28a745;
+        }
+
+        .notification.error {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid #dc3545;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+                padding: 0 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .booking-steps {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .step::after {
+                display: none;
+            }
+
+            .quantity-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .slots-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .calendar-container {
+                padding: 1.5rem;
+                margin: 0 1rem;
+                border-radius: 15px;
+                max-width: calc(100vw - 2rem);
+                overflow-x: hidden;
+            }
+
+            .calendar-header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .calendar-week-day div {
+                padding: 0.5rem 0.2rem;
+                font-size: 0.8rem;
+            }
+
+            .calendar-days div {
+                padding: 0.8rem 0.2rem;
+                font-size: 0.9rem;
+                min-height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .otp-modal-content {
+                padding: 2rem;
+                margin: 1rem;
+            }
+
+            .booking-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="Logo.png" alt="Sufala">
+            </div>
+            
+            <div class="menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#sessions">Live Sessions</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <!-- User State - Only shows when logged in -->
+            <div id="user-nav" class="nav-auth" style="display: none;">
+                <div class="user-menu">
+                    <button class="user-menu-btn" onclick="toggleUserMenu()">
+                        <i class="fas fa-user"></i>
+                        <span id="user-name">User</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-menu-dropdown">
+                        <div class="user-menu-item" onclick="showUserPanel()">
+                            <i class="fas fa-calendar"></i> My Bookings
+                        </div>
+                        <div class="user-menu-item" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Book Live Sessions<br>on Edible Oil<br>Extraction</h1>
+                <p class="hero-subtitle">Less line process from industry experts</p>
+                
+                <!-- Sesame Oil Product Section -->
+                <div class="product-section">
+                    <div class="product-info">
+                        <h3>Fresh Sesame Oil</h3>
+                        <div class="product-price">₹120/Liter</div>
+                        <p class="product-description">
+                            Experience pure, cold-pressed sesame oil extracted using traditional methods. 
+                            Rich in antioxidants and vitamins, perfect for cooking and therapeutic use.
+                        </p>
+                        <button class="book-btn" onclick="selectProduct('Sesame Oil', 120)">
+                            <i class="fas fa-calendar-alt"></i> Book Live Session
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-image">
+                <img src="oilbottle.jpg" alt="Sesame Oil Bottle">
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Booking Section -->
+    <section class="booking-section" id="booking-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 id="booking-title">Select Your Pressing Date</h2>
+                <p id="booking-description">Choose when you'd like your oil to be freshly pressed</p>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+
+            <!-- Booking Steps -->
+            <div class="booking-steps">
+                <div class="step active" id="step-1">
+                    <div class="step-number">1</div>
+                    <span>Select Date</span>
+                </div>
+                <div class="step" id="step-2">
+                    <div class="step-number">2</div>
+                    <span>Choose Quantity</span>
+                </div>
+                <div class="step" id="step-3">
+                    <div class="step-number">3</div>
+                    <span>Pick Time Slot</span>
+                </div>
+            </div>
+
+            <!-- Calendar Section -->
+            <div id="calendar-step" class="booking-step">
+                <div class="calendar-container">
+                    <div class="calendar">
+                        <div class="calendar-header">
+                            <div class="month-picker">
+                                <span class="month-change" id="prev-month">
+                                    <i class="fas fa-chevron-left"></i>
+                                </span>
+                                <span id="month-display">January</span>
+                                <span class="month-change" id="next-month">
+                                    <i class="fas fa-chevron-right"></i>
+                                </span>
+                            </div>
+                            <div class="year-picker">
+                                <select class="year-select" id="year-select"></select>
+                            </div>
+                        </div>
+                        <div class="calendar-week-day">
+                            <div>Sun</div>
+                            <div>Mon</div>
+                            <div>Tue</div>
+                            <div>Wed</div>
+                            <div>Thu</div>
+                            <div>Fri</div>
+                            <div>Sat</div>
+                        </div>
+                        <div class="calendar-days" id="calendar-days"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quantity Section -->
+            <div id="quantity-step" class="booking-step" style="display: none;">
+                <div class="quantity-grid">
+                    <div class="quantity-card" onclick="selectQuantity('1 Liter', 1)">
+                        <div class="quantity-icon">
+                            <i class="fas fa-wine-bottle"></i>
+                        </div>
+                        <h3>1 Liter</h3>
+                        <div class="price" id="price-1">₹120</div>
+                        <div class="description">Perfect for trying our oil</div>
+                    </div>
+
+                    <div class="quantity-card" onclick="selectQuantity('3 Liters', 3)">
+                        <div class="quantity-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3>3 Liters</h3>
+                        <div class="price" id="price-3">₹360</div>
+                        <div class="description">Ideal for families</div>
+                    </div>
+
+                    <div class="quantity-card" onclick="selectQuantity('5 Liters', 5)">
+                        <div class="quantity-icon">
+                            <i class="fas fa-fill-drip"></i>
+                        </div>
+                        <h3>5 Liters</h3>
+                        <div class="price" id="price-5">₹600</div>
+                        <div class="description">Best value for bulk use</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slots Section -->
+            <div id="slots-step" class="booking-step" style="display: none;">
+                <div class="slots-grid" id="slots-grid">
+                    <!-- Slots will be populated by JavaScript -->
+                </div>
+
+                <!-- Login Required Notice -->
+                <div id="login-required-notice" class="login-required" style="display: none;">
+                    <h3><i class="fas fa-lock"></i> Login Required</h3>
+                    <p>Please login with your phone number to complete your booking and secure your time slot.</p>
+                    <button class="cta-button" onclick="showOtpModal()">
+                        <i class="fas fa-phone"></i> Login with Phone
+                    </button>
+                    <button class="cta-button" onclick="resetBooking()" style="background: #6c757d;">
+                        <i class="fas fa-arrow-left"></i> Go Back
+                    </button>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <button class="cta-button" id="confirm-booking" onclick="confirmBooking()" style="display: none;">
+                        <i class="fas fa-check"></i> Confirm Booking
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="about">
+        <div class="section-container">
+            <h2 class="section-title">Benefits of Edible Oil Extraction</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-droplet"></i>
+                    </div>
+                    <h3>High-Quality Oils</h3>
+                    <p>Exceptionally pure and nutrient-rich oils extracted using traditional methods</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Natural Ingredients</h3>
+                    <p>Sourced from premium quality sesame seeds with no artificial additives</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-gear"></i>
+                    </div>
+                    <h3>Efficient Processes</h3>
+                    <p>State-of-the-art extraction methods ensuring maximum oil yield and purity</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="contact">
+        <div class="section-container">
+            <h2 class="section-title">Testimonials</h2>
+            
+            <div class="testimonial-card">
+                <p class="testimonial-text">Very informative and visit-preserved! Highly recommend!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <div class="footer-section">
+                    <h3>Sufala Naturals</h3>
+                    <p>Experience the purity of traditionally extracted cold-pressed sesame oil. Fresh, natural, and healthy.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#home">Home</a>
+                    <a href="#about">About Us</a>
+                    <a href="#services">Services</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Rajahmundry, Andhra Pradesh</p>
+                    <p><i class="fas fa-phone"></i> +91 91535 97999</p>
+                    <p><i class="fas fa-envelope"></i> info@sufala.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Sat: 8AM-8PM</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Sufala Naturals. All rights reserved. Made with ❤️ for healthy living.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- OTP Modal -->
+    <div id="otp-modal" class="otp-modal">
+        <div class="otp-modal-content">
+            <button class="otp-modal-close" onclick="closeOtpModal()">&times;</button>
+            
+            <h2>Login to Complete Booking</h2>
+            
+            <!-- Name Input for First Time Users -->
+            <div id="name-step" class="form-group" style="display: none;">
+                <label for="user-name-input">Enter Your Name</label>
+                <input type="text" id="user-name-input" placeholder="Your full name" required>
+                <div class="hint">This is your first time, please enter your name</div>
+                <button class="otp-btn" onclick="proceedWithName()">
+                    <i class="fas fa-arrow-right"></i> Continue
+                </button>
+                <div id="name-msg" class="msg"></div>
+            </div>
+
+            <!-- Phone Input -->
+            <div id="phone-step">
+                <div class="form-group">
+                    <label for="phone-input">Mobile Number (India)</label>
+                    <input type="tel" id="phone-input" placeholder="e.g. 9347xxxxxx" maxlength="10" required>
+                </div>
+
+                <button class="otp-btn" id="btnSend" onclick="sendOTP()">
+                    <i class="fas fa-paper-plane"></i> Send OTP
+                </button>
+                <div id="phone-msg" class="msg"></div>
+            </div>
+
+            <!-- OTP Input -->
+            <div id="otp-step" class="otp-wrap">
+                <div class="form-group">
+                    <label for="otp-input">Enter OTP</label>
+                    <div class="otp-row">
+                        <input type="text" id="otp-input" placeholder="6-digit code" maxlength="15" required>
+                        <button class="otp-btn" id="btnVerify" onclick="verifyOTP()" style="width: auto; padding: 0.8rem 1.2rem;">
+                            <i class="fas fa-check"></i> Verify
+                        </button>
+                    </div>
+                </div>
+                <div class="hint">Check your WhatsApp for the OTP.</div>
+                <div id="otp-msg" class="msg"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Panel -->
+    <div id="user-panel" class="user-panel">
+        <div class="user-header">
+            <h1><i class="fas fa-user"></i> My Dashboard</h1>
+            <div class="user-actions">
+                <button class="user-btn" onclick="hideUserPanel()">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+                <button class="user-btn secondary" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+        
+        <div class="user-content">
+            <div class="user-bookings">
+                <h2><i class="fas fa-calendar-alt"></i> My Bookings</h2>
+                <div id="user-bookings-list">
+                    <!-- User bookings will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cancel Booking Modal -->
+    <div id="cancel-modal" class="cancel-modal">
+        <div class="cancel-modal-content">
+            <h3>Cancel Booking</h3>
+            <p>Are you sure you want to cancel this booking? This action cannot be undone.</p>
+            <div class="cancel-actions">
+                <button class="confirm-cancel-btn" onclick="confirmCancelBooking()">
+                    <i class="fas fa-times"></i> Yes, Cancel
+                </button>
+                <button class="keep-booking-btn" onclick="closeCancelModal()">
+                    <i class="fas fa-check"></i> Keep Booking
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API Configuration
+        const API_BASE = 'https://anandnodered.kalpatech.co.in';
+
+        // Global variables
+        let currentUser = null;
+        let selectedProduct = '';
+        let selectedDate = '';
+        let selectedQuantity = '';
+        let selectedSlot = '';
+        let basePrice = 0;
+        let quantityMultiplier = 1;
+        let currentStep = 1;
+        let pendingUserData = null;
+        let bookingToCancel = null;
+
+        // Available time slots
+        const timeSlots = [
+            '8:00 - 8:30 AM', '8:30 - 9:00 AM', '9:00 - 9:30 AM', '9:30 - 10:00 AM',
+            '10:00 - 10:30 AM', '10:30 - 11:00 AM', '11:00 - 11:30 AM', '11:30 - 12:00 PM',
+            '12:00 - 12:30 PM', '12:30 - 1:00 PM', '3:00 - 3:30 PM', '3:30 - 4:00 PM',
+            '4:00 - 4:30 PM', '4:30 - 5:00 PM', '5:00 - 5:30 PM', '5:30 - 6:00 PM',
+            '6:00 - 6:30 PM', '6:30 - 7:00 PM', '7:00 - 7:30 PM', '7:30 - 8:00 PM'
+        ];
+
+        // Data storage
+        let allUsers = JSON.parse(localStorage.getItem('sufala_users')) || [];
+        let allOrders = JSON.parse(localStorage.getItem('sufala_orders')) || [];
+
+        // Calendar variables
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        const currDate = new Date();
+        const currMonth = { value: currDate.getMonth() };
+        const currYear = { value: currDate.getFullYear() };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCalendar();
+            populateYearDropdown();
+            checkLoginStatus();
+            loadUserBookings();
+        });
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        }
+
+        // Product Selection - No login required
+        function selectProduct(productName, price) {
+            selectedProduct = productName;
+            basePrice = price;
+            
+            // Update UI
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('selected');
+            }
+            
+            // Show booking section
+            showBookingSection();
+            updateQuantityPrices();
+            
+            // Scroll to booking section
+            document.getElementById('booking-section').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        function showBookingSection() {
+            document.getElementById('booking-section').classList.add('active');
+            currentStep = 1;
+            updateBookingSteps();
+        }
+
+        function updateBookingSteps() {
+            // Update step indicators
+            for (let i = 1; i <= 3; i++) {
+                const step = document.getElementById(`step-${i}`);
+                step.classList.remove('active', 'completed');
+                
+                if (i < currentStep) {
+                    step.classList.add('completed');
+                } else if (i === currentStep) {
+                    step.classList.add('active');
+                }
+            }
+
+            // Update progress bar
+            const progressFill = document.getElementById('progress-fill');
+            const progressWidth = (currentStep / 3) * 100;
+            progressFill.style.width = `${progressWidth}%`;
+            
+            // Show/hide step content
+            document.getElementById('calendar-step').style.display = currentStep === 1 ? 'block' : 'none';
+            document.getElementById('quantity-step').style.display = currentStep === 2 ? 'block' : 'none';
+            document.getElementById('slots-step').style.display = currentStep === 3 ? 'block' : 'none';
+            
+            // Update titles
+            const titles = {
+                1: 'Select Your Pressing Date',
+                2: 'Choose Your Quantity',
+                3: 'Pick Your Time Slot'
+            };
+            
+            const descriptions = {
+                1: 'Choose when you\'d like your oil to be freshly pressed',
+                2: 'Select the amount of oil you need',
+                3: 'Choose a convenient time for your oil pressing'
+            };
+            
+            document.getElementById('booking-title').textContent = titles[currentStep];
+            document.getElementById('booking-description').textContent = descriptions[currentStep];
+        }
+
+        // Calendar Functions
+        function initializeCalendar() {
+            generateCalendar(currMonth.value, currYear.value);
+            
+            document.querySelector("#prev-month").onclick = () => {
+                currMonth.value--;
+                if (currMonth.value < 0) {
+                    currMonth.value = 11;
+                    currYear.value--;
+                    updateYearSelect();
+                }
+                generateCalendar(currMonth.value, currYear.value);
+            };
+            
+            document.querySelector("#next-month").onclick = () => {
+                currMonth.value++;
+                if (currMonth.value > 11) {
+                    currMonth.value = 0;
+                    currYear.value++;
+                    updateYearSelect();
+                }
+                generateCalendar(currMonth.value, currYear.value);
+            };
+        }
+
+        function populateYearDropdown() {
+            const currentYear = new Date().getFullYear();
+            const yearSelect = document.getElementById('year-select');
+            
+            yearSelect.innerHTML = '';
+            
+            for (let year = currentYear; year <= currentYear + 2; year++) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                if (year === currentYear) {
+                    option.selected = true;
+                }
+                yearSelect.appendChild(option);
+            }
+            
+            yearSelect.addEventListener('change', function() {
+                currYear.value = parseInt(this.value);
+                generateCalendar(currMonth.value, currYear.value);
+            });
+        }
+
+        function updateYearSelect() {
+            const yearSelect = document.getElementById('year-select');
+            yearSelect.value = currYear.value;
+        }
+
+        function generateCalendar(month, year) {
+            const daysOfMonth = [31, getFebDays(year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            const calendarDays = document.getElementById('calendar-days');
+            calendarDays.innerHTML = "";
+            
+            const firstDay = new Date(year, month, 1);
+            document.getElementById('month-display').textContent = monthNames[month];
+            
+            for (let i = 0; i <= daysOfMonth[month] + firstDay.getDay() - 1; i++) {
+                const day = document.createElement("div");
+                
+                if (i >= firstDay.getDay()) {
+                    const dateNumber = i - firstDay.getDay() + 1;
+                    day.innerHTML = dateNumber;
+                    
+                    const currentDate = new Date(year, month, dateNumber);
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+                    
+                    if (currentDate < today) {
+                        day.style.opacity = '0.3';
+                        day.style.cursor = 'not-allowed';
+                    } else {
+                        if (dateNumber === currDate.getDate() && 
+                            month === currDate.getMonth() && 
+                            year === currDate.getFullYear()) {
+                            day.classList.add('curr-date');
+                        }
+                        
+                        day.onclick = () => {
+                            selectDate(`${dateNumber}-${monthNames[month]}-${year}`, day);
+                        };
+                    }
+                }
+                
+                calendarDays.appendChild(day);
+            }
+        }
+
+        function selectDate(date, dayElement) {
+            selectedDate = date;
+            
+            // Update UI
+            document.querySelectorAll('.calendar-days div').forEach(d => {
+                d.classList.remove('selected');
+            });
+            
+            dayElement.classList.add('selected');
+            
+            // Move to next step
+            setTimeout(() => {
+                currentStep = 2;
+                updateBookingSteps();
+            }, 500);
+        }
+
+        function selectQuantity(quantity, multiplier) {
+            selectedQuantity = quantity;
+            quantityMultiplier = multiplier;
+            
+            // Update UI
+            document.querySelectorAll('.quantity-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            event.currentTarget.classList.add('selected');
+            
+            // Move to next step
+            setTimeout(() => {
+                currentStep = 3;
+                updateBookingSteps();
+                loadTimeSlots();
+            }, 500);
+        }
+
+        function loadTimeSlots() {
+            const slotsGrid = document.getElementById('slots-grid');
+            slotsGrid.innerHTML = '';
+            
+            // Get booked slots for selected date
+            const bookedSlots = getBookedSlots(selectedDate);
+            
+            timeSlots.forEach(slot => {
+                const slotCard = document.createElement('div');
+                slotCard.className = 'slot-card';
+                slotCard.textContent = slot;
+                
+                if (bookedSlots.includes(slot)) {
+                    slotCard.classList.add('booked');
+                    slotCard.innerHTML += '<br><small style="font-size: 0.8rem; opacity: 0.7;">Booked</small>';
+                } else {
+                    slotCard.onclick = () => selectSlot(slot, slotCard);
+                }
+                
+                slotsGrid.appendChild(slotCard);
+            });
+        }
+
+        function getBookedSlots(date) {
+            return allOrders
+                .filter(order => order.date === date && order.status !== 'cancelled')
+                .map(order => order.timeSlot);
+        }
+
+        function selectSlot(slot, slotElement) {
+            selectedSlot = slot;
+            
+            // Update UI
+            document.querySelectorAll('.slot-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            slotElement.classList.add('selected');
+            
+            // Check if user is logged in
+            if (!currentUser) {
+                // Show login required notice
+                document.getElementById('login-required-notice').style.display = 'block';
+                document.getElementById('confirm-booking').style.display = 'none';
+            } else {
+                // User is logged in, show confirm button
+                document.getElementById('login-required-notice').style.display = 'none';
+                document.getElementById('confirm-booking').style.display = 'inline-block';
+            }
+        }
+
+        function confirmBooking() {
+            if (!currentUser) {
+                showNotification('Please login to complete booking', 'error');
+                showOtpModal();
+                return;
+            }
+
+            const totalPrice = basePrice * quantityMultiplier;
+            
+            const newOrder = {
+                id: 'ORD' + String(allOrders.length + 1).padStart(6, '0'),
+                userId: currentUser.id,
+                customerName: currentUser.name,
+                customerPhone: currentUser.phone,
+                product: selectedProduct,
+                quantity: selectedQuantity,
+                date: selectedDate,
+                timeSlot: selectedSlot,
+                amount: totalPrice,
+                status: 'pending',
+                createdAt: new Date().toISOString()
+            };
+            
+            allOrders.push(newOrder);
+            localStorage.setItem('sufala_orders', JSON.stringify(allOrders));
+
+            // Update user booking count
+            const userIndex = allUsers.findIndex(u => u.id === currentUser.id);
+            if (userIndex !== -1) {
+                allUsers[userIndex].bookingCount = (allUsers[userIndex].bookingCount || 0) + 1;
+                localStorage.setItem('sufala_users', JSON.stringify(allUsers));
+                currentUser.bookingCount = allUsers[userIndex].bookingCount;
+            }
+            
+            showNotification(`Booking confirmed! Order ID: ${newOrder.id}`, 'success');
+            
+            // Reset booking process
+            resetBooking();
+            
+            // Reload user bookings
+            loadUserBookings();
+        }
+
+        function resetBooking() {
+            selectedProduct = '';
+            selectedDate = '';
+            selectedQuantity = '';
+            selectedSlot = '';
+            basePrice = 0;
+            quantityMultiplier = 1;
+            currentStep = 1;
+            
+            document.getElementById('booking-section').classList.remove('active');
+            document.getElementById('confirm-booking').style.display = 'none';
+            document.getElementById('login-required-notice').style.display = 'none';
+            
+            // Clear selections
+            document.querySelectorAll('.selected').forEach(el => el.classList.remove('selected'));
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+        }
+
+        function updateQuantityPrices() {
+            document.getElementById('price-1').textContent = `₹${basePrice}`;
+            document.getElementById('price-3').textContent = `₹${basePrice * 3}`;
+            document.getElementById('price-5').textContent = `₹${basePrice * 5}`;
+        }
+
+        function getFebDays(year) {
+            return ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) ? 29 : 28;
+        }
+
+        // OTP Authentication Functions
+        function showOtpModal() {
+            document.getElementById('otp-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            resetOtpModal();
+        }
+
+        function closeOtpModal() {
+            document.getElementById('otp-modal').classList.remove('active');
+            document.body.style.overflow = '';
+            resetOtpModal();
+        }
+
+        function resetOtpModal() {
+            document.getElementById('phone-step').style.display = 'block';
+            document.getElementById('name-step').style.display = 'none';
+            document.getElementById('otp-step').classList.remove('active');
+            document.getElementById('phone-input').value = '';
+            document.getElementById('otp-input').value = '';
+            document.getElementById('user-name-input').value = '';
+            document.getElementById('phone-msg').textContent = '';
+            document.getElementById('otp-msg').textContent = '';
+            document.getElementById('name-msg').textContent = '';
+            pendingUserData = null;
+        }
+
+        async function sendOTP() {
+            const phoneInput = document.getElementById('phone-input');
+            const phoneMsg = document.getElementById('phone-msg');
+            const btnSend = document.getElementById('btnSend');
+            
+            const phone = (phoneInput.value || '').replace(/\D/g, '');
+            
+            phoneMsg.className = 'msg';
+            phoneMsg.textContent = '';
+
+            if (phone.length !== 10) {
+                phoneMsg.classList.add('err');
+                phoneMsg.textContent = 'Phone must be 10 digits.';
+                return;
+            }
+
+            btnSend.disabled = true;
+            btnSend.innerHTML = '<span class="loading"></span> Sending...';
+
+            try {
+                const response = await fetch(API_BASE + '/otpreq', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ phone: phone })
+                });
+
+                const data = await response.json().catch(() => ({}));
+
+                if (response.ok && (data.success || data.ok)) {
+                    phoneMsg.classList.add('ok');
+                    phoneMsg.textContent = 'OTP sent to WhatsApp.';
+                    
+                    // Check if this is a new user
+                    const existingUser = allUsers.find(u => u.phone === phone);
+                    if (!existingUser) {
+                        // New user - show name input
+                        document.getElementById('phone-step').style.display = 'none';
+                        document.getElementById('name-step').style.display = 'block';
+                        pendingUserData = { phone: phone };
+                    } else {
+                        // Existing user - show OTP input
+                        document.getElementById('otp-step').classList.add('active');
+                        pendingUserData = existingUser;
+                    }
+                } else {
+                    phoneMsg.classList.add('err');
+                    phoneMsg.textContent = (data && (data.error || data.message)) || 'Failed to send OTP.';
+                }
+            } catch(e) {
+                phoneMsg.classList.add('err');
+                phoneMsg.textContent = 'Network error. Try again.';
+            } finally {
+                btnSend.disabled = false;
+                btnSend.innerHTML = '<i class="fas fa-paper-plane"></i> Send OTP';
+            }
+        }
+
+        function proceedWithName() {
+            const nameInput = document.getElementById('user-name-input');
+            const nameMsg = document.getElementById('name-msg');
+            
+            const name = nameInput.value.trim();
+            
+            nameMsg.className = 'msg';
+            nameMsg.textContent = '';
+
+            if (!name) {
+                nameMsg.classList.add('err');
+                nameMsg.textContent = 'Please enter your name.';
+                return;
+            }
+
+            if (pendingUserData) {
+                pendingUserData.name = name;
+                pendingUserData.isNewUser = true;
+                
+                // Show OTP input
+                document.getElementById('name-step').style.display = 'none';
+                document.getElementById('otp-step').classList.add('active');
+                
+                nameMsg.classList.add('ok');
+                nameMsg.textContent = 'Name saved. Please verify OTP.';
+            }
+        }
+
+        async function verifyOTP() {
+            const otpInput = document.getElementById('otp-input');
+            const otpMsg = document.getElementById('otp-msg');
+            const btnVerify = document.getElementById('btnVerify');
+            
+            const code = (otpInput.value || '').trim();
+            
+            otpMsg.className = 'msg';
+            otpMsg.textContent = '';
+
+            if (!code || !pendingUserData) {
+                otpMsg.classList.add('err');
+                otpMsg.textContent = 'Enter valid OTP.';
+                return;
+            }
+
+            btnVerify.disabled = true;
+            btnVerify.innerHTML = '<span class="loading"></span> Verifying...';
+
+            try {
+                const response = await fetch(API_BASE + '/otpverify', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ 
+                        phone: pendingUserData.phone, 
+                        otp: code 
+                    })
+                });
+
+                const data = await response.json().catch(() => ({}));
+
+                if (response.ok && (data.success || data.ok)) {
+                    otpMsg.classList.add('ok');
+                    otpMsg.textContent = 'Verified! Logging in...';
+
+                    // Handle user creation/login
+                    if (pendingUserData.isNewUser) {
+                        // Create new user
+                        const newUser = {
+                            id: Date.now(),
+                            name: pendingUserData.name,
+                            phone: pendingUserData.phone,
+                            role: 'user',
+                            createdAt: new Date().toISOString(),
+                            bookingCount: 0
+                        };
+
+                        allUsers.push(newUser);
+                        localStorage.setItem('sufala_users', JSON.stringify(allUsers));
+                        currentUser = newUser;
+                        
+                        showNotification(`Welcome, ${newUser.name}! Account created successfully.`, 'success');
+                    } else {
+                        // Login existing user
+                        currentUser = pendingUserData;
+                        showNotification(`Welcome back, ${currentUser.name}!`, 'success');
+                    }
+
+                    localStorage.setItem('sufala_current_user', JSON.stringify(currentUser));
+                    updateNavigation();
+                    closeOtpModal();
+
+                    // Continue with booking process if they were in the middle of it
+                    if (selectedSlot) {
+                        document.getElementById('login-required-notice').style.display = 'none';
+                        document.getElementById('confirm-booking').style.display = 'inline-block';
+                    }
+
+                } else {
+                    otpMsg.classList.add('err');
+                    otpMsg.textContent = (data && data.error) || 'Invalid OTP';
+                }
+            } catch(e) {
+                otpMsg.classList.add('err');
+                otpMsg.textContent = 'Network error.';
+            } finally {
+                btnVerify.disabled = false;
+                btnVerify.innerHTML = '<i class="fas fa-check"></i> Verify';
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('sufala_current_user');
+            updateNavigation();
+            hideUserPanel();
+            showNotification('Logged out successfully', 'success');
+        }
+
+        function checkLoginStatus() {
+            const savedUser = localStorage.getItem('sufala_current_user');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                updateNavigation();
+            }
+        }
+
+        function updateNavigation() {
+            const userNav = document.getElementById('user-nav');
+            
+            if (!currentUser) {
+                userNav.style.display = 'none';
+            } else {
+                userNav.style.display = 'flex';
+                document.getElementById('user-name').textContent = currentUser.name;
+            }
+        }
+
+        function toggleUserMenu() {
+            const userMenu = event.currentTarget.parentElement;
+            userMenu.classList.toggle('active');
+        }
+
+        // User Panel Functions
+        function showUserPanel() {
+            document.getElementById('user-panel').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            loadUserBookings();
+        }
+
+        function hideUserPanel() {
+            document.getElementById('user-panel').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function loadUserBookings() {
+            if (!currentUser) return;
+            
+            const userBookings = allOrders.filter(order => order.userId === currentUser.id);
+            const bookingsList = document.getElementById('user-bookings-list');
+            
+            bookingsList.innerHTML = '';
+            
+            if (userBookings.length === 0) {
+                bookingsList.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: #666;">
+                        <i class="fas fa-calendar" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3;"></i>
+                        <h3>No bookings yet</h3>
+                        <p>Start by booking your first fresh oil pressing!</p>
+                        <button class="cta-button" onclick="hideUserPanel(); scrollToServices();" style="margin-top: 1rem;">
+                            <i class="fas fa-plus"></i> Make a Booking
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            userBookings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(booking => {
+                const bookingCard = document.createElement('div');
+                bookingCard.className = 'booking-card';
+                
+                const canCancel = booking.status === 'pending';
+                
+                bookingCard.innerHTML = `
+                    <div class="booking-header">
+                        <div class="booking-id">Order: ${booking.id}</div>
+                        <span class="status-badge status-${booking.status}">
+                            ${booking.status === 'pending' ? 'Order Placed' : booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
+                        </span>
+                    </div>
+                    <div class="booking-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Product</div>
+                            <div class="detail-value">${booking.product}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Total Item</div>
+                            <div class="detail-value">${booking.quantity}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Date</div>
+                            <div class="detail-value">${booking.date}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Time Slot</div>
+                            <div class="detail-value">${booking.timeSlot}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Total</div>
+                            <div class="detail-value" style="color: var(--accent-gold); font-weight: bold;">₹${booking.amount}.00</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Booked On</div>
+                            <div class="detail-value">${new Date(booking.createdAt).toLocaleDateString()}</div>
+                        </div>
+                    </div>
+                    <div class="booking-actions">
+                        ${canCancel ? `<button class="action-btn cancel-btn" onclick="showCancelModal('${booking.id}')">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>` : ''}
+                        <button class="action-btn details-btn" onclick="showBookingDetails('${booking.id}')">
+                            <i class="fas fa-eye"></i> Details
+                        </button>
+                    </div>
+                `;
+                bookingsList.appendChild(bookingCard);
+            });
+        }
+
+        function showCancelModal(orderId) {
+            bookingToCancel = orderId;
+            document.getElementById('cancel-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCancelModal() {
+            document.getElementById('cancel-modal').classList.remove('active');
+            document.body.style.overflow = '';
+            bookingToCancel = null;
+        }
+
+        function confirmCancelBooking() {
+            if (!bookingToCancel) return;
+
+            const orderIndex = allOrders.findIndex(order => order.id === bookingToCancel);
+            if (orderIndex !== -1) {
+                allOrders[orderIndex].status = 'cancelled';
+                localStorage.setItem('sufala_orders', JSON.stringify(allOrders));
+                
+                showNotification('Booking cancelled successfully', 'success');
+                loadUserBookings();
+                closeCancelModal();
+            }
+        }
+
+        function showBookingDetails(orderId) {
+            const booking = allOrders.find(order => order.id === orderId);
+            if (booking) {
+                alert(`
+Order Details:
+--------------
+Order ID: ${booking.id}
+Product: ${booking.product}
+Quantity: ${booking.quantity}
+Date: ${booking.date}
+Time: ${booking.timeSlot}
+Amount: ₹${booking.amount}
+Status: ${booking.status}
+Booked: ${new Date(booking.createdAt).toLocaleString()}
+                `);
+            }
+        }
+
+        function scrollToServices() {
+            document.getElementById('home').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Utility Functions
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                ${message}
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Close modals when clicking outside
+        document.getElementById('otp-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeOtpModal();
+            }
+        });
+
+        document.getElementById('cancel-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCancelModal();
+            }
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.user-menu')) {
+                document.querySelectorAll('.user-menu').forEach(menu => {
+                    menu.classList.remove('active');
+                });
+            }
+            
+            if (!e.target.closest('.nav-container')) {
+                document.querySelector('.nav-links').classList.remove('active');
+                document.querySelector('.menu-toggle').classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    document.querySelector('.nav-links').classList.remove('active');
+                    document.querySelector('.menu-toggle').classList.remove('active');
+                }
+            });
+        });
+
+        console.log('Sufala Integrated System Loaded - WhatsApp OTP + Cancel Booking Complete');
+        console.log('Features: Calendar + Quantity + Slots + WhatsApp OTP Login + User Dashboard + Cancel Bookings');
+    </script>
+</body>
+</html>
