@@ -161,63 +161,14 @@
 
         .hero-image {
             animation: slideInRight 0.8s ease-out 0.3s both;
+            text-align: center;
             position: relative;
         }
 
-        .hero-image::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            right: -20px;
-            bottom: -20px;
-            background: linear-gradient(45deg, var(--primary-green), var(--accent-gold), var(--primary-green));
-            background-size: 400% 400%;
-            border-radius: 25px;
-            z-index: -1;
-            animation: gradientShift 4s ease-in-out infinite;
-            opacity: 0.3;
-        }
-
-        .hero-image::after {
-            content: '';
-            position: absolute;
-            top: -15px;
-            left: -15px;
-            right: -15px;
-            bottom: -15px;
-            background: radial-gradient(circle, transparent 40%, var(--accent-gold) 70%);
-            border-radius: 20px;
-            z-index: -1;
-            animation: glow 2s ease-in-out infinite alternate;
-            opacity: 0.2;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        @keyframes glow {
-            0% {
-                opacity: 0.1;
-            }
-            100% {
-                opacity: 0.3;
-            }
-        }
-
         .hero-image img {
-            transition: none;
-        }
-
-        .hero-image img:hover {
-            transform: none;
-            box-shadow: none;
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
         }
 
         /* Staggered animation for product section elements */
@@ -505,12 +456,18 @@
         .hero-image {
             text-align: center;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
         }
 
         .hero-image img {
             max-width: 100%;
-            height: auto;
+            height: 80vh;
+            max-height: 600px;
             border-radius: 20px;
+            object-fit: contain;
         }
 
         /* Products Section */
@@ -1019,6 +976,32 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-bottom: 2rem;
+        }
+
+        .footer-location {
+            grid-column: 1 / -1;
+            margin-bottom: 2rem;
+        }
+
+        .footer-location h3 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         .footer-section h3 {
@@ -1976,6 +1959,17 @@
                 padding: 0 1rem;
             }
 
+            .footer-location h3 {
+                font-size: 1.1rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .map-container {
+                height: 200px;
+                border-radius: 12px;
+                margin-bottom: 1.5rem;
+            }
+
             .footer-info {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
@@ -2074,12 +2068,19 @@
             .hero-image {
                 width: 100%;
                 min-width: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
             }
 
             .hero-image img {
                 border-radius: 12px;
-                width: 100%;
-                object-fit: cover;
+                max-width: 85%;
+                width: auto;
+                height: 60vh;
+                max-height: 400px;
+                object-fit: contain;
             }
 
             .section-title {
@@ -2373,6 +2374,18 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
+            <div class="footer-location">
+                <h3>Find Us Here</h3>
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3815.317766615619!2d81.79112477515635!3d17.00807638381584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37a37c7820fcef%3A0x1395579b9e441821!2sSUFALA%20NATURALS%20%26%20COLD%20PRESSED%20OILS!5e0!3m2!1sen!2sin!4v1756287118677!5m2!1sen!2sin" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+            
             <div class="footer-info">
                 <div class="footer-section">
                     <h3>Sufala Naturals</h3>
