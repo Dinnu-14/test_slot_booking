@@ -1,0 +1,3821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sufala - Sesame Oil Extraction</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #7fb069;
+            --accent-gold: #D4AF37;
+            --warm-cream: #F5F2E8;
+            --deep-brown: #3E2723;
+            --soft-green: #A8CC8C;
+            --text-dark: #2C3E50;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --gradient: linear-gradient(135deg, #7fb069 0%, #A8CC8C 100%);
+            --glow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Hero Animations */
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200px 0;
+            }
+            100% {
+                background-position: calc(200px + 100%) 0;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(127, 176, 105, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 20px rgba(127, 176, 105, 0);
+            }
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1) rotate(2deg);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes patternMove {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        /* Apply animations to hero elements */
+        .hero-content {
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .hero-content h1 {
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-subtitle {
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .product-info h3 {
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .product-price {
+            animation: scaleIn 0.6s ease-out 0.8s both;
+            background: linear-gradient(
+                90deg,
+                var(--primary-green) 0%,
+                var(--accent-gold) 50%,
+                var(--primary-green) 100%
+            );
+            background-size: 200px 100%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: scaleIn 0.6s ease-out 0.8s both, shimmer 2s ease-in-out infinite;
+        }
+
+        .product-description {
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        .book-btn {
+            animation: fadeInUp 1s ease-out 1.2s both, pulse 2s infinite 2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .book-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: left 0.5s;
+        }
+
+        .book-btn:hover::before {
+            left: 100%;
+        }
+
+        .hero-image {
+            animation: slideInRight 0.8s ease-out 0.3s both;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+        }
+
+        /* Staggered animation for product section elements */
+        .product-section {
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        /* Enhanced button hover effects */
+        .book-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(127, 176, 105, 0.3);
+        }
+
+        .book-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* FIXED NAVIGATION - Consistent heights and proper separation */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            height: 80px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1.5rem;
+            height: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+            height: 100%;
+        }
+
+        .nav-links li {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 0 0.5rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .nav-auth {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            height: 100%;
+        }
+
+        .user-menu {
+            position: relative;
+        }
+
+        .user-menu-btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .user-menu-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--glow);
+        }
+
+        .user-menu-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            min-width: 200px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+        }
+
+        .user-menu.active .user-menu-dropdown {
+            display: block;
+        }
+
+        .user-menu-item {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .user-menu-item:hover {
+            background: var(--warm-cream);
+            transform: translateX(5px);
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        /* MAIN CONTAINER - Fixed padding to prevent overlap */
+        .main-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px; /* Exact navbar height */
+        }
+
+        /* HERO SECTION - Combined with Benefits and Featured Products in one slide */
+        .hero {
+            background: #f8f9fa;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem 0;
+            min-height: calc(100vh - 80px);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(127, 176, 105, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(168, 204, 140, 0.05) 0%, rgba(127, 176, 105, 0.05) 100%);
+            animation: backgroundShift 8s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 100px,
+                    rgba(127, 176, 105, 0.03) 100px,
+                    rgba(127, 176, 105, 0.03) 200px
+                );
+            animation: patternMove 20s linear infinite;
+            z-index: 0;
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        /* Main Hero Content - Top Section */
+        .main-hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 3rem;
+            line-height: 1.5;
+        }
+
+        .product-section {
+            background: none;
+            border-radius: 0;
+            padding: 0;
+            box-shadow: none;
+        }
+
+        .product-info {
+            margin-bottom: 2rem;
+        }
+
+        .product-info h3 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .book-btn {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            max-width: 300px;
+        }
+
+        .book-btn:hover {
+            background: #6a9c54;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .hero-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            border-radius: 20px;
+            object-fit: contain;
+            box-shadow: var(--shadow);
+        }
+
+        /* Benefits Section - Integrated into Hero - ALWAYS 3 COLUMNS */
+        .integrated-benefits {
+            margin-top: 2rem;
+        }
+
+        .integrated-benefits .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .integrated-benefits .section-header h2 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .integrated-benefits .section-header p {
+            font-size: 1rem;
+            color: var(--text-dark);
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* BENEFITS GRID - ALWAYS 3 COLUMNS FOR ALL DEVICES */
+        .integrated-benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .integrated-benefit-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .integrated-benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .integrated-benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .integrated-benefit-card h3 {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 0.8rem;
+        }
+
+        .integrated-benefit-card p {
+            color: #666;
+            line-height: 1.4;
+            font-size: 0.9rem;
+        }
+
+        /* Featured Products - Integrated into Hero */
+        .integrated-featured {
+            margin-top: 2rem;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            display: none; /* Hidden by default */
+        }
+
+        .integrated-featured.active {
+            display: block;
+        }
+
+        .integrated-featured .featured-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .integrated-featured .featured-header h2 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .integrated-featured .featured-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .integrated-featured .featured-header p {
+            font-size: 1rem;
+            color: #666;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .integrated-featured-slider {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .integrated-slides-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .integrated-slide {
+            display: none;
+            background: var(--warm-cream);
+            border-radius: 15px;
+            overflow: hidden;
+            min-height: 300px;
+        }
+
+        .integrated-slide.active {
+            display: block;
+        }
+
+        .integrated-slide-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 100%;
+            align-items: center;
+        }
+
+        .integrated-slide-info {
+            padding: 2rem;
+        }
+
+        .integrated-slide-info h3 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .integrated-slide-info p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .integrated-slide-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .integrated-slide-btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .integrated-slide-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(127, 176, 105, 0.3);
+        }
+
+        .integrated-slide-image {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .integrated-slide-image img {
+            max-width: 100%;
+            height: auto;
+            max-height: 200px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        /* Compact Navigation Arrows for Integrated */
+        .integrated-nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--primary-green);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .integrated-nav-arrow:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .integrated-nav-arrow.prev {
+            left: -17px;
+        }
+
+        .integrated-nav-arrow.next {
+            right: -17px;
+        }
+
+        /* Compact Slide Indicators */
+        .integrated-slide-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .integrated-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .integrated-indicator.active {
+            background: var(--primary-green);
+            transform: scale(1.2);
+        }
+
+        /* Booking Section */
+        .booking-section {
+            display: none;
+            padding: 4rem 2rem;
+            background: var(--warm-cream);
+            position: relative;
+        }
+
+        .booking-section.active {
+            display: block;
+        }
+
+        .booking-steps {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            margin: 0 1rem;
+            position: relative;
+        }
+
+        .step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -2rem;
+            width: 2rem;
+            height: 2px;
+            background: #ddd;
+            transform: translateY(-50%);
+        }
+
+        .step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .step.active .step-number {
+            background: var(--accent-gold);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .step.completed .step-number {
+            background: var(--primary-green);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .step.completed::after {
+            background: var(--primary-green);
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 2px;
+            transition: width 0.5s ease;
+            width: 33.33%;
+        }
+
+        /* Calendar Styles */
+        .calendar-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .calendar {
+            background: transparent;
+            width: 100%;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--gradient);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .month-picker {
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .month-change {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .month-change:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .year-picker {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .year-select {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .year-select option {
+            background: var(--primary-green);
+            color: white;
+            padding: 0.5rem;
+        }
+
+        .calendar-week-day {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .calendar-week-day div {
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+            color: var(--accent-gold);
+            background: var(--warm-cream);
+            border-radius: 10px;
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+        }
+
+        .calendar-days div {
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-weight: 500;
+        }
+
+        .calendar-days div:hover {
+            background: var(--primary-green);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .calendar-days div.selected {
+            background: var(--gradient);
+            color: white;
+            border-color: var(--accent-gold);
+        }
+
+        .calendar-days div.curr-date {
+            border-color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        /* Quantity Section */
+        .quantity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quantity-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 3px solid transparent;
+            font-weight: 500;
+            box-shadow: var(--shadow);
+        }
+
+        .quantity-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: var(--accent-gold);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .quantity-card .quantity-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-green);
+            transition: all 0.3s ease;
+        }
+
+        .quantity-card:hover .quantity-icon {
+            color: var(--accent-gold);
+            transform: scale(1.1);
+        }
+
+        .quantity-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .quantity-card .price {
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .quantity-card .description {
+            color: #666;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .quantity-card.selected {
+            background: var(--gradient);
+            color: white;
+            border-color: var(--accent-gold);
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .quantity-card.selected .quantity-icon,
+        .quantity-card.selected h3,
+        .quantity-card.selected .price {
+            color: white;
+        }
+
+        /* Slots Section */
+        .slots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .slot-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-weight: 500;
+            box-shadow: var(--shadow);
+        }
+
+        .slot-card:hover {
+            background: var(--primary-green);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .slot-card.selected {
+            background: var(--gradient);
+            color: white;
+            border-color: var(--accent-gold);
+            transform: scale(1.05);
+        }
+
+        .slot-card.booked {
+            background: #f5f5f5;
+            color: #999;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .slot-card.booked:hover {
+            transform: none;
+            background: #f5f5f5;
+            color: #999;
+        }
+
+        /* Login Required Notice */
+        .login-required {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--accent-gold);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .login-required h3 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .login-required p {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: var(--shadow);
+            margin: 0 0.5rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-card {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-style: italic;
+            position: relative;
+        }
+
+        .testimonial-text::before {
+            content: '"';
+            font-size: 3rem;
+            color: var(--primary-green);
+            position: absolute;
+            left: -25px;
+            top: -15px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-location {
+            grid-column: 1 / -1;
+            margin-bottom: 2rem;
+        }
+
+        .footer-location h3 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .footer-section h3 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-green);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* OTP Modal Styles */
+        .otp-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .otp-modal.active {
+            display: flex;
+        }
+
+        .otp-modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .otp-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        .otp-modal h2 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .otp-btn {
+            width: 100%;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .otp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .otp-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .otp-wrap {
+            display: none;
+        }
+
+        .otp-wrap.active {
+            display: block;
+        }
+
+        .otp-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .hint {
+            font-size: 12px;
+            color: #93a6c7;
+            margin-top: 6px;
+            text-align: center;
+        }
+
+        .msg {
+            margin-top: 10px;
+            font-size: 13px;
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+
+        .ok {
+            color: #45d483;
+            background: rgba(69, 212, 131, 0.1);
+            border: 1px solid #45d483;
+        }
+
+        .err {
+            color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid #ff6b6b;
+        }
+
+        /* User Panel Styles */
+        .user-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--warm-cream);
+            z-index: 9999;
+            overflow-y: auto;
+        }
+
+        .user-panel.active {
+            display: block;
+        }
+
+        .user-header {
+            background: var(--primary-green);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+        }
+
+        .user-header h1 {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .user-btn {
+            background: var(--accent-gold);
+            color: var(--deep-brown);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .user-btn:hover {
+            background: #FFD700;
+            transform: translateY(-2px);
+        }
+
+        .user-btn.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .user-btn.secondary:hover {
+            background: white;
+            color: var(--primary-green);
+        }
+
+        .user-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .user-bookings {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .user-bookings h2 {
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .booking-card {
+            background: var(--warm-cream);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-gold);
+            transition: all 0.3s ease;
+        }
+
+        .booking-card:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow);
+        }
+
+        .booking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .booking-id {
+            font-weight: bold;
+            color: var(--primary-green);
+            font-size: 1.1rem;
+        }
+
+        .booking-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-label {
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            opacity: 0.7;
+            margin-bottom: 0.2rem;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .status-badge {
+            padding: 0.4rem 1rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-confirmed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-completed {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .status-cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Booking Actions */
+        .booking-actions {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cancel-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        .cancel-btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .details-btn {
+            background: var(--accent-gold);
+            color: var(--deep-brown);
+        }
+
+        .details-btn:hover {
+            background: #FFD700;
+            transform: translateY(-2px);
+        }
+
+        /* Cancel Modal */
+        .cancel-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10001;
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cancel-modal.active {
+            display: flex;
+        }
+
+        .cancel-modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .cancel-modal h3 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .cancel-modal p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .cancel-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .confirm-cancel-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .confirm-cancel-btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .keep-booking-btn {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .keep-booking-btn:hover {
+            background: #6a9c54;
+            transform: translateY(-2px);
+        }
+
+        /* Notification styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            max-width: 350px;
+        }
+
+        .notification.success {
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid #28a745;
+        }
+
+        .notification.error {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid #dc3545;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Hidden Admin Access - Only accessible via secret combination */
+        .hidden-admin-trigger {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            width: 20px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        /* MOBILE RESPONSIVE - BENEFITS ALWAYS 3 COLUMNS */
+        @media (max-width: 1024px) {
+            .hero-container {
+                gap: 3rem;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            /* Benefits - Keep 3 columns, reduce gap */
+            .integrated-benefits-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+                margin-top: 1.5rem;
+            }
+
+            .integrated-benefit-card {
+                padding: 1.2rem;
+            }
+
+            .integrated-benefit-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .integrated-benefit-card h3 {
+                font-size: 1.1rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .integrated-benefit-card p {
+                font-size: 0.85rem;
+                line-height: 1.4;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Navigation */
+            .navbar {
+                height: 70px;
+            }
+
+            .main-container {
+                padding-top: 70px;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                font-size: 0.9rem;
+                height: auto;
+            }
+
+            .nav-links li {
+                width: 100%;
+                height: auto;
+            }
+
+            .nav-links a {
+                padding: 0.6rem 0;
+                height: auto;
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .user-menu-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .user-menu-dropdown {
+                min-width: 150px;
+                font-size: 0.8rem;
+            }
+
+            /* Integrated Hero Section - Mobile */
+            .hero {
+                padding: 1.5rem 0;
+                min-height: auto;
+            }
+
+            .hero-container {
+                gap: 2rem;
+                padding: 0 1rem;
+            }
+
+            /* Main Hero Content - Mobile */
+            .main-hero-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+                align-items: center;
+            }
+
+            .hero-content {
+                text-align: left;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+                line-height: 1.1;
+                margin-bottom: 0.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+                line-height: 1.4;
+            }
+
+            .book-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.85rem;
+                max-width: none;
+                width: 100%;
+            }
+
+            .hero-image img {
+                width: 100%;
+                max-width: none;
+                height: auto;
+                max-height: 250px;
+                border-radius: 12px;
+                object-fit: contain;
+            }
+
+            /* Integrated Benefits - Mobile - KEEP 3 COLUMNS */
+            .integrated-benefits .section-header h2 {
+                font-size: 1.6rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .integrated-benefits .section-header p {
+                font-size: 0.9rem;
+            }
+
+            .integrated-benefits-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+                margin-top: 1.5rem;
+            }
+
+            .integrated-benefit-card {
+                padding: 1rem 0.8rem;
+            }
+
+            .integrated-benefit-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .integrated-benefit-card h3 {
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .integrated-benefit-card p {
+                font-size: 0.75rem;
+                line-height: 1.3;
+            }
+
+            /* Integrated Featured Products - Mobile */
+            .integrated-featured {
+                padding: 1.5rem;
+                margin-top: 1.5rem;
+            }
+
+            .integrated-featured .featured-header h2 {
+                font-size: 1.6rem;
+            }
+
+            .integrated-featured .featured-header p {
+                font-size: 0.9rem;
+            }
+
+            .integrated-slide-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .integrated-slide-info {
+                padding: 1.5rem 1rem;
+            }
+
+            .integrated-slide-info h3 {
+                font-size: 1.3rem;
+            }
+
+            .integrated-slide-info p {
+                font-size: 0.85rem;
+            }
+
+            .integrated-slide-price {
+                font-size: 1.1rem;
+            }
+
+            .integrated-slide-btn {
+                padding: 0.7rem 1.3rem;
+                font-size: 0.85rem;
+            }
+
+            .integrated-slide-image {
+                order: -1;
+                padding: 1rem;
+            }
+
+            .integrated-slide-image img {
+                max-height: 150px;
+            }
+
+            .integrated-nav-arrow {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
+            }
+
+            .integrated-nav-arrow.prev {
+                left: -15px;
+            }
+
+            .integrated-nav-arrow.next {
+                right: -15px;
+            }
+
+            /* Booking Section */
+            .booking-section {
+                padding: 3rem 1rem;
+            }
+
+            .calendar-container {
+                padding: 1rem;
+                border-radius: 15px;
+            }
+
+            .quantity-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .slots-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.4rem;
+            }
+
+            /* Testimonials */
+            .testimonials {
+                padding: 3rem 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            /* Modal */
+            .otp-modal-content {
+                padding: 1.5rem;
+                margin: 1rem;
+                max-width: calc(100vw - 2rem);
+            }
+
+            /* Footer */
+            .footer {
+                padding: 2rem 0 1rem;
+            }
+
+            .footer-content {
+                padding: 0 1rem;
+            }
+
+            /* Notification */
+            .notification {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+                max-width: none;
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                height: 65px;
+            }
+
+            .main-container {
+                padding-top: 65px;
+            }
+
+            .logo img {
+                height: 35px;
+            }
+
+            .hero {
+                padding: 1.2rem 0;
+                min-height: calc(100vh - 65px);
+            }
+
+            .hero-container {
+                padding: 0 0.8rem;
+                gap: 1rem;
+            }
+
+            .main-hero-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .hero-content {
+                text-align: left;
+            }
+
+            .hero-content h1 {
+                font-size: 1.6rem;
+                line-height: 1.1;
+                margin-bottom: 0.6rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.8rem;
+                margin-bottom: 1.2rem;
+                line-height: 1.3;
+            }
+
+            .book-btn {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.75rem;
+                width: 100%;
+            }
+
+            .hero-image img {
+                width: 100%;
+                max-height: 200px;
+                border-radius: 10px;
+            }
+
+            /* Integrated Benefits - Mobile Small - STILL 3 COLUMNS */
+            .integrated-benefits .section-header h2 {
+                font-size: 1.4rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .integrated-benefits .section-header p {
+                font-size: 0.8rem;
+            }
+
+            .integrated-benefits-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.8rem;
+                margin-top: 1rem;
+            }
+
+            .integrated-benefit-card {
+                padding: 0.8rem 0.5rem;
+            }
+
+            .integrated-benefit-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .integrated-benefit-card h3 {
+                font-size: 0.8rem;
+                margin-bottom: 0.4rem;
+                line-height: 1.2;
+            }
+
+            .integrated-benefit-card p {
+                font-size: 0.65rem;
+                line-height: 1.2;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .navbar {
+                height: 60px;
+            }
+
+            .main-container {
+                padding-top: 60px;
+            }
+
+            .logo img {
+                height: 30px;
+            }
+
+            .hero {
+                padding: 1rem 0;
+                min-height: calc(100vh - 60px);
+            }
+
+            .hero-container {
+                padding: 0 0.6rem;
+                gap: 0.8rem;
+            }
+
+            .main-hero-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+                align-items: center;
+            }
+
+            .hero-content {
+                text-align: left;
+            }
+
+            .hero-content h1 {
+                font-size: 1.4rem;
+                line-height: 1.1;
+                margin-bottom: 0.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.75rem;
+                margin-bottom: 1rem;
+                line-height: 1.3;
+            }
+
+            .book-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.7rem;
+                width: 100%;
+            }
+
+            .hero-image img {
+                width: 100%;
+                max-height: 170px;
+                border-radius: 8px;
+            }
+
+            /* Integrated Benefits - Extra Small Mobile - STILL 3 COLUMNS */
+            .integrated-benefits .section-header h2 {
+                font-size: 1.2rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .integrated-benefits .section-header p {
+                font-size: 0.75rem;
+                line-height: 1.3;
+            }
+
+            .integrated-benefits-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.6rem;
+                margin-top: 0.8rem;
+            }
+
+            .integrated-benefit-card {
+                padding: 0.6rem 0.4rem;
+                border-radius: 10px;
+            }
+
+            .integrated-benefit-icon {
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .integrated-benefit-card h3 {
+                font-size: 0.7rem;
+                margin-bottom: 0.3rem;
+                line-height: 1.1;
+            }
+
+            .integrated-benefit-card p {
+                font-size: 0.55rem;
+                line-height: 1.1;
+            }
+        }
+
+        /* Landscape orientation optimization */
+        @media screen and (orientation: landscape) and (max-height: 500px) {
+            .hero {
+                min-height: auto;
+                padding: 2rem 0;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+
+            .hero-content {
+                order: 1;
+                text-align: left;
+            }
+
+            .hero-image {
+                order: 2;
+            }
+
+            /* Benefits in landscape - still 3 columns */
+            .integrated-benefits-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+
+            .integrated-benefit-card {
+                padding: 1rem 0.8rem;
+            }
+
+            .integrated-benefit-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .integrated-benefit-card h3 {
+                font-size: 0.9rem;
+            }
+
+            .integrated-benefit-card p {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* High DPI screens */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .hero-image img,
+            .slide-image img {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
+        }
+
+        /* Very small screens special handling for benefits */
+        @media (max-width: 280px) {
+            .integrated-benefits-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.4rem;
+            }
+
+            .integrated-benefit-card {
+                padding: 0.5rem 0.3rem;
+                border-radius: 8px;
+            }
+
+            .integrated-benefit-icon {
+                width: 25px;
+                height: 25px;
+                font-size: 0.7rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .integrated-benefit-card h3 {
+                font-size: 0.6rem;
+                margin-bottom: 0.2rem;
+                line-height: 1;
+            }
+
+            .integrated-benefit-card p {
+                font-size: 0.5rem;
+                line-height: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <img src="Logo.png" alt="Sufala">
+                </div>
+                
+                <div class="menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#sessions">Live Sessions</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+
+                <!-- User State - Only shows when logged in -->
+                <div id="user-nav" class="nav-auth" style="display: none;">
+                    <div class="user-menu">
+                        <button class="user-menu-btn" onclick="toggleUserMenu()">
+                            <i class="fas fa-user"></i>
+                            <span id="user-name">User</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="user-menu-dropdown">
+                            <div class="user-menu-item" onclick="showUserPanel()">
+                                <i class="fas fa-calendar"></i> My Bookings
+                            </div>
+                            <div class="user-menu-item" onclick="logout()">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section - Combined with Benefits and Featured Products -->
+        <section class="hero" id="home">
+            <div class="hero-container">
+                <!-- Main Hero Content -->
+                <div class="main-hero-content">
+                    <div class="hero-content">
+                        <h1>Book Live Sessions<br>on Edible Oil<br>Extraction</h1>
+                        <p class="hero-subtitle">Less line process from industry experts</p>
+                        
+                        <!-- Sesame Oil Product Section -->
+                        <div class="product-section">
+                            <div class="product-info">
+                                <button class="book-btn" onclick="selectProduct('Sesame Oil', 120)">
+                                    <i class="fas fa-calendar-alt"></i> Book Live Session
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-image">
+                        <img src="oilbottle.jpg" alt="Sesame Oil Bottle">
+                    </div>
+                </div>
+
+                <!-- Integrated Benefits Section - ALWAYS 3 COLUMNS -->
+                <div class="integrated-benefits">
+                    <div class="section-header">
+                        <h2>Benefits of Edible Oil Extraction</h2>
+                        <p>Discover the advantages of our traditional oil extraction process</p>
+                    </div>
+                    
+                    <div class="integrated-benefits-grid">
+                        <div class="integrated-benefit-card">
+                            <div class="integrated-benefit-icon">
+                                <i class="fas fa-droplet"></i>
+                            </div>
+                            <div>
+                                <h3>High-Quality Oils</h3>
+                                <p>Pure and nutrient-rich oils using traditional methods</p>
+                            </div>
+                        </div>
+                        
+                        <div class="integrated-benefit-card">
+                            <div class="integrated-benefit-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div>
+                                <h3>Natural Ingredients</h3>
+                                <p>Premium sesame seeds with no artificial additives</p>
+                            </div>
+                        </div>
+                        
+                        <div class="integrated-benefit-card">
+                            <div class="integrated-benefit-icon">
+                                <i class="fas fa-gear"></i>
+                            </div>
+                            <div>
+                                <h3>Efficient Processes</h3>
+                                <p>Advanced extraction for maximum oil yield and purity</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Integrated Featured Products Section -->
+                <div class="integrated-featured" id="integrated-featured">
+                    <div class="featured-header">
+                        <h2>Featured Products</h2>
+                        <p>Discover our premium selection of fresh, cold-pressed oils</p>
+                    </div>
+                    
+                    <div class="integrated-featured-slider">
+                        <div class="integrated-slides-container">
+                            <div id="integrated-featured-slides">
+                                <!-- Slides will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <button class="integrated-nav-arrow prev" onclick="previousIntegratedSlide()">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="integrated-nav-arrow next" onclick="nextIntegratedSlide()">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        
+                        <div class="integrated-slide-indicators" id="integrated-slide-indicators">
+                            <!-- Indicators will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Booking Section -->
+    <section class="booking-section" id="booking-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 id="booking-title">Select Your Pressing Date</h2>
+                <p id="booking-description">Choose when you'd like your oil to be freshly pressed</p>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+
+            <!-- Booking Steps -->
+            <div class="booking-steps">
+                <div class="step active" id="step-1">
+                    <div class="step-number">1</div>
+                    <span>Select Date</span>
+                </div>
+                <div class="step" id="step-2">
+                    <div class="step-number">2</div>
+                    <span>Choose Quantity</span>
+                </div>
+                <div class="step" id="step-3">
+                    <div class="step-number">3</div>
+                    <span>Pick Time Slot</span>
+                </div>
+            </div>
+
+            <!-- Calendar Section -->
+            <div id="calendar-step" class="booking-step">
+                <div class="calendar-container">
+                    <div class="calendar">
+                        <div class="calendar-header">
+                            <div class="month-picker">
+                                <span class="month-change" id="prev-month">
+                                    <i class="fas fa-chevron-left"></i>
+                                </span>
+                                <span id="month-display">January</span>
+                                <span class="month-change" id="next-month">
+                                    <i class="fas fa-chevron-right"></i>
+                                </span>
+                            </div>
+                            <div class="year-picker">
+                                <select class="year-select" id="year-select"></select>
+                            </div>
+                        </div>
+                        <div class="calendar-week-day">
+                            <div>Sun</div>
+                            <div>Mon</div>
+                            <div>Tue</div>
+                            <div>Wed</div>
+                            <div>Thu</div>
+                            <div>Fri</div>
+                            <div>Sat</div>
+                        </div>
+                        <div class="calendar-days" id="calendar-days"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quantity Section -->
+            <div id="quantity-step" class="booking-step" style="display: none;">
+                <div class="quantity-grid">
+                    <div class="quantity-card" onclick="selectQuantity('1 Liter', 1)">
+                        <div class="quantity-icon">
+                            <i class="fas fa-wine-bottle"></i>
+                        </div>
+                        <h3>1 Liter</h3>
+                        <div class="price" id="price-1">₹120</div>
+                        <div class="description">Perfect for trying our oil</div>
+                    </div>
+
+                    <div class="quantity-card" onclick="selectQuantity('3 Liters', 3)">
+                        <div class="quantity-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3>3 Liters</h3>
+                        <div class="price" id="price-3">₹360</div>
+                        <div class="description">Ideal for families</div>
+                    </div>
+
+                    <div class="quantity-card" onclick="selectQuantity('5 Liters', 5)">
+                        <div class="quantity-icon">
+                            <i class="fas fa-fill-drip"></i>
+                        </div>
+                        <h3>5 Liters</h3>
+                        <div class="price" id="price-5">₹600</div>
+                        <div class="description">Best value for bulk use</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slots Section -->
+            <div id="slots-step" class="booking-step" style="display: none;">
+                <div class="slots-grid" id="slots-grid">
+                    <!-- Slots will be populated by JavaScript -->
+                </div>
+
+                <!-- Login Required Notice -->
+                <div id="login-required-notice" class="login-required" style="display: none;">
+                    <h3><i class="fas fa-lock"></i> Login Required</h3>
+                    <p>Please login with your phone number to complete your booking and secure your time slot.</p>
+                    <button class="cta-button" onclick="showOtpModal()">
+                        <i class="fas fa-phone"></i> Login with Phone
+                    </button>
+                    <button class="cta-button" onclick="resetBooking()" style="background: #6c757d;">
+                        <i class="fas fa-arrow-left"></i> Go Back
+                    </button>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <button class="cta-button" id="confirm-booking" onclick="confirmBooking()" style="display: none;">
+                        <i class="fas fa-check"></i> Confirm Booking
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="contact">
+        <div class="section-container">
+            <h2 class="section-title">Testimonials</h2>
+            
+            <div class="testimonial-card">
+                <p class="testimonial-text">Very informative and visit-preserved! Highly recommend!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-location">
+                <h3>Find Us Here</h3>
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3815.317766615619!2d81.79112477515635!3d17.00807638381584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37a37c7820fcef%3A0x1395579b9e441821!2sSUFALA%20NATURALS%20%26%20COLD%20PRESSED%20OILS!5e0!3m2!1sen!2sin!4v1756287118677!5m2!1sen!2sin" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+            
+            <div class="footer-info">
+                <div class="footer-section">
+                    <h3>Sufala Naturals</h3>
+                    <p>Experience the purity of traditionally extracted cold-pressed sesame oil. Fresh, natural, and healthy.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#home">Home</a>
+                    <a href="#about">About Us</a>
+                    <a href="#services">Services</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Rajahmundry, Andhra Pradesh</p>
+                    <p><i class="fas fa-phone"></i> +91 91535 97999</p>
+                    <p><i class="fas fa-envelope"></i> info@sufala.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Sat: 8AM-8PM</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Sufala Naturals. All rights reserved. Made with ❤️ for healthy living.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Hidden Admin Access Trigger (invisible) -->
+    <button class="hidden-admin-trigger" id="admin-trigger" onclick="handleAdminAccess()"></button>
+
+    <!-- OTP Modal -->
+    <div id="otp-modal" class="otp-modal">
+        <div class="otp-modal-content">
+            <button class="otp-modal-close" onclick="closeOtpModal()">&times;</button>
+            
+            <h2>Login to Complete Booking</h2>
+            
+            <!-- Name Input for First Time Users -->
+            <div id="name-step" class="form-group" style="display: none;">
+                <label for="user-name-input">Enter Your Name</label>
+                <input type="text" id="user-name-input" placeholder="Your full name" required>
+                <div class="hint">This is your first time, please enter your name</div>
+                <button class="otp-btn" onclick="proceedWithName()">
+                    <i class="fas fa-arrow-right"></i> Continue
+                </button>
+                <div id="name-msg" class="msg"></div>
+            </div>
+
+            <!-- Phone Input -->
+            <div id="phone-step">
+                <div class="form-group">
+                    <label for="phone-input">Mobile Number (India)</label>
+                    <input type="tel" id="phone-input" placeholder="e.g. 9347xxxxxx" maxlength="10" required>
+                </div>
+
+                <button class="otp-btn" id="btnSend" onclick="sendOTP()">
+                    <i class="fas fa-paper-plane"></i> Send OTP
+                </button>
+                <div id="phone-msg" class="msg"></div>
+            </div>
+
+            <!-- OTP Input -->
+            <div id="otp-step" class="otp-wrap">
+                <div class="form-group">
+                    <label for="otp-input">Enter OTP</label>
+                    <div class="otp-row">
+                        <input type="text" id="otp-input" placeholder="6-digit code" maxlength="15" required>
+                        <button class="otp-btn" id="btnVerify" onclick="verifyOTP()" style="width: auto; padding: 0.8rem 1.2rem;">
+                            <i class="fas fa-check"></i> Verify
+                        </button>
+                    </div>
+                </div>
+                <div class="hint">Check your WhatsApp for the OTP.</div>
+                <div id="otp-msg" class="msg"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Panel -->
+    <div id="user-panel" class="user-panel">
+        <div class="user-header">
+            <h1><i class="fas fa-user"></i> My Dashboard</h1>
+            <div class="user-actions">
+                <button class="user-btn" onclick="hideUserPanel()">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+                <button class="user-btn secondary" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+        
+        <div class="user-content">
+            <div class="user-bookings">
+                <h2><i class="fas fa-calendar-alt"></i> My Bookings</h2>
+                <div id="user-bookings-list">
+                    <!-- User bookings will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cancel Booking Modal -->
+    <div id="cancel-modal" class="cancel-modal">
+        <div class="cancel-modal-content">
+            <h3>Cancel Booking</h3>
+            <p>Are you sure you want to cancel this booking? This action cannot be undone.</p>
+            <div class="cancel-actions">
+                <button class="confirm-cancel-btn" onclick="confirmCancelBooking()">
+                    <i class="fas fa-times"></i> Yes, Cancel
+                </button>
+                <button class="keep-booking-btn" onclick="closeCancelModal()">
+                    <i class="fas fa-check"></i> Keep Booking
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API Configuration
+        const API_BASE = 'https://anandnodered.kalpatech.co.in';
+
+        // Global variables
+        let currentUser = null;
+        let selectedProduct = '';
+        let selectedDate = '';
+        let selectedQuantity = '';
+        let selectedSlot = '';
+        let basePrice = 0;
+        let quantityMultiplier = 1;
+        let currentStep = 1;
+        let pendingUserData = null;
+        let bookingToCancel = null;
+
+        // Featured Products Variables
+        let integratedCurrentSlide = 0;
+        let integratedSlideInterval = null;
+        let integratedFeaturedProducts = [];
+
+        // Available time slots
+        const timeSlots = [
+            '8:00 - 8:30 AM', '8:30 - 9:00 AM', '9:00 - 9:30 AM', '9:30 - 10:00 AM',
+            '10:00 - 10:30 AM', '10:30 - 11:00 AM', '11:00 - 11:30 AM', '11:30 - 12:00 PM',
+            '12:00 - 12:30 PM', '12:30 - 1:00 PM', '3:00 - 3:30 PM', '3:30 - 4:00 PM',
+            '4:00 - 4:30 PM', '4:30 - 5:00 PM', '5:00 - 5:30 PM', '5:30 - 6:00 PM',
+            '6:00 - 6:30 PM', '6:30 - 7:00 PM', '7:00 - 7:30 PM', '7:30 - 8:00 PM'
+        ];
+
+        // Data storage - Connected with Admin UI (hidden operations)
+        let allUsers = [];
+        let allOrders = [];
+        let adminClickCount = 0;
+        let adminTimeout = null;
+
+        // Calendar variables
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        const currDate = new Date();
+        const currMonth = { value: currDate.getMonth() };
+        const currYear = { value: currDate.getFullYear() };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCalendar();
+            populateYearDropdown();
+            checkLoginStatus();
+            loadUserBookings();
+            loadIntegratedFeaturedProducts();
+            
+            // Sync with admin data on load (hidden operation)
+            syncWithAdminData();
+            
+            // Initialize hidden admin access
+            initializeHiddenAdminAccess();
+        });
+
+        // Hidden Admin Access - Multiple methods for accessing admin
+        function initializeHiddenAdminAccess() {
+            // Method 1: Secret key combination (Ctrl+Shift+A)
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+                    e.preventDefault();
+                    openAdminPanel();
+                }
+            });
+
+            // Method 2: Footer logo triple-click
+            const logo = document.querySelector('.logo img');
+            if (logo) {
+                logo.addEventListener('click', function() {
+                    adminClickCount++;
+                    clearTimeout(adminTimeout);
+                    
+                    if (adminClickCount >= 5) {
+                        openAdminPanel();
+                        adminClickCount = 0;
+                    }
+                    
+                    adminTimeout = setTimeout(() => {
+                        adminClickCount = 0;
+                    }, 2000);
+                });
+            }
+
+            // Method 3: URL parameter method
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('admin') === 'access') {
+                openAdminPanel();
+            }
+        }
+
+        // Hidden admin access function
+        function handleAdminAccess() {
+            openAdminPanel();
+        }
+
+        // Data Synchronization with Admin UI (Background Operation)
+        function syncWithAdminData() {
+            try {
+                // Load shared data from localStorage (set by admin panel)
+                const adminUsers = localStorage.getItem('sufala_users');
+                const adminOrders = localStorage.getItem('sufala_orders');
+                
+                if (adminUsers) {
+                    allUsers = JSON.parse(adminUsers);
+                }
+                
+                if (adminOrders) {
+                    allOrders = JSON.parse(adminOrders);
+                }
+                
+                // Update current user if exists
+                if (currentUser) {
+                    const updatedUser = allUsers.find(u => u.id === currentUser.id);
+                    if (updatedUser) {
+                        currentUser = updatedUser;
+                        updateNavigation();
+                    }
+                }
+            } catch (error) {
+                console.log('No admin data found, using defaults');
+            }
+        }
+
+        // Save data to localStorage for admin sync (Background Operation)
+        function saveToLocalStorage() {
+            try {
+                localStorage.setItem('sufala_users', JSON.stringify(allUsers));
+                localStorage.setItem('sufala_orders', JSON.stringify(allOrders));
+            } catch (error) {
+                console.error('Error saving to localStorage:', error);
+            }
+        }
+
+        // Integrated Featured Products Functions
+        function loadIntegratedFeaturedProducts() {
+            try {
+                // Load from localStorage (shared with admin)
+                const featuredSettings = JSON.parse(localStorage.getItem('sufala_featured_settings')) || {
+                    enabled: false,
+                    products: []
+                };
+                
+                integratedFeaturedProducts = featuredSettings.products || [];
+                
+                if (featuredSettings.enabled && integratedFeaturedProducts.length > 0) {
+                    document.getElementById('integrated-featured').classList.add('active');
+                    initializeIntegratedFeaturedSlider();
+                } else {
+                    document.getElementById('integrated-featured').classList.remove('active');
+                }
+            } catch (error) {
+                // Fallback to default products
+                integratedFeaturedProducts = [
+                    {
+                        name: 'Premium Sesame Oil',
+                        description: 'Cold-pressed sesame oil with rich nutty flavor',
+                        price: 120,
+                        image: 'oilbottle.jpg'
+                    },
+                    {
+                        name: 'Coconut Oil',
+                        description: 'Pure virgin coconut oil for cooking and health',
+                        price: 150,
+                        image: 'oilbottle.jpg'
+                    },
+                    {
+                        name: 'Groundnut Oil',
+                        description: 'Fresh groundnut oil with natural taste',
+                        price: 110,
+                        image: 'oilbottle.jpg'
+                    }
+                ];
+                
+                document.getElementById('integrated-featured').classList.add('active');
+                initializeIntegratedFeaturedSlider();
+            }
+        }
+
+        function initializeIntegratedFeaturedSlider() {
+            if (integratedFeaturedProducts.length === 0) return;
+
+            const slidesContainer = document.getElementById('integrated-featured-slides');
+            const indicatorsContainer = document.getElementById('integrated-slide-indicators');
+            
+            // Clear existing content
+            slidesContainer.innerHTML = '';
+            indicatorsContainer.innerHTML = '';
+            
+            // Create slides
+            integratedFeaturedProducts.forEach((product, index) => {
+                const slide = document.createElement('div');
+                slide.className = `integrated-slide ${index === 0 ? 'active' : ''}`;
+                slide.innerHTML = `
+                    <div class="integrated-slide-content">
+                        <div class="integrated-slide-info">
+                            <h3>${product.name}</h3>
+                            <p>${product.description}</p>
+                            <div class="integrated-slide-price">₹${product.price}</div>
+                            <button class="integrated-slide-btn" onclick="selectFeaturedProduct('${product.name}', ${product.price})">
+                                <i class="fas fa-calendar-alt"></i> Book Now
+                            </button>
+                        </div>
+                        <div class="integrated-slide-image">
+                            <img src="${product.image}" alt="${product.name}" onerror="this.src='oilbottle.jpg'">
+                        </div>
+                    </div>
+                `;
+                slidesContainer.appendChild(slide);
+                
+                // Create indicator
+                const indicator = document.createElement('div');
+                indicator.className = `integrated-indicator ${index === 0 ? 'active' : ''}`;
+                indicator.onclick = () => goToIntegratedSlide(index);
+                indicatorsContainer.appendChild(indicator);
+            });
+            
+            // Start auto-slide
+            startIntegratedAutoSlide(5000);
+        }
+
+        function selectFeaturedProduct(productName, price) {
+            selectedProduct = productName;
+            basePrice = price;
+            
+            // Show booking section
+            showBookingSection();
+            updateQuantityPrices();
+            
+            // Scroll to booking section
+            document.getElementById('booking-section').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        function startIntegratedAutoSlide(interval) {
+            if (integratedSlideInterval) clearInterval(integratedSlideInterval);
+            
+            integratedSlideInterval = setInterval(() => {
+                nextIntegratedSlide();
+            }, interval);
+        }
+
+        function stopIntegratedAutoSlide() {
+            if (integratedSlideInterval) {
+                clearInterval(integratedSlideInterval);
+                integratedSlideInterval = null;
+            }
+        }
+
+        function nextIntegratedSlide() {
+            if (integratedFeaturedProducts.length === 0) return;
+            
+            integratedCurrentSlide = (integratedCurrentSlide + 1) % integratedFeaturedProducts.length;
+            updateIntegratedSlideDisplay();
+        }
+
+        function previousIntegratedSlide() {
+            if (integratedFeaturedProducts.length === 0) return;
+            
+            integratedCurrentSlide = (integratedCurrentSlide - 1 + integratedFeaturedProducts.length) % integratedFeaturedProducts.length;
+            updateIntegratedSlideDisplay();
+        }
+
+        function goToIntegratedSlide(index) {
+            integratedCurrentSlide = index;
+            updateIntegratedSlideDisplay();
+        }
+
+        function updateIntegratedSlideDisplay() {
+            const slides = document.querySelectorAll('.integrated-slide');
+            const indicators = document.querySelectorAll('.integrated-indicator');
+            
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === integratedCurrentSlide);
+            });
+            
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === integratedCurrentSlide);
+            });
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        }
+
+        // Product Selection - No login required
+        function selectProduct(productName, price) {
+            selectedProduct = productName;
+            basePrice = price;
+            
+            // Update UI
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('selected');
+            }
+            
+            // Show booking section
+            showBookingSection();
+            updateQuantityPrices();
+            
+            // Scroll to booking section
+            document.getElementById('booking-section').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        function showBookingSection() {
+            document.getElementById('booking-section').classList.add('active');
+            currentStep = 1;
+            updateBookingSteps();
+        }
+
+        function updateBookingSteps() {
+            // Update step indicators
+            for (let i = 1; i <= 3; i++) {
+                const step = document.getElementById(`step-${i}`);
+                step.classList.remove('active', 'completed');
+                
+                if (i < currentStep) {
+                    step.classList.add('completed');
+                } else if (i === currentStep) {
+                    step.classList.add('active');
+                }
+            }
+
+            // Update progress bar
+            const progressFill = document.getElementById('progress-fill');
+            const progressWidth = (currentStep / 3) * 100;
+            progressFill.style.width = `${progressWidth}%`;
+            
+            // Show/hide step content
+            document.getElementById('calendar-step').style.display = currentStep === 1 ? 'block' : 'none';
+            document.getElementById('quantity-step').style.display = currentStep === 2 ? 'block' : 'none';
+            document.getElementById('slots-step').style.display = currentStep === 3 ? 'block' : 'none';
+            
+            // Update titles
+            const titles = {
+                1: 'Select Your Pressing Date',
+                2: 'Choose Your Quantity',
+                3: 'Pick Your Time Slot'
+            };
+            
+            const descriptions = {
+                1: 'Choose when you\'d like your oil to be freshly pressed',
+                2: 'Select the amount of oil you need',
+                3: 'Choose a convenient time for your oil pressing'
+            };
+            
+            document.getElementById('booking-title').textContent = titles[currentStep];
+            document.getElementById('booking-description').textContent = descriptions[currentStep];
+        }
+
+        // Calendar Functions
+        function initializeCalendar() {
+            generateCalendar(currMonth.value, currYear.value);
+            
+            document.querySelector("#prev-month").onclick = () => {
+                currMonth.value--;
+                if (currMonth.value < 0) {
+                    currMonth.value = 11;
+                    currYear.value--;
+                    updateYearSelect();
+                }
+                generateCalendar(currMonth.value, currYear.value);
+            };
+            
+            document.querySelector("#next-month").onclick = () => {
+                currMonth.value++;
+                if (currMonth.value > 11) {
+                    currMonth.value = 0;
+                    currYear.value++;
+                    updateYearSelect();
+                }
+                generateCalendar(currMonth.value, currYear.value);
+            };
+        }
+
+        function populateYearDropdown() {
+            const currentYear = new Date().getFullYear();
+            const yearSelect = document.getElementById('year-select');
+            
+            yearSelect.innerHTML = '';
+            
+            for (let year = currentYear; year <= currentYear + 2; year++) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                if (year === currentYear) {
+                    option.selected = true;
+                }
+                yearSelect.appendChild(option);
+            }
+            
+            yearSelect.addEventListener('change', function() {
+                currYear.value = parseInt(this.value);
+                generateCalendar(currMonth.value, currYear.value);
+            });
+        }
+
+        function updateYearSelect() {
+            const yearSelect = document.getElementById('year-select');
+            yearSelect.value = currYear.value;
+        }
+
+        function generateCalendar(month, year) {
+            const daysOfMonth = [31, getFebDays(year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            const calendarDays = document.getElementById('calendar-days');
+            calendarDays.innerHTML = "";
+            
+            const firstDay = new Date(year, month, 1);
+            document.getElementById('month-display').textContent = monthNames[month];
+            
+            for (let i = 0; i <= daysOfMonth[month] + firstDay.getDay() - 1; i++) {
+                const day = document.createElement("div");
+                
+                if (i >= firstDay.getDay()) {
+                    const dateNumber = i - firstDay.getDay() + 1;
+                    day.innerHTML = dateNumber;
+                    
+                    const currentDate = new Date(year, month, dateNumber);
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+                    
+                    if (currentDate < today) {
+                        day.style.opacity = '0.3';
+                        day.style.cursor = 'not-allowed';
+                    } else {
+                        if (dateNumber === currDate.getDate() && 
+                            month === currDate.getMonth() && 
+                            year === currDate.getFullYear()) {
+                            day.classList.add('curr-date');
+                        }
+                        
+                        day.onclick = () => {
+                            selectDate(`${dateNumber}-${monthNames[month]}-${year}`, day);
+                        };
+                    }
+                }
+                
+                calendarDays.appendChild(day);
+            }
+        }
+
+        function selectDate(date, dayElement) {
+            selectedDate = date;
+            
+            // Update UI
+            document.querySelectorAll('.calendar-days div').forEach(d => {
+                d.classList.remove('selected');
+            });
+            
+            dayElement.classList.add('selected');
+            
+            // Move to next step
+            setTimeout(() => {
+                currentStep = 2;
+                updateBookingSteps();
+            }, 500);
+        }
+
+        function selectQuantity(quantity, multiplier) {
+            selectedQuantity = quantity;
+            quantityMultiplier = multiplier;
+            
+            // Update UI
+            document.querySelectorAll('.quantity-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            event.currentTarget.classList.add('selected');
+            
+            // Move to next step
+            setTimeout(() => {
+                currentStep = 3;
+                updateBookingSteps();
+                loadTimeSlots();
+            }, 500);
+        }
+
+        function loadTimeSlots() {
+            const slotsGrid = document.getElementById('slots-grid');
+            slotsGrid.innerHTML = '';
+            
+            // Get booked slots for selected date
+            const bookedSlots = getBookedSlots(selectedDate);
+            
+            timeSlots.forEach(slot => {
+                const slotCard = document.createElement('div');
+                slotCard.className = 'slot-card';
+                slotCard.textContent = slot;
+                
+                if (bookedSlots.includes(slot)) {
+                    slotCard.classList.add('booked');
+                    slotCard.innerHTML += '<br><small style="font-size: 0.8rem; opacity: 0.7;">Booked</small>';
+                } else {
+                    slotCard.onclick = () => selectSlot(slot, slotCard);
+                }
+                
+                slotsGrid.appendChild(slotCard);
+            });
+        }
+
+        function getBookedSlots(date) {
+            return allOrders
+                .filter(order => order.date === date && order.status !== 'cancelled')
+                .map(order => order.timeSlot);
+        }
+
+        function selectSlot(slot, slotElement) {
+            selectedSlot = slot;
+            
+            // Update UI
+            document.querySelectorAll('.slot-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            slotElement.classList.add('selected');
+            
+            // Check if user is logged in
+            if (!currentUser) {
+                // Show login required notice
+                document.getElementById('login-required-notice').style.display = 'block';
+                document.getElementById('confirm-booking').style.display = 'none';
+            } else {
+                // User is logged in, show confirm button
+                document.getElementById('login-required-notice').style.display = 'none';
+                document.getElementById('confirm-booking').style.display = 'inline-block';
+            }
+        }
+
+        function confirmBooking() {
+            if (!currentUser) {
+                showNotification('Please login to complete booking', 'error');
+                showOtpModal();
+                return;
+            }
+
+            const totalPrice = basePrice * quantityMultiplier;
+            
+            const newOrder = {
+                id: 'ORD' + String(allOrders.length + 1).padStart(6, '0'),
+                userId: currentUser.id,
+                customerName: currentUser.name,
+                customerPhone: currentUser.phone,
+                product: selectedProduct,
+                quantity: selectedQuantity,
+                date: selectedDate,
+                timeSlot: selectedSlot,
+                amount: totalPrice,
+                status: 'pending',
+                createdAt: new Date().toISOString()
+            };
+            
+            allOrders.push(newOrder);
+            saveToLocalStorage(); // Save to sync with admin
+
+            // Update user booking count
+            const userIndex = allUsers.findIndex(u => u.id === currentUser.id);
+            if (userIndex !== -1) {
+                allUsers[userIndex].bookingCount = (allUsers[userIndex].bookingCount || 0) + 1;
+                saveToLocalStorage(); // Save to sync with admin
+                currentUser.bookingCount = allUsers[userIndex].bookingCount;
+            }
+            
+            showNotification(`Booking confirmed! Order ID: ${newOrder.id}`, 'success');
+            
+            // Reset booking process
+            resetBooking();
+            
+            // Reload user bookings
+            loadUserBookings();
+        }
+
+        function resetBooking() {
+            selectedProduct = '';
+            selectedDate = '';
+            selectedQuantity = '';
+            selectedSlot = '';
+            basePrice = 0;
+            quantityMultiplier = 1;
+            currentStep = 1;
+            
+            document.getElementById('booking-section').classList.remove('active');
+            document.getElementById('confirm-booking').style.display = 'none';
+            document.getElementById('login-required-notice').style.display = 'none';
+            
+            // Clear selections
+            document.querySelectorAll('.selected').forEach(el => el.classList.remove('selected'));
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+        }
+
+        function updateQuantityPrices() {
+            document.getElementById('price-1').textContent = `₹${basePrice}`;
+            document.getElementById('price-3').textContent = `₹${basePrice * 3}`;
+            document.getElementById('price-5').textContent = `₹${basePrice * 5}`;
+        }
+
+        function getFebDays(year) {
+            return ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) ? 29 : 28;
+        }
+
+        // OTP Authentication Functions
+        function showOtpModal() {
+            document.getElementById('otp-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            resetOtpModal();
+        }
+
+        function closeOtpModal() {
+            document.getElementById('otp-modal').classList.remove('active');
+            document.body.style.overflow = '';
+            resetOtpModal();
+        }
+
+        function resetOtpModal() {
+            document.getElementById('phone-step').style.display = 'block';
+            document.getElementById('name-step').style.display = 'none';
+            document.getElementById('otp-step').classList.remove('active');
+            document.getElementById('phone-input').value = '';
+            document.getElementById('otp-input').value = '';
+            document.getElementById('user-name-input').value = '';
+            document.getElementById('phone-msg').textContent = '';
+            document.getElementById('otp-msg').textContent = '';
+            document.getElementById('name-msg').textContent = '';
+            pendingUserData = null;
+        }
+
+        async function sendOTP() {
+            const phoneInput = document.getElementById('phone-input');
+            const phoneMsg = document.getElementById('phone-msg');
+            const btnSend = document.getElementById('btnSend');
+            
+            const phone = (phoneInput.value || '').replace(/\D/g, '');
+            
+            phoneMsg.className = 'msg';
+            phoneMsg.textContent = '';
+
+            if (phone.length !== 10) {
+                phoneMsg.classList.add('err');
+                phoneMsg.textContent = 'Phone must be 10 digits.';
+                return;
+            }
+
+            btnSend.disabled = true;
+            btnSend.innerHTML = '<span class="loading"></span> Sending...';
+
+            try {
+                const response = await fetch(API_BASE + '/otpreq', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ phone: phone })
+                });
+
+                const data = await response.json().catch(() => ({}));
+
+                if (response.ok && (data.success || data.ok)) {
+                    phoneMsg.classList.add('ok');
+                    phoneMsg.textContent = 'OTP sent to WhatsApp.';
+                    
+                    // Check if this is a new user
+                    const existingUser = allUsers.find(u => u.phone === phone);
+                    if (!existingUser) {
+                        // New user - show name input
+                        document.getElementById('phone-step').style.display = 'none';
+                        document.getElementById('name-step').style.display = 'block';
+                        pendingUserData = { phone: phone };
+                    } else {
+                        // Existing user - show OTP input
+                        document.getElementById('otp-step').classList.add('active');
+                        pendingUserData = existingUser;
+                    }
+                } else {
+                    phoneMsg.classList.add('err');
+                    phoneMsg.textContent = (data && (data.error || data.message)) || 'Failed to send OTP.';
+                }
+            } catch(e) {
+                phoneMsg.classList.add('err');
+                phoneMsg.textContent = 'Network error. Try again.';
+            } finally {
+                btnSend.disabled = false;
+                btnSend.innerHTML = '<i class="fas fa-paper-plane"></i> Send OTP';
+            }
+        }
+
+        function proceedWithName() {
+            const nameInput = document.getElementById('user-name-input');
+            const nameMsg = document.getElementById('name-msg');
+            
+            const name = nameInput.value.trim();
+            
+            nameMsg.className = 'msg';
+            nameMsg.textContent = '';
+
+            if (!name) {
+                nameMsg.classList.add('err');
+                nameMsg.textContent = 'Please enter your name.';
+                return;
+            }
+
+            if (pendingUserData) {
+                pendingUserData.name = name;
+                pendingUserData.isNewUser = true;
+                
+                // Show OTP input
+                document.getElementById('name-step').style.display = 'none';
+                document.getElementById('otp-step').classList.add('active');
+                
+                nameMsg.classList.add('ok');
+                nameMsg.textContent = 'Name saved. Please verify OTP.';
+            }
+        }
+
+        async function verifyOTP() {
+            const otpInput = document.getElementById('otp-input');
+            const otpMsg = document.getElementById('otp-msg');
+            const btnVerify = document.getElementById('btnVerify');
+            
+            const code = (otpInput.value || '').trim();
+            
+            otpMsg.className = 'msg';
+            otpMsg.textContent = '';
+
+            if (!code || !pendingUserData) {
+                otpMsg.classList.add('err');
+                otpMsg.textContent = 'Enter valid OTP.';
+                return;
+            }
+
+            btnVerify.disabled = true;
+            btnVerify.innerHTML = '<span class="loading"></span> Verifying...';
+
+            try {
+                const response = await fetch(API_BASE + '/otpverify', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ 
+                        phone: pendingUserData.phone, 
+                        otp: code 
+                    })
+                });
+
+                const data = await response.json().catch(() => ({}));
+
+                if (response.ok && (data.success || data.ok)) {
+                    otpMsg.classList.add('ok');
+                    otpMsg.textContent = 'Verified! Logging in...';
+
+                    // Handle user creation/login
+                    if (pendingUserData.isNewUser) {
+                        // Create new user
+                        const newUser = {
+                            id: Date.now(),
+                            name: pendingUserData.name,
+                            phone: pendingUserData.phone,
+                            role: 'user',
+                            createdAt: new Date().toISOString(),
+                            bookingCount: 0
+                        };
+
+                        allUsers.push(newUser);
+                        saveToLocalStorage(); // Save to sync with admin
+                        currentUser = newUser;
+                        
+                        showNotification(`Welcome, ${newUser.name}! Account created successfully.`, 'success');
+                    } else {
+                        // Login existing user
+                        currentUser = pendingUserData;
+                        showNotification(`Welcome back, ${currentUser.name}!`, 'success');
+                    }
+
+                    localStorage.setItem('sufala_current_user', JSON.stringify(currentUser));
+                    updateNavigation();
+                    closeOtpModal();
+
+                    // Continue with booking process if they were in the middle of it
+                    if (selectedSlot) {
+                        document.getElementById('login-required-notice').style.display = 'none';
+                        document.getElementById('confirm-booking').style.display = 'inline-block';
+                    }
+
+                } else {
+                    otpMsg.classList.add('err');
+                    otpMsg.textContent = (data && data.error) || 'Invalid OTP';
+                }
+            } catch(e) {
+                otpMsg.classList.add('err');
+                otpMsg.textContent = 'Network error.';
+            } finally {
+                btnVerify.disabled = false;
+                btnVerify.innerHTML = '<i class="fas fa-check"></i> Verify';
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('sufala_current_user');
+            updateNavigation();
+            hideUserPanel();
+            showNotification('Logged out successfully', 'success');
+        }
+
+        function checkLoginStatus() {
+            const savedUser = localStorage.getItem('sufala_current_user');
+            if (savedUser) {
+                try {
+                    currentUser = JSON.parse(savedUser);
+                    updateNavigation();
+                } catch (error) {
+                    console.error('Error parsing saved user:', error);
+                    localStorage.removeItem('sufala_current_user');
+                }
+            }
+        }
+
+        function updateNavigation() {
+            const userNav = document.getElementById('user-nav');
+            
+            if (!currentUser) {
+                userNav.style.display = 'none';
+            } else {
+                userNav.style.display = 'flex';
+                document.getElementById('user-name').textContent = currentUser.name;
+            }
+        }
+
+        function toggleUserMenu() {
+            const userMenu = event.currentTarget.parentElement;
+            userMenu.classList.toggle('active');
+        }
+
+        // User Panel Functions
+        function showUserPanel() {
+            document.getElementById('user-panel').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            loadUserBookings();
+        }
+
+        function hideUserPanel() {
+            document.getElementById('user-panel').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function loadUserBookings() {
+            if (!currentUser) return;
+            
+            const userBookings = allOrders.filter(order => order.userId === currentUser.id);
+            const bookingsList = document.getElementById('user-bookings-list');
+            
+            bookingsList.innerHTML = '';
+            
+            if (userBookings.length === 0) {
+                bookingsList.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: #666;">
+                        <i class="fas fa-calendar" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3;"></i>
+                        <h3>No bookings yet</h3>
+                        <p>Start by booking your first fresh oil pressing!</p>
+                        <button class="cta-button" onclick="hideUserPanel(); scrollToServices();" style="margin-top: 1rem;">
+                            <i class="fas fa-plus"></i> Make a Booking
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            userBookings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(booking => {
+                const bookingCard = document.createElement('div');
+                bookingCard.className = 'booking-card';
+                
+                const canCancel = booking.status === 'pending';
+                
+                bookingCard.innerHTML = `
+                    <div class="booking-header">
+                        <div class="booking-id">Order: ${booking.id}</div>
+                        <span class="status-badge status-${booking.status}">
+                            ${booking.status === 'pending' ? 'Order Placed' : booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
+                        </span>
+                    </div>
+                    <div class="booking-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Product</div>
+                            <div class="detail-value">${booking.product}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Total Item</div>
+                            <div class="detail-value">${booking.quantity}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Date</div>
+                            <div class="detail-value">${booking.date}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Time Slot</div>
+                            <div class="detail-value">${booking.timeSlot}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Total</div>
+                            <div class="detail-value" style="color: var(--accent-gold); font-weight: bold;">₹${booking.amount}.00</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Booked On</div>
+                            <div class="detail-value">${new Date(booking.createdAt).toLocaleDateString()}</div>
+                        </div>
+                    </div>
+                    <div class="booking-actions">
+                        ${canCancel ? `<button class="action-btn cancel-btn" onclick="showCancelModal('${booking.id}')">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>` : ''}
+                        <button class="action-btn details-btn" onclick="showBookingDetails('${booking.id}')">
+                            <i class="fas fa-eye"></i> Details
+                        </button>
+                    </div>
+                `;
+                bookingsList.appendChild(bookingCard);
+            });
+        }
+
+        function showCancelModal(orderId) {
+            bookingToCancel = orderId;
+            document.getElementById('cancel-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCancelModal() {
+            document.getElementById('cancel-modal').classList.remove('active');
+            document.body.style.overflow = '';
+            bookingToCancel = null;
+        }
+
+        function confirmCancelBooking() {
+            if (!bookingToCancel) return;
+
+            const orderIndex = allOrders.findIndex(order => order.id === bookingToCancel);
+            if (orderIndex !== -1) {
+                allOrders[orderIndex].status = 'cancelled';
+                saveToLocalStorage(); // Save to sync with admin
+                
+                showNotification('Booking cancelled successfully', 'success');
+                loadUserBookings();
+                closeCancelModal();
+            }
+        }
+
+        function showBookingDetails(orderId) {
+            const booking = allOrders.find(order => order.id === orderId);
+            if (booking) {
+                alert(`
+Order Details:
+--------------
+Order ID: ${booking.id}
+Product: ${booking.product}
+Quantity: ${booking.quantity}
+Date: ${booking.date}
+Time: ${booking.timeSlot}
+Amount: ₹${booking.amount}
+Status: ${booking.status}
+Booked: ${new Date(booking.createdAt).toLocaleString()}
+                `);
+            }
+        }
+
+        function scrollToServices() {
+            document.getElementById('home').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Hidden Admin Panel Access - Multiple secret methods
+        function openAdminPanel() {
+            // Open admin interface in new tab/window
+            const adminWindow = window.open('', 'SufalaAdmin', 'width=1200,height=800,resizable=yes,scrollbars=yes');
+            
+            if (adminWindow) {
+                // Check if admin page exists, otherwise create it
+                adminWindow.location.href = 'adminindex1.html';
+                adminWindow.focus();
+            }
+        }
+
+        // Utility Functions
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                ${message}
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Close modals when clicking outside
+        document.getElementById('otp-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeOtpModal();
+            }
+        });
+
+        document.getElementById('cancel-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCancelModal();
+            }
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.user-menu')) {
+                document.querySelectorAll('.user-menu').forEach(menu => {
+                    menu.classList.remove('active');
+                });
+            }
+            
+            if (!e.target.closest('.nav-container')) {
+                document.querySelector('.nav-links').classList.remove('active');
+                document.querySelector('.menu-toggle').classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    document.querySelector('.nav-links').classList.remove('active');
+                    document.querySelector('.menu-toggle').classList.remove('active');
+                }
+            });
+        });
+
+        // Auto-slide controls for integrated featured products
+        const integratedFeaturedSection = document.getElementById('integrated-featured');
+        if (integratedFeaturedSection) {
+            integratedFeaturedSection.addEventListener('mouseenter', stopIntegratedAutoSlide);
+            integratedFeaturedSection.addEventListener('mouseleave', () => {
+                startIntegratedAutoSlide(5000);
+            });
+        }
+
+        // Listen for storage changes to sync with admin updates (Background Operation)
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'sufala_featured_settings') {
+                loadIntegratedFeaturedProducts();
+                console.log('Featured products updated from admin panel');
+            }
+            if (e.key === 'sufala_users' || e.key === 'sufala_orders') {
+                syncWithAdminData();
+                console.log('User data synced from admin panel');
+            }
+        });
+
+        // Background sync with admin - Refresh data periodically (Hidden Operation)
+        setInterval(() => {
+            // Check for admin updates
+            const newFeaturedSettings = JSON.parse(localStorage.getItem('sufala_featured_settings')) || {};
+            const currentProducts = JSON.stringify(integratedFeaturedProducts);
+            const newProducts = JSON.stringify(newFeaturedSettings.products || []);
+            
+            if (currentProducts !== newProducts) {
+                loadIntegratedFeaturedProducts();
+            }
+            
+            // Sync user/order data
+            syncWithAdminData();
+            
+            // Refresh user bookings if panel is open
+            if (document.getElementById('user-panel').classList.contains('active')) {
+                loadUserBookings();
+            }
+        }, 5000);
+
+        console.log('Sufala User UI - Clean Version (Admin Operations Hidden)');
+        console.log('Admin Access Methods: Ctrl+Shift+A, Logo 5x click, URL ?admin=access');
+    </script>
+</body>
+</html>
