@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sufala Admin Dashboard - Enhanced</title>
+    <title>Sufala Admin Dashboard - Enhanced with Search</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.6.1/d3.min.js"></script>
     
     <style>
         * {
@@ -262,6 +264,109 @@
 
         .page-header p {
             color: #666;
+        }
+
+        /* Search Bar Styles */
+        .search-container {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--light-shadow);
+        }
+
+        .search-wrapper {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-input-group {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 3rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(127, 176, 105, 0.1);
+            background: white;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .search-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .search-btn {
+            padding: 0.8rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .search-btn.clear {
+            background: #f8f9fa;
+            color: var(--text-dark);
+            border: 2px solid #e0e0e0;
+        }
+
+        .search-btn.clear:hover {
+            background: #e9ecef;
+            border-color: #ced4da;
+        }
+
+        .search-results-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: var(--warm-cream);
+            border-radius: 10px 10px 0 0;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        .search-results-count {
+            font-weight: 600;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
         }
 
         /* Stats Cards */
@@ -822,6 +927,252 @@
             border-left: 4px solid #dc3545;
         }
 
+        /* Analytics Styles */
+        .analytics-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .metric-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--light-shadow);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .metric-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .metric-content {
+            flex: 1;
+        }
+
+        .metric-value {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--text-dark);
+            margin-bottom: 0.3rem;
+            animation: countUp 2s ease-out;
+        }
+
+        .metric-label {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-change {
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .metric-change.positive {
+            color: #28a745;
+        }
+
+        .metric-change.negative {
+            color: #dc3545;
+        }
+
+        .metric-change::before {
+            content: '↗';
+            font-size: 1rem;
+        }
+
+        .metric-change.negative::before {
+            content: '↘';
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Charts Grid - Simple Spacious Layout */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: var(--light-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chart-container.large {
+            grid-column: 1 / -1;
+            min-height: 450px;
+        }
+
+        .chart-container:hover {
+            box-shadow: var(--shadow);
+            transform: translateY(-2px);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .chart-header h3 {
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chart-header p {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0.5rem 0 0 0;
+        }
+
+        .chart-controls select {
+            padding: 0.5rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        .chart-controls select:focus {
+            outline: none;
+            border-color: var(--primary-green);
+        }
+
+        /* Heatmap Styles */
+        #heatmap-container {
+            min-height: 300px;
+            position: relative;
+        }
+
+        .heatmap-cell {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .heatmap-cell:hover {
+            stroke-width: 2px;
+            stroke: var(--primary-green);
+        }
+
+        .heatmap-tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            pointer-events: none;
+            z-index: 1000;
+            display: none;
+        }
+
+        /* Real-time Stats */
+        .realtime-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .realtime-stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--warm-cream);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .realtime-stat:hover {
+            transform: scale(1.05);
+            background: #e8f5e8;
+        }
+
+        .realtime-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        .realtime-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Chart Loading Animation */
+        .chart-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 300px;
+            color: #666;
+        }
+
+        .chart-loading i {
+            font-size: 2rem;
+            margin-right: 1rem;
+            animation: spin 1s linear infinite;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .admin-header {
@@ -863,6 +1214,14 @@
 
             .action-buttons {
                 flex-direction: column;
+            }
+
+            .search-wrapper {
+                flex-direction: column;
+            }
+
+            .search-input-group {
+                min-width: 100%;
             }
 
             th, td {
@@ -1112,7 +1471,26 @@
                         <p>Manage all customer bookings</p>
                     </div>
 
+                    <!-- Search Container for Bookings -->
+                    <div class="search-container">
+                        <div class="search-wrapper">
+                            <div class="search-input-group">
+                                <i class="fas fa-search search-icon"></i>
+                                <input type="text" id="bookings-search" class="search-input" placeholder="Search bookings by Order ID, Customer Name, Phone, Product, or Status...">
+                            </div>
+                            <div class="search-actions">
+                                <button class="search-btn clear" onclick="clearBookingsSearch()">
+                                    <i class="fas fa-times"></i> Clear
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="data-table">
+                        <div id="bookings-results-info" class="search-results-info" style="display: none;">
+                            <span class="search-results-count" id="bookings-count"></span>
+                            <small id="bookings-search-term"></small>
+                        </div>
                         <div class="table-header">
                             <h3>All Bookings</h3>
                             <div class="table-actions">
@@ -1149,7 +1527,26 @@
                         <p>View and manage registered users</p>
                     </div>
 
+                    <!-- Search Container for Users -->
+                    <div class="search-container">
+                        <div class="search-wrapper">
+                            <div class="search-input-group">
+                                <i class="fas fa-search search-icon"></i>
+                                <input type="text" id="users-search" class="search-input" placeholder="Search users by Name or Phone Number...">
+                            </div>
+                            <div class="search-actions">
+                                <button class="search-btn clear" onclick="clearUsersSearch()">
+                                    <i class="fas fa-times"></i> Clear
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="data-table">
+                        <div id="users-results-info" class="search-results-info" style="display: none;">
+                            <span class="search-results-count" id="users-count"></span>
+                            <small id="users-search-term"></small>
+                        </div>
                         <div class="table-header">
                             <h3>All Users</h3>
                             <div class="table-actions">
@@ -1180,28 +1577,126 @@
                 <!-- Analytics Section -->
                 <section class="content-section" id="analytics-section">
                     <div class="page-header">
-                        <h2>Analytics</h2>
-                        <p>Business insights and reports</p>
+                        <h2>Analytics Dashboard</h2>
+                        <p>Advanced business insights and performance metrics</p>
                     </div>
 
-                    <div class="data-table">
-                        <div class="table-header">
-                            <h3>Performance Metrics</h3>
+                    <!-- Key Metrics Cards -->
+                    <div class="analytics-metrics">
+                        <div class="metric-card">
+                            <div class="metric-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="metric-content">
+                                <div class="metric-value" id="conversion-rate">0%</div>
+                                <div class="metric-label">Conversion Rate</div>
+                                <div class="metric-change positive" id="conversion-change">+5.2%</div>
+                            </div>
                         </div>
-                        <div style="overflow-x: auto;">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Metric</th>
-                                        <th>This Month</th>
-                                        <th>Last Month</th>
-                                        <th>Change</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="metrics-table-body">
-                                    <!-- Metrics will be populated here -->
-                                </tbody>
-                            </table>
+                        
+                        <div class="metric-card">
+                            <div class="metric-icon">
+                                <i class="fas fa-rupee-sign"></i>
+                            </div>
+                            <div class="metric-content">
+                                <div class="metric-value" id="avg-order-value">₹0</div>
+                                <div class="metric-label">Avg Order Value</div>
+                                <div class="metric-change positive" id="aov-change">+12.5%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="metric-card">
+                            <div class="metric-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="metric-content">
+                                <div class="metric-value" id="active-customers">0</div>
+                                <div class="metric-label">Active Customers</div>
+                                <div class="metric-change positive" id="customers-change">+8.7%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="metric-card">
+                            <div class="metric-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="metric-content">
+                                <div class="metric-value" id="avg-response-time">0h</div>
+                                <div class="metric-label">Avg Response Time</div>
+                                <div class="metric-change negative" id="response-change">-15.3%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Grid -->
+                    <div class="charts-grid">
+                        <!-- Revenue Trend Chart -->
+                        <div class="chart-container large">
+                            <div class="chart-header">
+                                <h3><i class="fas fa-chart-line"></i> Revenue Trends</h3>
+                                <div class="chart-controls">
+                                    <select id="revenue-period" onchange="updateRevenueChart()">
+                                        <option value="7days">Last 7 Days</option>
+                                        <option value="30days" selected>Last 30 Days</option>
+                                        <option value="90days">Last 90 Days</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <canvas id="revenue-chart"></canvas>
+                        </div>
+
+                        <!-- Booking Status Distribution -->
+                        <div class="chart-container">
+                            <div class="chart-header">
+                                <h3><i class="fas fa-pie-chart"></i> Booking Status</h3>
+                            </div>
+                            <canvas id="status-chart"></canvas>
+                        </div>
+
+                        <!-- Popular Products -->
+                        <div class="chart-container">
+                            <div class="chart-header">
+                                <h3><i class="fas fa-star"></i> Top Products</h3>
+                            </div>
+                            <canvas id="products-chart"></canvas>
+                        </div>
+
+                        <!-- Real-time Stats -->
+                        <div class="chart-container">
+                            <div class="chart-header">
+                                <h3><i class="fas fa-tachometer-alt"></i> Real-time Stats</h3>
+                            </div>
+                            <div class="realtime-stats">
+                                <div class="realtime-stat">
+                                    <div class="realtime-number" id="today-bookings">0</div>
+                                    <div class="realtime-label">Today's Bookings</div>
+                                </div>
+                                <div class="realtime-stat">
+                                    <div class="realtime-number" id="this-week-revenue">₹0</div>
+                                    <div class="realtime-label">This Week Revenue</div>
+                                </div>
+                                <div class="realtime-stat">
+                                    <div class="realtime-number" id="pending-orders">0</div>
+                                    <div class="realtime-label">Pending Orders</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- User Activity Heatmap -->
+                        <div class="chart-container large">
+                            <div class="chart-header">
+                                <h3><i class="fas fa-calendar"></i> Booking Activity Heatmap</h3>
+                                <p>Booking frequency by day and hour</p>
+                            </div>
+                            <div id="heatmap-container"></div>
+                        </div>
+
+                        <!-- Monthly Growth -->
+                        <div class="chart-container large">
+                            <div class="chart-header">
+                                <h3><i class="fas fa-chart-area"></i> Monthly Growth Metrics</h3>
+                            </div>
+                            <canvas id="growth-chart"></canvas>
                         </div>
                     </div>
                 </section>
@@ -1358,6 +1853,8 @@
         // Data Storage
         let allUsers = JSON.parse(localStorage.getItem('sufala_users')) || [];
         let allOrders = JSON.parse(localStorage.getItem('sufala_orders')) || [];
+        let filteredBookings = [];
+        let filteredUsers = [];
         let currentAdmin = null;
         let editingProductIndex = -1;
 
@@ -1380,7 +1877,100 @@
             checkAdminAuth();
             loadDashboardData();
             loadFeaturedSettings();
+            setupSearchListeners();
         });
+
+        // Search functionality setup
+        function setupSearchListeners() {
+            // Bookings search - immediate search without debounce
+            const bookingsSearch = document.getElementById('bookings-search');
+            bookingsSearch.addEventListener('input', searchBookings);
+
+            // Users search - immediate search without debounce
+            const usersSearch = document.getElementById('users-search');
+            usersSearch.addEventListener('input', searchUsers);
+        }
+
+        // Enhanced Bookings Search Functions
+        function searchBookings() {
+            const searchTerm = document.getElementById('bookings-search').value.toLowerCase().trim();
+            
+            if (searchTerm === '') {
+                filteredBookings = [...allOrders]; // Create a copy
+                hideSearchResults('bookings');
+            } else {
+                filteredBookings = allOrders.filter(booking => {
+                    // Convert all values to string and lowercase, handle undefined values
+                    const searchableFields = [
+                        (booking.id || '').toString().toLowerCase(),
+                        (booking.customerName || '').toString().toLowerCase(),
+                        (booking.customerPhone || '').toString().toLowerCase(),
+                        (booking.product || '').toString().toLowerCase(),
+                        (booking.status || '').toString().toLowerCase(),
+                        (booking.date || '').toString().toLowerCase(),
+                        (booking.timeSlot || '').toString().toLowerCase(),
+                        (booking.quantity || '').toString().toLowerCase(),
+                        (booking.amount || '').toString().toLowerCase()
+                    ];
+                    
+                    // Check if any field contains the search term
+                    return searchableFields.some(field => field.includes(searchTerm));
+                });
+                showSearchResults('bookings', searchTerm, filteredBookings.length);
+            }
+            
+            renderBookings(filteredBookings);
+        }
+
+        function clearBookingsSearch() {
+            document.getElementById('bookings-search').value = '';
+            filteredBookings = allOrders;
+            hideSearchResults('bookings');
+            renderBookings(filteredBookings);
+        }
+
+        // Users Search Functions
+        function searchUsers() {
+            const searchTerm = document.getElementById('users-search').value.toLowerCase().trim();
+            
+            if (searchTerm === '') {
+                filteredUsers = allUsers;
+                hideSearchResults('users');
+            } else {
+                filteredUsers = allUsers.filter(user => {
+                    return (
+                        user.name.toLowerCase().includes(searchTerm) ||
+                        user.phone.toLowerCase().includes(searchTerm)
+                    );
+                });
+                showSearchResults('users', searchTerm, filteredUsers.length);
+            }
+            
+            renderUsers(filteredUsers);
+        }
+
+        function clearUsersSearch() {
+            document.getElementById('users-search').value = '';
+            filteredUsers = allUsers;
+            hideSearchResults('users');
+            renderUsers(filteredUsers);
+        }
+
+        // Search Results Display Functions
+        function showSearchResults(type, searchTerm, resultCount) {
+            const resultsInfo = document.getElementById(`${type}-results-info`);
+            const countElement = document.getElementById(`${type}-count`);
+            const searchTermElement = document.getElementById(`${type}-search-term`);
+            
+            resultsInfo.style.display = 'flex';
+            countElement.textContent = `${resultCount} result${resultCount !== 1 ? 's' : ''} found`;
+            searchTermElement.textContent = `Search: "${searchTerm}"`;
+        }
+
+        function hideSearchResults(type) {
+            const resultsInfo = document.getElementById(`${type}-results-info`);
+            resultsInfo.style.display = 'none';
+        }
 
         // Authentication
         document.getElementById('admin-login-form').addEventListener('submit', function(e) {
@@ -1446,7 +2036,10 @@
             // Load section-specific data
             if (sectionName === 'bookings') loadBookings();
             if (sectionName === 'users') loadUsers();
-            if (sectionName === 'analytics') loadAnalytics();
+            if (sectionName === 'analytics') {
+                // Add loading delay for smooth animation
+                setTimeout(() => loadAnalytics(), 100);
+            }
             if (sectionName === 'featured') loadFeaturedProducts();
         }
 
@@ -1508,6 +2101,12 @@
         function saveFeaturedSettings() {
             localStorage.setItem('sufala_featured_settings', JSON.stringify(featuredSettings));
             updateStats();
+            
+            // Trigger storage event for real-time sync
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: 'sufala_featured_settings',
+                newValue: JSON.stringify(featuredSettings)
+            }));
         }
 
         function loadFeaturedProducts() {
@@ -1554,7 +2153,842 @@
             });
         }
 
-        // Add Product Modal Functions
+        // Enhanced Bookings Management with Search Support
+        function loadBookings() {
+            filteredBookings = allOrders;
+            // Don't clear search when loading - preserve search state
+            const searchTerm = document.getElementById('bookings-search').value;
+            if (searchTerm) {
+                searchBookings(); // Re-apply search if there's a search term
+            } else {
+                renderBookings(filteredBookings);
+            }
+        }
+
+        function renderBookings(bookings) {
+            const tbody = document.getElementById('bookings-table-body');
+            
+            if (bookings.length === 0) {
+                const searchTerm = document.getElementById('bookings-search').value;
+                const message = searchTerm ? 
+                    `<div class="no-results">
+                        <i class="fas fa-search"></i>
+                        <h3>No bookings found</h3>
+                        <p>No bookings match your search criteria: "${searchTerm}"</p>
+                        <button class="btn" onclick="clearBookingsSearch()">Clear Search</button>
+                    </div>` :
+                    '<tr><td colspan="7" style="text-align: center; color: #666; padding: 2rem;">No bookings found</td></tr>';
+                
+                tbody.innerHTML = message.includes('div') ? '' : message;
+                if (message.includes('div')) {
+                    tbody.parentNode.parentNode.insertAdjacentHTML('afterend', message);
+                }
+                return;
+            }
+
+            // Remove any existing no-results message
+            const existingNoResults = tbody.parentNode.parentNode.parentNode.querySelector('.no-results');
+            if (existingNoResults) {
+                existingNoResults.remove();
+            }
+
+            tbody.innerHTML = bookings
+                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                .map(booking => `
+                    <tr>
+                        <td><strong>${booking.id}</strong></td>
+                        <td>
+                            <strong>${booking.customerName}</strong><br>
+                            <small>${booking.customerPhone}</small>
+                        </td>
+                        <td>${booking.product} (${booking.quantity})</td>
+                        <td>
+                            ${booking.date}<br>
+                            <small>${booking.timeSlot}</small>
+                        </td>
+                        <td><strong>₹${booking.amount}</strong></td>
+                        <td><span class="status-badge status-${booking.status}">${booking.status}</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                ${booking.status === 'pending' ? `
+                                    <button class="action-btn confirm" onclick="updateBookingStatus('${booking.id}', 'confirmed')" title="Confirm Booking">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                ` : ''}
+                                <button class="action-btn delete" onclick="cancelBooking('${booking.id}')" title="Cancel Booking">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `).join('');
+        }
+
+        function updateBookingStatus(orderId, newStatus) {
+            const orderIndex = allOrders.findIndex(order => order.id === orderId);
+            if (orderIndex !== -1) {
+                allOrders[orderIndex].status = newStatus;
+                localStorage.setItem('sufala_orders', JSON.stringify(allOrders));
+                
+                showNotification(`Booking ${orderId} ${newStatus} successfully`, 'success');
+                
+                // Preserve search state and re-apply filter
+                const searchTerm = document.getElementById('bookings-search').value;
+                if (searchTerm) {
+                    searchBookings();
+                } else {
+                    filteredBookings = [...allOrders];
+                    renderBookings(filteredBookings);
+                }
+                updateStats();
+            }
+        }
+
+        function cancelBooking(orderId) {
+            if (confirm(`Are you sure you want to cancel booking ${orderId}?`)) {
+                updateBookingStatus(orderId, 'cancelled');
+            }
+        }
+
+        function refreshBookings() {
+            allOrders = JSON.parse(localStorage.getItem('sufala_orders')) || [];
+            
+            // Preserve search state
+            const searchTerm = document.getElementById('bookings-search').value;
+            if (searchTerm) {
+                searchBookings();
+            } else {
+                filteredBookings = [...allOrders];
+                renderBookings(filteredBookings);
+            }
+            
+            updateStats();
+            showNotification('Bookings refreshed', 'success');
+        }
+
+        // Enhanced Users Management with Search Support  
+        function loadUsers() {
+            // Calculate booking count for each user
+            allUsers.forEach(user => {
+                user.bookingCount = allOrders.filter(order => order.userId == user.id).length;
+            });
+            
+            filteredUsers = allUsers;
+            // Don't clear search when loading - preserve search state
+            const searchTerm = document.getElementById('users-search').value;
+            if (searchTerm) {
+                searchUsers(); // Re-apply search if there's a search term
+            } else {
+                renderUsers(filteredUsers);
+            }
+        }
+
+        function renderUsers(users) {
+            const tbody = document.getElementById('users-table-body');
+            
+            if (users.length === 0) {
+                const searchTerm = document.getElementById('users-search').value;
+                const message = searchTerm ? 
+                    `<div class="no-results">
+                        <i class="fas fa-search"></i>
+                        <h3>No users found</h3>
+                        <p>No users match your search criteria: "${searchTerm}"</p>
+                        <button class="btn" onclick="clearUsersSearch()">Clear Search</button>
+                    </div>` :
+                    '<tr><td colspan="5" style="text-align: center; color: #666; padding: 2rem;">No users found</td></tr>';
+                
+                tbody.innerHTML = message.includes('div') ? '' : message;
+                if (message.includes('div')) {
+                    tbody.parentNode.parentNode.insertAdjacentHTML('afterend', message);
+                }
+                return;
+            }
+
+            // Remove any existing no-results message
+            const existingNoResults = tbody.parentNode.parentNode.parentNode.querySelector('.no-results');
+            if (existingNoResults) {
+                existingNoResults.remove();
+            }
+
+            tbody.innerHTML = users
+                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                .map(user => `
+                    <tr>
+                        <td><strong>${user.name}</strong></td>
+                        <td>${user.phone}</td>
+                        <td><strong>${user.bookingCount || 0}</strong></td>
+                        <td>${new Date(user.createdAt).toLocaleDateString()}</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn edit" onclick="viewUserDetails('${user.id}')" title="View Details">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `).join('');
+        }
+
+        function viewUserDetails(userId) {
+            const user = allUsers.find(u => u.id == userId);
+            const userBookings = allOrders.filter(order => order.userId == userId);
+            
+            if (user) {
+                const totalSpent = userBookings.filter(o => o.status !== 'cancelled').reduce((sum, o) => sum + o.amount, 0);
+                const recentBookings = userBookings.slice(0, 5).map(b => `${b.product} (${b.status})`).join('\n');
+                
+                alert(`User Details:\n\nName: ${user.name}\nPhone: ${user.phone}\nJoined: ${new Date(user.createdAt).toLocaleDateString()}\nTotal Bookings: ${userBookings.length}\nTotal Spent: ₹${totalSpent}\n\nRecent Bookings:\n${recentBookings || 'None'}`);
+            }
+        }
+
+        function refreshUsers() {
+            allUsers = JSON.parse(localStorage.getItem('sufala_users')) || [];
+            loadUsers();
+            updateStats();
+            showNotification('Users refreshed', 'success');
+        }
+
+        // Advanced Analytics with Data Visualizations
+        let analyticsCharts = {};
+
+        function loadAnalytics() {
+            // Animate metrics first
+            animateMetrics();
+            
+            // Initialize charts
+            setTimeout(() => {
+                initializeRevenueChart();
+                initializeStatusChart();
+                initializeProductsChart();
+                initializeHeatmap();
+                initializeGrowthChart();
+                updateRealtimeStats();
+            }, 500);
+        }
+
+        function animateMetrics() {
+            // Calculate metrics
+            const totalOrders = allOrders.filter(o => o.status !== 'cancelled');
+            const totalUsers = allUsers.length;
+            const totalRevenue = totalOrders.reduce((sum, order) => sum + order.amount, 0);
+            
+            // Conversion rate (assuming some visits data)
+            const conversionRate = totalUsers > 0 ? (totalOrders.length / totalUsers * 100).toFixed(1) : 0;
+            
+            // Average order value
+            const avgOrderValue = totalOrders.length > 0 ? Math.round(totalRevenue / totalOrders.length) : 0;
+            
+            // Active customers (users with bookings in last 30 days)
+            const thirtyDaysAgo = new Date();
+            thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+            const activeCustomers = new Set(
+                allOrders.filter(order => new Date(order.createdAt) > thirtyDaysAgo)
+                    .map(order => order.userId)
+            ).size;
+            
+            // Average response time (mock calculation)
+            const avgResponseTime = Math.round(Math.random() * 4 + 1);
+            
+            // Animate counters
+            animateCounter('conversion-rate', 0, conversionRate, '%', 2000);
+            animateCounter('avg-order-value', 0, avgOrderValue, '₹', 2000);
+            animateCounter('active-customers', 0, activeCustomers, '', 2000);
+            animateCounter('avg-response-time', 0, avgResponseTime, 'h', 2000);
+        }
+
+        function animateCounter(elementId, start, end, suffix = '', duration = 2000) {
+            const element = document.getElementById(elementId);
+            const startTime = performance.now();
+            const isFloat = elementId === 'conversion-rate';
+            
+            function updateCounter(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Easing function
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const current = start + (end - start) * easeOut;
+                
+                if (isFloat) {
+                    element.textContent = `${current.toFixed(1)}${suffix}`;
+                } else {
+                    element.textContent = `${suffix}${Math.floor(current)}`;
+                }
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                }
+            }
+            
+            requestAnimationFrame(updateCounter);
+        }
+
+        function initializeRevenueChart() {
+            const ctx = document.getElementById('revenue-chart').getContext('2d');
+            
+            // Destroy existing chart if it exists
+            if (analyticsCharts.revenue) {
+                analyticsCharts.revenue.destroy();
+            }
+            
+            const revenueData = generateRevenueData();
+            
+            analyticsCharts.revenue = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: revenueData.labels,
+                    datasets: [{
+                        label: 'Daily Revenue',
+                        data: revenueData.data,
+                        borderColor: '#7fb069',
+                        backgroundColor: 'rgba(127, 176, 105, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#7fb069',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 6,
+                        pointHoverRadius: 8,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            cornerRadius: 10,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return `Revenue: ₹${context.parsed.y}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return '₹' + value;
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            });
+            
+            // Set canvas height
+            ctx.canvas.parentNode.style.height = '300px';
+        }
+
+        function initializeStatusChart() {
+            const ctx = document.getElementById('status-chart').getContext('2d');
+            
+            if (analyticsCharts.status) {
+                analyticsCharts.status.destroy();
+            }
+            
+            const statusData = getBookingStatusData();
+            
+            analyticsCharts.status = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: statusData.labels,
+                    datasets: [{
+                        data: statusData.data,
+                        backgroundColor: [
+                            '#28a745',  // confirmed
+                            '#ffc107',  // pending
+                            '#17a2b8',  // completed
+                            '#dc3545'   // cancelled
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            cornerRadius: 10,
+                            callbacks: {
+                                label: function(context) {
+                                    const percentage = ((context.parsed / statusData.total) * 100).toFixed(1);
+                                    return `${context.label}: ${context.parsed} (${percentage}%)`;
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        animateRotate: true,
+                        duration: 2000
+                    }
+                }
+            });
+            
+            ctx.canvas.parentNode.style.height = '300px';
+        }
+
+        function initializeProductsChart() {
+            const ctx = document.getElementById('products-chart').getContext('2d');
+            
+            if (analyticsCharts.products) {
+                analyticsCharts.products.destroy();
+            }
+            
+            const productData = getTopProductsData();
+            
+            analyticsCharts.products = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: productData.labels,
+                    datasets: [{
+                        label: 'Bookings',
+                        data: productData.data,
+                        backgroundColor: [
+                            '#7fb069',
+                            '#A8CC8C',
+                            '#D4AF37',
+                            '#6c757d',
+                            '#17a2b8'
+                        ],
+                        borderRadius: 8,
+                        borderSkipped: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            cornerRadius: 10,
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeInOutBounce'
+                    }
+                }
+            });
+            
+            ctx.canvas.parentNode.style.height = '300px';
+        }
+
+        function initializeGrowthChart() {
+            const ctx = document.getElementById('growth-chart').getContext('2d');
+            
+            if (analyticsCharts.growth) {
+                analyticsCharts.growth.destroy();
+            }
+            
+            const growthData = getMonthlyGrowthData();
+            
+            analyticsCharts.growth = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: growthData.labels,
+                    datasets: [
+                        {
+                            label: 'Bookings',
+                            data: growthData.bookings,
+                            borderColor: '#7fb069',
+                            backgroundColor: 'rgba(127, 176, 105, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'New Users',
+                            data: growthData.users,
+                            borderColor: '#D4AF37',
+                            backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 20
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            cornerRadius: 10,
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Bookings'
+                            }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'New Users'
+                            },
+                            grid: {
+                                drawOnChartArea: false,
+                            },
+                        }
+                    },
+                    animation: {
+                        duration: 2500,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            });
+            
+            ctx.canvas.parentNode.style.height = '300px';
+        }
+
+        function initializeHeatmap() {
+            const container = document.getElementById('heatmap-container');
+            container.innerHTML = '';
+            
+            const heatmapData = generateHeatmapData();
+            
+            const margin = { top: 20, right: 30, bottom: 40, left: 80 };
+            const width = container.offsetWidth - margin.left - margin.right;
+            const height = 300 - margin.top - margin.bottom;
+            
+            const svg = d3.select(container)
+                .append('svg')
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom);
+            
+            const g = svg.append('g')
+                .attr('transform', `translate(${margin.left},${margin.top})`);
+            
+            const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+            const hours = Array.from({length: 12}, (_, i) => `${i + 8}:00`);
+            
+            const colorScale = d3.scaleSequential(d3.interpolateGreens)
+                .domain([0, d3.max(heatmapData, d => d.value)]);
+            
+            const xScale = d3.scaleBand()
+                .domain(hours)
+                .range([0, width])
+                .padding(0.1);
+            
+            const yScale = d3.scaleBand()
+                .domain(days)
+                .range([0, height])
+                .padding(0.1);
+            
+            // Add tooltip div
+            const tooltip = d3.select(container)
+                .append('div')
+                .attr('class', 'heatmap-tooltip');
+            
+            // Create heatmap cells
+            g.selectAll('.heatmap-cell')
+                .data(heatmapData)
+                .enter()
+                .append('rect')
+                .attr('class', 'heatmap-cell')
+                .attr('x', d => xScale(d.hour))
+                .attr('y', d => yScale(d.day))
+                .attr('width', xScale.bandwidth())
+                .attr('height', yScale.bandwidth())
+                .attr('rx', 4)
+                .attr('fill', '#f0f0f0')
+                .on('mouseover', function(event, d) {
+                    tooltip.style('display', 'block')
+                        .html(`${d.day} ${d.hour}<br/>Bookings: ${d.value}`)
+                        .style('left', (event.pageX + 10) + 'px')
+                        .style('top', (event.pageY - 10) + 'px');
+                })
+                .on('mouseout', function() {
+                    tooltip.style('display', 'none');
+                })
+                .transition()
+                .duration(1000)
+                .delay((d, i) => i * 20)
+                .attr('fill', d => colorScale(d.value));
+            
+            // Add axes
+            g.append('g')
+                .attr('transform', `translate(0,${height})`)
+                .call(d3.axisBottom(xScale))
+                .selectAll('text')
+                .style('font-size', '12px');
+            
+            g.append('g')
+                .call(d3.axisLeft(yScale))
+                .selectAll('text')
+                .style('font-size', '12px');
+            
+            // Add labels
+            g.append('text')
+                .attr('x', width / 2)
+                .attr('y', height + 35)
+                .attr('text-anchor', 'middle')
+                .style('font-size', '12px')
+                .style('fill', '#666')
+                .text('Hour of Day');
+            
+            g.append('text')
+                .attr('transform', 'rotate(-90)')
+                .attr('y', -60)
+                .attr('x', -height / 2)
+                .attr('text-anchor', 'middle')
+                .style('font-size', '12px')
+                .style('fill', '#666')
+                .text('Day of Week');
+        }
+
+        // Data Generation Functions
+        function generateRevenueData() {
+            const period = document.getElementById('revenue-period')?.value || '30days';
+            const days = period === '7days' ? 7 : period === '30days' ? 30 : 90;
+            
+            const labels = [];
+            const data = [];
+            
+            for (let i = days - 1; i >= 0; i--) {
+                const date = new Date();
+                date.setDate(date.getDate() - i);
+                
+                if (days <= 7) {
+                    labels.push(date.toLocaleDateString('en', { weekday: 'short', day: 'numeric' }));
+                } else {
+                    labels.push(date.toLocaleDateString('en', { month: 'short', day: 'numeric' }));
+                }
+                
+                // Calculate actual revenue for this date
+                const dayRevenue = allOrders
+                    .filter(order => {
+                        const orderDate = new Date(order.createdAt);
+                        return orderDate.toDateString() === date.toDateString() && 
+                               order.status !== 'cancelled';
+                    })
+                    .reduce((sum, order) => sum + order.amount, 0);
+                
+                data.push(dayRevenue);
+            }
+            
+            return { labels, data };
+        }
+
+        function getBookingStatusData() {
+            const statusCounts = {};
+            let total = 0;
+            
+            allOrders.forEach(order => {
+                statusCounts[order.status] = (statusCounts[order.status] || 0) + 1;
+                total++;
+            });
+            
+            return {
+                labels: Object.keys(statusCounts).map(status => 
+                    status.charAt(0).toUpperCase() + status.slice(1)
+                ),
+                data: Object.values(statusCounts),
+                total: total
+            };
+        }
+
+        function getTopProductsData() {
+            const productCounts = {};
+            
+            allOrders.forEach(order => {
+                if (order.status !== 'cancelled') {
+                    productCounts[order.product] = (productCounts[order.product] || 0) + 1;
+                }
+            });
+            
+            // Sort and get top 5
+            const sortedProducts = Object.entries(productCounts)
+                .sort(([,a], [,b]) => b - a)
+                .slice(0, 5);
+            
+            return {
+                labels: sortedProducts.map(([product]) => 
+                    product.length > 15 ? product.substring(0, 15) + '...' : product
+                ),
+                data: sortedProducts.map(([,count]) => count)
+            };
+        }
+
+        function getMonthlyGrowthData() {
+            const months = [];
+            const bookingsData = [];
+            const usersData = [];
+            
+            for (let i = 5; i >= 0; i--) {
+                const date = new Date();
+                date.setMonth(date.getMonth() - i);
+                
+                months.push(date.toLocaleDateString('en', { month: 'short', year: '2-digit' }));
+                
+                // Count bookings for this month
+                const monthBookings = allOrders.filter(order => {
+                    const orderDate = new Date(order.createdAt);
+                    return orderDate.getMonth() === date.getMonth() && 
+                           orderDate.getFullYear() === date.getFullYear() &&
+                           order.status !== 'cancelled';
+                }).length;
+                
+                // Count new users for this month
+                const monthUsers = allUsers.filter(user => {
+                    const userDate = new Date(user.createdAt);
+                    return userDate.getMonth() === date.getMonth() && 
+                           userDate.getFullYear() === date.getFullYear();
+                }).length;
+                
+                bookingsData.push(monthBookings);
+                usersData.push(monthUsers);
+            }
+            
+            return {
+                labels: months,
+                bookings: bookingsData,
+                users: usersData
+            };
+        }
+
+        function generateHeatmapData() {
+            const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+            const hours = Array.from({length: 12}, (_, i) => `${i + 8}:00`);
+            const data = [];
+            
+            days.forEach(day => {
+                hours.forEach(hour => {
+                    // Calculate actual bookings for this day/hour combination
+                    const bookingCount = allOrders.filter(order => {
+                        const orderDate = new Date(order.createdAt);
+                        const orderDay = orderDate.toLocaleDateString('en', { weekday: 'short' });
+                        const orderHour = orderDate.getHours();
+                        const targetHour = parseInt(hour.split(':')[0]);
+                        
+                        return orderDay === day && orderHour === targetHour && order.status !== 'cancelled';
+                    }).length;
+                    
+                    data.push({
+                        day: day,
+                        hour: hour,
+                        value: bookingCount
+                    });
+                });
+            });
+            
+            return data;
+        }
+
+        function updateRevenueChart() {
+            initializeRevenueChart();
+        }
+
+        function updateRealtimeStats() {
+            // Today's bookings
+            const today = new Date().toDateString();
+            const todayBookings = allOrders.filter(order => 
+                new Date(order.createdAt).toDateString() === today && 
+                order.status !== 'cancelled'
+            ).length;
+            
+            // This week's revenue
+            const weekStart = new Date();
+            weekStart.setDate(weekStart.getDate() - weekStart.getDay());
+            const thisWeekRevenue = allOrders.filter(order => 
+                new Date(order.createdAt) >= weekStart && 
+                order.status !== 'cancelled'
+            ).reduce((sum, order) => sum + order.amount, 0);
+            
+            // Pending orders
+            const pendingOrders = allOrders.filter(order => order.status === 'pending').length;
+            
+            // Animate real-time stats
+            animateCounter('today-bookings', 0, todayBookings, '', 1500);
+            animateCounter('this-week-revenue', 0, thisWeekRevenue, '₹', 1500);
+            animateCounter('pending-orders', 0, pendingOrders, '', 1500);
+        }
+
+        // Add Product Modal Functions (unchanged)
         function showAddProductModal() {
             document.getElementById('add-product-modal').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -1567,7 +3001,7 @@
             resetImageUpload('add');
         }
 
-        // Enhanced Edit Product Modal Functions
+        // Enhanced Edit Product Modal Functions (unchanged)
         function showEditProductModal() {
             document.getElementById('edit-product-modal').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -1609,7 +3043,7 @@
             showEditProductModal();
         }
 
-        // Image Upload Handler
+        // Image Upload Handler (unchanged)
         function handleImageUpload(event, mode) {
             const file = event.target.files[0];
             if (file) {
@@ -1676,7 +3110,7 @@
             }
         }
 
-        // Form Submissions
+        // Form Submissions (unchanged)
         document.getElementById('add-product-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -1794,181 +3228,7 @@
             }
         }
 
-        // Real-time sync with user interface
-        function saveFeaturedSettings() {
-            localStorage.setItem('sufala_featured_settings', JSON.stringify(featuredSettings));
-            updateStats();
-            
-            // Trigger storage event for real-time sync
-            window.dispatchEvent(new StorageEvent('storage', {
-                key: 'sufala_featured_settings',
-                newValue: JSON.stringify(featuredSettings)
-            }));
-        }
-
-        // Auto-refresh to sync with user interface changes
-        setInterval(() => {
-            const currentSettings = JSON.parse(localStorage.getItem('sufala_featured_settings')) || {
-                enabled: false,
-                autoSlide: true,
-                slideInterval: 5000,
-                products: []
-            };
-            
-            if (JSON.stringify(currentSettings) !== JSON.stringify(featuredSettings)) {
-                featuredSettings = currentSettings;
-                loadFeaturedSettings();
-                loadFeaturedProducts();
-                updateStats();
-            }
-        }, 3000);
-
-        // Bookings Management (same as before)
-        function loadBookings() {
-            const tbody = document.getElementById('bookings-table-body');
-            
-            if (allOrders.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #666; padding: 2rem;">No bookings found</td></tr>';
-                return;
-            }
-
-            tbody.innerHTML = allOrders
-                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                .map(booking => `
-                    <tr>
-                        <td>${booking.id}</td>
-                        <td>
-                            <strong>${booking.customerName}</strong><br>
-                            <small>${booking.customerPhone}</small>
-                        </td>
-                        <td>${booking.product} (${booking.quantity})</td>
-                        <td>
-                            ${booking.date}<br>
-                            <small>${booking.timeSlot}</small>
-                        </td>
-                        <td>₹${booking.amount}</td>
-                        <td><span class="status-badge status-${booking.status}">${booking.status}</span></td>
-                        <td>
-                            <div class="action-buttons">
-                                ${booking.status === 'pending' ? `
-                                    <button class="action-btn confirm" onclick="updateBookingStatus('${booking.id}', 'confirmed')">
-                                        <i class="fas fa-check"></i>
-                                    </button>
-                                ` : ''}
-                                <button class="action-btn delete" onclick="cancelBooking('${booking.id}')">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                `).join('');
-        }
-
-        function updateBookingStatus(orderId, newStatus) {
-            const orderIndex = allOrders.findIndex(order => order.id === orderId);
-            if (orderIndex !== -1) {
-                allOrders[orderIndex].status = newStatus;
-                localStorage.setItem('sufala_orders', JSON.stringify(allOrders));
-                
-                showNotification(`Booking ${orderId} ${newStatus} successfully`, 'success');
-                loadBookings();
-                updateStats();
-            }
-        }
-
-        function cancelBooking(orderId) {
-            if (confirm(`Are you sure you want to cancel booking ${orderId}?`)) {
-                updateBookingStatus(orderId, 'cancelled');
-            }
-        }
-
-        function refreshBookings() {
-            allOrders = JSON.parse(localStorage.getItem('sufala_orders')) || [];
-            loadBookings();
-            updateStats();
-            showNotification('Bookings refreshed', 'success');
-        }
-
-        // Users Management (same as before)
-        function loadUsers() {
-            const tbody = document.getElementById('users-table-body');
-            
-            if (allUsers.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #666; padding: 2rem;">No users found</td></tr>';
-                return;
-            }
-
-            tbody.innerHTML = allUsers
-                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                .map(user => `
-                    <tr>
-                        <td><strong>${user.name}</strong></td>
-                        <td>${user.phone}</td>
-                        <td>${user.bookingCount || 0}</td>
-                        <td>${new Date(user.createdAt).toLocaleDateString()}</td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="action-btn edit" onclick="viewUserDetails('${user.id}')">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                `).join('');
-        }
-
-        function viewUserDetails(userId) {
-            const user = allUsers.find(u => u.id == userId);
-            const userBookings = allOrders.filter(order => order.userId == userId);
-            
-            if (user) {
-                alert(`User Details:\n\nName: ${user.name}\nPhone: ${user.phone}\nJoined: ${new Date(user.createdAt).toLocaleDateString()}\nTotal Bookings: ${userBookings.length}\nTotal Spent: ₹${userBookings.filter(o => o.status !== 'cancelled').reduce((sum, o) => sum + o.amount, 0)}`);
-            }
-        }
-
-        function refreshUsers() {
-            allUsers = JSON.parse(localStorage.getItem('sufala_users')) || [];
-            loadUsers();
-            updateStats();
-            showNotification('Users refreshed', 'success');
-        }
-
-        // Analytics (same as before)
-        function loadAnalytics() {
-            const tbody = document.getElementById('metrics-table-body');
-            
-            const thisMonthBookings = allOrders.filter(order => {
-                const orderDate = new Date(order.createdAt);
-                const now = new Date();
-                return orderDate.getMonth() === now.getMonth() && orderDate.getFullYear() === now.getFullYear();
-            }).length;
-
-            const lastMonthBookings = allOrders.filter(order => {
-                const orderDate = new Date(order.createdAt);
-                const lastMonth = new Date();
-                lastMonth.setMonth(lastMonth.getMonth() - 1);
-                return orderDate.getMonth() === lastMonth.getMonth() && orderDate.getFullYear() === lastMonth.getFullYear();
-            }).length;
-
-            tbody.innerHTML = `
-                <tr>
-                    <td><strong>Bookings</strong></td>
-                    <td>${thisMonthBookings}</td>
-                    <td>${lastMonthBookings}</td>
-                    <td style="color: ${thisMonthBookings >= lastMonthBookings ? '#28a745' : '#dc3545'}">
-                        ${thisMonthBookings >= lastMonthBookings ? '+' : ''}${((thisMonthBookings - lastMonthBookings) / (lastMonthBookings || 1) * 100).toFixed(1)}%
-                    </td>
-                </tr>
-                <tr>
-                    <td><strong>Featured Products</strong></td>
-                    <td>${featuredSettings.products.length}</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-            `;
-        }
-
-        // Utility Functions
+        // Utility Functions (unchanged)
         function exportData() {
             const data = {
                 users: allUsers,
@@ -2046,27 +3306,91 @@
                 allUsers = JSON.parse(localStorage.getItem('sufala_users')) || [];
                 allOrders = JSON.parse(localStorage.getItem('sufala_orders')) || [];
                 loadDashboardData();
+                
+                // Update current search results if any search is active
+                const bookingsSearchTerm = document.getElementById('bookings-search').value;
+                const usersSearchTerm = document.getElementById('users-search').value;
+                
+                if (bookingsSearchTerm) {
+                    searchBookings();
+                }
+                if (usersSearchTerm) {
+                    searchUsers();
+                }
+                
                 showNotification('Data synchronized with user interface', 'success');
             }
         });
 
-        // Auto-refresh for real-time sync
+        // Auto-refresh for real-time sync with search state preservation
         setInterval(() => {
-            // Refresh user and order data
+            // Preserve current search states
+            const bookingsSearchTerm = document.getElementById('bookings-search').value;
+            const usersSearchTerm = document.getElementById('users-search').value;
+            
+            // Refresh featured products settings
+            const currentSettings = JSON.parse(localStorage.getItem('sufala_featured_settings')) || {
+                enabled: false,
+                autoSlide: true,
+                slideInterval: 5000,
+                products: []
+            };
+            
+            if (JSON.stringify(currentSettings) !== JSON.stringify(featuredSettings)) {
+                featuredSettings = currentSettings;
+                loadFeaturedSettings();
+                loadFeaturedProducts();
+                updateStats();
+            }
+            
+            // Refresh user and order data while preserving search
             const newUsers = JSON.parse(localStorage.getItem('sufala_users')) || [];
             const newOrders = JSON.parse(localStorage.getItem('sufala_orders')) || [];
             
             if (JSON.stringify(newUsers) !== JSON.stringify(allUsers) || 
                 JSON.stringify(newOrders) !== JSON.stringify(allOrders)) {
+                
+                // Update data
                 allUsers = newUsers;
                 allOrders = newOrders;
-                loadDashboardData();
+                updateStats();
+                
+                // Only refresh displays if we're on those sections, and preserve search
+                const activeSection = document.querySelector('.content-section.active').id;
+                
+                if (activeSection === 'bookings-section') {
+                    filteredBookings = allOrders;
+                    if (bookingsSearchTerm) {
+                        // Restore search input and re-filter
+                        document.getElementById('bookings-search').value = bookingsSearchTerm;
+                        searchBookings();
+                    } else {
+                        renderBookings(filteredBookings);
+                    }
+                }
+                
+                if (activeSection === 'users-section') {
+                    // Calculate booking count for each user
+                    allUsers.forEach(user => {
+                        user.bookingCount = allOrders.filter(order => order.userId == user.id).length;
+                    });
+                    
+                    filteredUsers = allUsers;
+                    if (usersSearchTerm) {
+                        // Restore search input and re-filter
+                        document.getElementById('users-search').value = usersSearchTerm;
+                        searchUsers();
+                    } else {
+                        renderUsers(filteredUsers);
+                    }
+                }
             }
         }, 5000);
 
-        console.log('Sufala Enhanced Admin Dashboard Loaded with Professional Edit Modal');
+        console.log('Sufala Enhanced Admin Dashboard Loaded with Advanced Search & Analytics');
         console.log('Default login: admin / sufala123');
-        console.log('New Features: Professional Edit Modal + Enhanced Image Upload + Grid Layout');
+        console.log('Features: Advanced Search + Animated Analytics Dashboard + Real-time Data Visualization');
+        console.log('Analytics: Revenue Trends, Status Distribution, Product Rankings, Activity Heatmap, Growth Metrics');
     </script>
 </body>
 </html>
