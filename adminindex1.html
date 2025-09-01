@@ -641,9 +641,9 @@
             background: white;
             border-radius: 20px;
             padding: 2rem;
-            max-width: 600px;
+            max-width: 700px;
             width: 90%;
-            max-height: 80vh;
+            max-height: 90vh;
             overflow-y: auto;
             box-shadow: var(--shadow);
             position: relative;
@@ -658,38 +658,126 @@
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--text-dark);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: #f0f0f0;
         }
 
         .modal h2 {
             color: var(--primary-green);
             margin-bottom: 2rem;
+            padding-right: 3rem;
+        }
+
+        /* Enhanced Form Grid Layout */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-grid .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group.image-section {
+            grid-column: 1 / -1;
+            border: 2px dashed #ddd;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            background: #fafafa;
+            transition: all 0.3s ease;
+        }
+
+        .form-group.image-section:hover {
+            border-color: var(--primary-green);
+            background: var(--warm-cream);
+        }
+
+        .form-group.image-section.has-image {
+            border-color: var(--primary-green);
+            border-style: solid;
+            background: var(--warm-cream);
         }
 
         /* Image Upload */
         .image-upload {
-            border: 2px dashed #ddd;
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .image-upload:hover {
-            border-color: var(--primary-green);
-            background: var(--warm-cream);
+            cursor: pointer;
         }
 
         .image-upload input {
             display: none;
         }
 
+        .image-upload-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .image-upload-icon {
+            font-size: 3rem;
+            color: #ccc;
+            transition: all 0.3s ease;
+        }
+
+        .image-upload:hover .image-upload-icon {
+            color: var(--primary-green);
+            transform: scale(1.1);
+        }
+
         .image-preview {
-            max-width: 200px;
+            max-width: 250px;
             max-height: 200px;
             object-fit: cover;
-            border-radius: 10px;
+            border-radius: 15px;
+            box-shadow: var(--light-shadow);
             margin-top: 1rem;
+        }
+
+        .image-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .image-actions .btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+        }
+
+        /* Form enhancements */
+        .form-group input:valid, .form-group textarea:valid {
+            border-color: #28a745;
+        }
+
+        .form-group input:invalid:not(:placeholder-shown), 
+        .form-group textarea:invalid:not(:placeholder-shown) {
+            border-color: #dc3545;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            padding-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .form-actions .btn {
+            min-width: 120px;
+            justify-content: center;
         }
 
         /* Loading Animation */
@@ -759,13 +847,17 @@
                 gap: 1rem;
             }
 
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
             .table-header {
                 flex-direction: column;
                 gap: 1rem;
                 align-items: stretch;
             }
 
-            .table-actions {
+            .table-actions, .form-actions {
                 flex-direction: column;
             }
 
@@ -781,6 +873,7 @@
             .modal-content {
                 margin: 1rem;
                 max-width: calc(100vw - 2rem);
+                padding: 1.5rem;
             }
         }
     </style>
@@ -1148,37 +1241,115 @@
         <div class="modal-content">
             <button class="modal-close" onclick="closeAddProductModal()">&times;</button>
             
-            <h2>Add Featured Product</h2>
+            <h2><i class="fas fa-plus"></i> Add Featured Product</h2>
             
             <form id="add-product-form">
-                <div class="form-group">
-                    <label for="product-name">Product Name</label>
-                    <input type="text" id="product-name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="product-description">Description</label>
-                    <textarea id="product-description" rows="3" required></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="product-price">Price (₹)</label>
-                    <input type="number" id="product-price" min="1" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="product-image">Product Image</label>
-                    <div class="image-upload" onclick="document.getElementById('image-input').click()">
-                        <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: #ccc; margin-bottom: 1rem;"></i>
-                        <p>Click to upload image or drag and drop</p>
-                        <input type="file" id="image-input" accept="image/*" onchange="handleImageUpload(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="product-name">Product Name *</label>
+                        <input type="text" id="product-name" placeholder="Enter product name" required>
                     </div>
-                    <img id="image-preview" class="image-preview" style="display: none;">
+                    
+                    <div class="form-group">
+                        <label for="product-price">Price (₹) *</label>
+                        <input type="number" id="product-price" placeholder="0" min="1" required>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="product-description">Description *</label>
+                        <textarea id="product-description" rows="3" placeholder="Enter product description" required></textarea>
+                    </div>
+                    
+                    <div class="form-group image-section full-width" id="image-upload-section">
+                        <label>Product Image</label>
+                        <div class="image-upload" onclick="document.getElementById('image-input').click()">
+                            <input type="file" id="image-input" accept="image/*" onchange="handleImageUpload(event, 'add')">
+                            <div class="image-upload-content">
+                                <i class="fas fa-cloud-upload-alt image-upload-icon"></i>
+                                <h4>Upload Product Image</h4>
+                                <p>Click to browse or drag and drop</p>
+                                <small>Supports: JPG, PNG, GIF (Max: 5MB)</small>
+                            </div>
+                        </div>
+                        <img id="image-preview" class="image-preview" style="display: none;">
+                        <div class="image-actions" id="image-actions" style="display: none;">
+                            <button type="button" class="btn secondary" onclick="changeImage('add')">
+                                <i class="fas fa-exchange-alt"></i> Change Image
+                            </button>
+                            <button type="button" class="btn danger" onclick="removeImage('add')">
+                                <i class="fas fa-trash"></i> Remove
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 
-                <button type="submit" class="btn" style="width: 100%;">
-                    <i class="fas fa-plus"></i> Add Product
-                </button>
+                <div class="form-actions">
+                    <button type="button" class="btn secondary" onclick="closeAddProductModal()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button type="submit" class="btn">
+                        <i class="fas fa-plus"></i> Add Product
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div id="edit-product-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeEditProductModal()">&times;</button>
+            
+            <h2><i class="fas fa-edit"></i> Edit Product</h2>
+            
+            <form id="edit-product-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="edit-product-name">Product Name *</label>
+                        <input type="text" id="edit-product-name" placeholder="Enter product name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-product-price">Price (₹) *</label>
+                        <input type="number" id="edit-product-price" placeholder="0" min="1" required>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="edit-product-description">Description *</label>
+                        <textarea id="edit-product-description" rows="3" placeholder="Enter product description" required></textarea>
+                    </div>
+                    
+                    <div class="form-group image-section full-width" id="edit-image-upload-section">
+                        <label>Product Image</label>
+                        <div class="image-upload" onclick="document.getElementById('edit-image-input').click()">
+                            <input type="file" id="edit-image-input" accept="image/*" onchange="handleImageUpload(event, 'edit')">
+                            <div class="image-upload-content" id="edit-upload-content">
+                                <i class="fas fa-cloud-upload-alt image-upload-icon"></i>
+                                <h4>Upload Product Image</h4>
+                                <p>Click to browse or drag and drop</p>
+                                <small>Supports: JPG, PNG, GIF (Max: 5MB)</small>
+                            </div>
+                        </div>
+                        <img id="edit-image-preview" class="image-preview" style="display: none;">
+                        <div class="image-actions" id="edit-image-actions" style="display: none;">
+                            <button type="button" class="btn secondary" onclick="changeImage('edit')">
+                                <i class="fas fa-exchange-alt"></i> Change Image
+                            </button>
+                            <button type="button" class="btn danger" onclick="removeImage('edit')">
+                                <i class="fas fa-trash"></i> Remove
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn secondary" onclick="closeEditProductModal()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button type="submit" class="btn">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </div>
             </form>
         </div>
     </div>
@@ -1188,6 +1359,7 @@
         let allUsers = JSON.parse(localStorage.getItem('sufala_users')) || [];
         let allOrders = JSON.parse(localStorage.getItem('sufala_orders')) || [];
         let currentAdmin = null;
+        let editingProductIndex = -1;
 
         // Admin credentials (in production, this should be server-side)
         const adminCredentials = {
@@ -1382,6 +1554,7 @@
             });
         }
 
+        // Add Product Modal Functions
         function showAddProductModal() {
             document.getElementById('add-product-modal').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -1391,22 +1564,119 @@
             document.getElementById('add-product-modal').classList.remove('active');
             document.body.style.overflow = '';
             document.getElementById('add-product-form').reset();
-            document.getElementById('image-preview').style.display = 'none';
+            resetImageUpload('add');
         }
 
-        function handleImageUpload(event) {
+        // Enhanced Edit Product Modal Functions
+        function showEditProductModal() {
+            document.getElementById('edit-product-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEditProductModal() {
+            document.getElementById('edit-product-modal').classList.remove('active');
+            document.body.style.overflow = '';
+            document.getElementById('edit-product-form').reset();
+            resetImageUpload('edit');
+            editingProductIndex = -1;
+        }
+
+        function editProduct(index) {
+            editingProductIndex = index;
+            const product = featuredSettings.products[index];
+            
+            // Populate form fields
+            document.getElementById('edit-product-name').value = product.name;
+            document.getElementById('edit-product-description').value = product.description;
+            document.getElementById('edit-product-price').value = product.price;
+            
+            // Handle image
+            const editImagePreview = document.getElementById('edit-image-preview');
+            const editUploadContent = document.getElementById('edit-upload-content');
+            const editImageActions = document.getElementById('edit-image-actions');
+            const editImageSection = document.getElementById('edit-image-upload-section');
+            
+            if (product.image && product.image !== 'oilbottle.jpg') {
+                editImagePreview.src = product.image;
+                editImagePreview.style.display = 'block';
+                editUploadContent.style.display = 'none';
+                editImageActions.style.display = 'flex';
+                editImageSection.classList.add('has-image');
+            } else {
+                resetImageUpload('edit');
+            }
+            
+            showEditProductModal();
+        }
+
+        // Image Upload Handler
+        function handleImageUpload(event, mode) {
             const file = event.target.files[0];
             if (file) {
+                // Validate file size (5MB limit)
+                if (file.size > 5 * 1024 * 1024) {
+                    showNotification('Image size must be less than 5MB', 'error');
+                    return;
+                }
+                
+                // Validate file type
+                if (!file.type.startsWith('image/')) {
+                    showNotification('Please select a valid image file', 'error');
+                    return;
+                }
+                
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const preview = document.getElementById('image-preview');
+                    const preview = document.getElementById(mode === 'add' ? 'image-preview' : 'edit-image-preview');
+                    const uploadContent = document.getElementById(mode === 'add' ? 'image-upload-section' : 'edit-upload-content');
+                    const imageActions = document.getElementById(mode === 'add' ? 'image-actions' : 'edit-image-actions');
+                    const imageSection = document.getElementById(mode === 'add' ? 'image-upload-section' : 'edit-image-upload-section');
+                    
                     preview.src = e.target.result;
                     preview.style.display = 'block';
+                    
+                    if (mode === 'add') {
+                        uploadContent.querySelector('.image-upload-content').style.display = 'none';
+                    } else {
+                        uploadContent.style.display = 'none';
+                    }
+                    
+                    imageActions.style.display = 'flex';
+                    imageSection.classList.add('has-image');
                 };
                 reader.readAsDataURL(file);
             }
         }
 
+        function changeImage(mode) {
+            document.getElementById(mode === 'add' ? 'image-input' : 'edit-image-input').click();
+        }
+
+        function removeImage(mode) {
+            resetImageUpload(mode);
+        }
+
+        function resetImageUpload(mode) {
+            const preview = document.getElementById(mode === 'add' ? 'image-preview' : 'edit-image-preview');
+            const uploadContent = document.getElementById(mode === 'add' ? 'image-upload-section' : 'edit-upload-content');
+            const imageActions = document.getElementById(mode === 'add' ? 'image-actions' : 'edit-image-actions');
+            const imageSection = document.getElementById(mode === 'add' ? 'image-upload-section' : 'edit-image-upload-section');
+            const input = document.getElementById(mode === 'add' ? 'image-input' : 'edit-image-input');
+            
+            preview.style.display = 'none';
+            preview.src = '';
+            input.value = '';
+            imageActions.style.display = 'none';
+            imageSection.classList.remove('has-image');
+            
+            if (mode === 'add') {
+                uploadContent.querySelector('.image-upload-content').style.display = 'flex';
+            } else {
+                uploadContent.style.display = 'flex';
+            }
+        }
+
+        // Form Submissions
         document.getElementById('add-product-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -1433,6 +1703,39 @@
             showNotification(`Product "${name}" added to featured products`, 'success');
         });
 
+        document.getElementById('edit-product-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (editingProductIndex === -1) {
+                showNotification('Error: No product selected for editing', 'error');
+                return;
+            }
+            
+            const name = document.getElementById('edit-product-name').value;
+            const description = document.getElementById('edit-product-description').value;
+            const price = parseFloat(document.getElementById('edit-product-price').value);
+            const imagePreview = document.getElementById('edit-image-preview');
+            const currentProduct = featuredSettings.products[editingProductIndex];
+            
+            // Use new image if uploaded, otherwise keep existing image
+            const image = imagePreview.style.display === 'block' ? imagePreview.src : currentProduct.image;
+            
+            featuredSettings.products[editingProductIndex] = {
+                ...currentProduct,
+                name,
+                description,
+                price,
+                image,
+                updatedAt: new Date().toISOString()
+            };
+            
+            saveFeaturedSettings();
+            loadFeaturedProducts();
+            closeEditProductModal();
+            
+            showNotification(`Product "${name}" updated successfully`, 'success');
+        });
+
         function deleteProduct(index) {
             if (confirm('Are you sure you want to delete this product from featured products?')) {
                 const productName = featuredSettings.products[index].name;
@@ -1440,29 +1743,6 @@
                 saveFeaturedSettings();
                 loadFeaturedProducts();
                 showNotification(`Product "${productName}" removed from featured products`, 'success');
-            }
-        }
-
-        function editProduct(index) {
-            // In a real application, this would open an edit modal
-            const product = featuredSettings.products[index];
-            
-            // Simple edit using prompts (could be enhanced with a proper modal)
-            const newName = prompt('Product Name:', product.name);
-            const newDescription = prompt('Description:', product.description);
-            const newPrice = prompt('Price (₹):', product.price);
-            
-            if (newName && newDescription && newPrice) {
-                featuredSettings.products[index] = {
-                    ...product,
-                    name: newName,
-                    description: newDescription,
-                    price: parseFloat(newPrice)
-                };
-                
-                saveFeaturedSettings();
-                loadFeaturedProducts();
-                showNotification(`Product "${newName}" updated successfully`, 'success');
             }
         }
 
@@ -1753,6 +2033,12 @@
             }
         });
 
+        document.getElementById('edit-product-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeEditProductModal();
+            }
+        });
+
         // Listen for messages from user interface
         window.addEventListener('message', function(e) {
             if (e.data.action === 'adminUpdate') {
@@ -1763,52 +2049,6 @@
                 showNotification('Data synchronized with user interface', 'success');
             }
         });
-
-        // Navigation between interfaces
-        function openUserInterface() {
-            const userWindow = window.open('index15.html', 'SufalaUser', 'width=1200,height=800,resizable=yes,scrollbars=yes');
-            
-            if (userWindow) {
-                userWindow.focus();
-                showNotification('User interface opened successfully', 'success');
-                
-                // Send current settings to user interface
-                setTimeout(() => {
-                    try {
-                        userWindow.postMessage({
-                            action: 'syncSettings',
-                            settings: featuredSettings
-                        }, '*');
-                    } catch(e) {
-                        console.log('Cross-window communication not available');
-                    }
-                }, 1000);
-            } else {
-                showNotification('Please allow popups or manually open index15.html', 'error');
-            }
-        }
-
-        // Enhanced save function with real-time sync
-        function saveFeaturedSettings() {
-            localStorage.setItem('sufala_featured_settings', JSON.stringify(featuredSettings));
-            updateStats();
-            
-            // Trigger storage event for real-time sync
-            window.dispatchEvent(new StorageEvent('storage', {
-                key: 'sufala_featured_settings',
-                newValue: JSON.stringify(featuredSettings)
-            }));
-            
-            // Notify all open user windows
-            try {
-                window.postMessage({
-                    action: 'featuredUpdated',
-                    settings: featuredSettings
-                }, '*');
-            } catch(e) {
-                console.log('Cross-window communication not available');
-            }
-        }
 
         // Auto-refresh for real-time sync
         setInterval(() => {
@@ -1824,9 +2064,9 @@
             }
         }, 5000);
 
-        console.log('Sufala Enhanced Admin Dashboard Loaded - Linked with User Interface');
+        console.log('Sufala Enhanced Admin Dashboard Loaded with Professional Edit Modal');
         console.log('Default login: admin / sufala123');
-        console.log('Features: Featured Products Control + Real-time Sync + Cross-Interface Navigation');
+        console.log('New Features: Professional Edit Modal + Enhanced Image Upload + Grid Layout');
     </script>
 </body>
 </html>
